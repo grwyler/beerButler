@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">"ChallengeApp "</string>
+    <string name="name_hint">Enter a User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="log_in_button">Log In</string>
+    <string name="register_button">Register</string>
+    <string name="error">Error</string>
+    <string name="create_password_hint">Create a Password</string>
+    <string name="verify_password_hint">Verify Password</string>
+    <string name="userName">User Key</string>
+    <string name="message">Message</string>
+    <string name="password">Password Key</string>
+    <string name="image_description">Image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
