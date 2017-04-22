@@ -152,8 +152,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                 urlConnection.setDoOutput(true);
 
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
-//                String data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(
-//                        strings[1], "UTF-8");
                 String data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(
                         strings[1], "UTF-8") + "&" + URLEncoder.encode("pwd", "UTF-8") + "=" +
                         URLEncoder.encode(strings[2], "UTF-8");
