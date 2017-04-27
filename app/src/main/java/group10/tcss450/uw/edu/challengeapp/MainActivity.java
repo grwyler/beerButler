@@ -1,3 +1,11 @@
+/**
+ *
+ * Authors: Ben Russell, Garret Wyler, Chris Hall, Thomas Schmit
+ *
+ * Date: 4/27/2017
+ *
+ * version: 1.0
+ */
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.net.Uri;
