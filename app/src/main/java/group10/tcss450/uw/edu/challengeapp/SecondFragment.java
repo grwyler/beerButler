@@ -101,12 +101,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         //enforces alpha numeric entry for passwords using regex.
         Pattern letter = Pattern.compile("[a-zA-Z]");
         Pattern digit = Pattern.compile("[0-9]");
+        //find any number from 0-9
         if (!digit.matcher(string).find()){
             password.setHintTextColor(Color.RED);
             password.setError("Password must contain at least one number");
             cont = false;
         }
-
+        //find any letter from a-z or A-Z
         if (!letter.matcher(string).find()){
             password.setHintTextColor(Color.RED);
             password.setError("Password must contain at least one letter");

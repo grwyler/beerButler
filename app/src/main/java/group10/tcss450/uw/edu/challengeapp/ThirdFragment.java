@@ -100,6 +100,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         String pswrdString = password.getText().toString();
         String vPswrdString = vPassword.getText().toString();
         String string = password.getText().toString();
+
         //enforces alpha numeric entry for passwords using regex.
         Pattern letter = Pattern.compile("[a-zA-Z]");
         Pattern digit = Pattern.compile("[0-9]");
@@ -122,10 +123,10 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         } else if(!vPswrdString.equals(pswrdString)) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(MATCH_ERROR);
-        } else if (!digit.matcher(string).find()) {
+        } else if (!digit.matcher(string).find()) { // find a number from 0-9 in the string
             password.setHintTextColor(Color.RED);
             password.setError(ALPHANUMERIC_ERROR);
-        } else if (!letter.matcher(string).find()) {
+        } else if (!letter.matcher(string).find()) { // find a letter from a-z or A-Z in the string
             password.setHintTextColor(Color.RED);
             password.setError(ALPHANUMERIC_ERROR);
         } else cont = true;
