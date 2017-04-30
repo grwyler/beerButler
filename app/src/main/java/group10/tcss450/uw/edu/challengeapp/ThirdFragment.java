@@ -19,6 +19,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Pattern;
 
 
 /**
@@ -35,6 +36,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     private static final String PASSWORD = "password.";
     private static final String USER_NAME = "user name.";
     private static final String MATCH_ERROR = "The passwords do not match.";
+    private static final String ALPHANUMERIC_ERROR = "Password must contain at least one number " +
+            "and at least one letter";
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/challenge";
 
@@ -96,6 +99,11 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         String usrString = userName.getText().toString();
         String pswrdString = password.getText().toString();
         String vPswrdString = vPassword.getText().toString();
+        String string = password.getText().toString();
+        //enforces alpha numeric entry for passwords using regex.
+        Pattern letter = Pattern.compile("[a-zA-Z]");
+        Pattern digit = Pattern.compile("[0-9]");
+
         if(usrString.length() == 0) {
             userName.setHintTextColor(Color.RED);
             userName.setError(ERROR_MESSAGE + USER_NAME);
@@ -105,15 +113,21 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
             password.setError(ERROR_MESSAGE + PASSWORD);
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
-        } else if(pswrdString.length() == 0) {
+        } else if(pswrdString.length() < 5) {
             password.setHintTextColor(Color.RED);
             password.setError(ERROR_MESSAGE + PASSWORD);
-        } else if(vPswrdString.length() == 0) {
+        } else if(vPswrdString.length() < 5) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
         } else if(!vPswrdString.equals(pswrdString)) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(MATCH_ERROR);
+        } else if (!digit.matcher(string).find()) {
+            password.setHintTextColor(Color.RED);
+            password.setError(ALPHANUMERIC_ERROR);
+        } else if (!letter.matcher(string).find()) {
+            password.setHintTextColor(Color.RED);
+            password.setError(ALPHANUMERIC_ERROR);
         } else cont = true;
         return cont;
     }
@@ -129,7 +143,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(String message);
     }
 
