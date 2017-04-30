@@ -1,4 +1,8 @@
 /**
+ * Beer Butler: An pp that allows users to save beers that they have tried to their profile.
+ * The app will also generate a brewery tour based on the breweries in their vicinity.
+ * User profile data will be stored in a database along with the beers they have entered in with
+ * beer specifics such as IBUs and ABV as well as more beer profile specifics and user notes.
  *
  * Authors: Ben Russell, Garret Wyler, Chris Hall, Thomas Schmit
  *

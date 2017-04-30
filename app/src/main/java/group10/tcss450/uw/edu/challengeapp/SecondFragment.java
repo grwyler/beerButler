@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        AsyncTask<String, Void, String> task = null;
+        AsyncTask<String, Void, String> task;
         View parent = (View) view.getParent();
         EditText userName = (EditText) parent.findViewById(R.id.userNameText);
         EditText password = (EditText) parent.findViewById(R.id.passwordText);
