@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +67,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        AsyncTask<String, Void, String> task = null;
+        AsyncTask<String, Void, String> task;
         View parent = (View) view.getParent();
         EditText userName = (EditText) parent.findViewById(R.id.userNameText);
         EditText password = (EditText) parent.findViewById(R.id.passwordText);
@@ -84,16 +85,35 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     private boolean warnUser(EditText userName, EditText password) {
         boolean cont = true;
-        if(userName.getText().toString().length() == 0) {
+        if(userName.getText().toString().length() <= 2) {
             userName.setHintTextColor(Color.RED);
-            userName.setError("You need to enter a user name");
+            userName.setError("User name must be more than 2 characters");
             cont = false;
         }
-        if(password.getText().toString().length() == 0) {
+
+        if(password.getText().toString().length() < 5) {
             password.setHintTextColor(Color.RED);
-            password.setError("You need to enter a password");
+            password.setError("Password must be more than 5 characters");
             cont = false;
         }
+
+        String string = password.getText().toString();
+        //enforces alpha numeric entry for passwords using regex.
+        Pattern letter = Pattern.compile("[a-zA-Z]");
+        Pattern digit = Pattern.compile("[0-9]");
+        //find any number from 0-9
+        if (!digit.matcher(string).find()){
+            password.setHintTextColor(Color.RED);
+            password.setError("Password must contain at least one number");
+            cont = false;
+        }
+        //find any letter from a-z or A-Z
+        if (!letter.matcher(string).find()){
+            password.setHintTextColor(Color.RED);
+            password.setError("Password must contain at least one letter");
+            cont = false;
+        }
+
         return cont;
     }
 
@@ -108,7 +128,6 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(String message);
     }
 

@@ -1,3 +1,15 @@
+/**
+ * Beer Butler: An pp that allows users to save beers that they have tried to their profile.
+ * The app will also generate a brewery tour based on the breweries in their vicinity.
+ * User profile data will be stored in a database along with the beers they have entered in with
+ * beer specifics such as IBUs and ABV as well as more beer profile specifics and user notes.
+ *
+ * Authors: Ben Russell, Garret Wyler, Chris Hall, Thomas Schmit
+ *
+ * Date: 4/27/2017
+ *
+ * version: 1.0
+ */
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.net.Uri;
@@ -5,7 +17,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity implements FirstFragment
         .OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment

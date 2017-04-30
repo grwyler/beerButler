@@ -16,8 +16,6 @@ import android.widget.ImageView;
  * Activities that contain this fragment must implement the
  * {@link FirstFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FirstFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class FirstFragment extends Fragment {
 
@@ -89,7 +87,6 @@ public class FirstFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
