@@ -9,11 +9,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="Commit from ben.b1. Added a Project comment to MainActivity describing the app.">
+    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SecondFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SecondFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/ThirdFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/ThirdFragment.java" />
     </list>
     <ignored path="ChallengeApp .iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2461,7 +2458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493580898384</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Commit from ben.b1. Added a few comments in SecondFragment and ThirdFragment about the user name and password rules.">
+      <created>1493582483320</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1493582483320</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2545,7 +2549,8 @@
     <MESSAGE value="Commit from ben.b1. Enforced alpha/numeric rules on passwords and 5 character minimum on passwords, 2 char minimum on usernames." />
     <MESSAGE value="Commit from ben.b1. Enforced alpha/numeric rules on passwords and 5 character minimum on passwords, 2 char minimum on usernames. Also removed TODOs from the project." />
     <MESSAGE value="Commit from ben.b1. Added a Project comment to MainActivity describing the app." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from ben.b1. Added a Project comment to MainActivity describing the app." />
+    <MESSAGE value="Commit from ben.b1. Added a few comments in SecondFragment and ThirdFragment about the user name and password rules." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from ben.b1. Added a few comments in SecondFragment and ThirdFragment about the user name and password rules." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
