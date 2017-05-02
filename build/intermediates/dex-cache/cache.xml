@@ -19,5 +19,23 @@
         sha1="dfc76151bb76adba18c4ad67c9abceb21de626be">
         <dex dex="C:\Users\Garrett\AndroidStudioProjects\ChallengeApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_c334b9d2f28ef3b677cad2e9183d48edc920416d\classes.dex" />
     </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d19fbd2e73b5ee5502917f4ce911c0d1d0dfbaaa">
+        <dex dex="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cecfb15d6fbcfcd6d6dfec2147bb511b9be9aafb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f47c11507dc7c53a4fac692a89141fe52eba367a\classes.dex" />
+    </item>
 
 </items>

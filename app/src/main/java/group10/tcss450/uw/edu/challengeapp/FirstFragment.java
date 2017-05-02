@@ -23,6 +23,7 @@ public class FirstFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private ImageView mCurrentImage;
+    private ImageView mMottoImage;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -33,8 +34,10 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_first, container, false);
         mCurrentImage = (ImageView) v.findViewById(R.id.imageView);
+        mMottoImage = (ImageView) v.findViewById(R.id.imageView2);
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mCurrentImage.setImageResource(R.drawable.beer_landscape);
+            mMottoImage.setVisibility(View.GONE);
         }
         return v;
     }
@@ -44,7 +47,9 @@ public class FirstFragment extends Fragment {
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mCurrentImage.setImageResource(R.drawable.beer_landscape);
+            mMottoImage.setVisibility(View.GONE);
         } else {
+            mMottoImage.setVisibility(View.VISIBLE);
             mCurrentImage.setImageResource(R.drawable.beer);
         }
     }
@@ -66,17 +71,6 @@ public class FirstFragment extends Fragment {
         mListener = null;
     }
 
-
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//        System.out.println("THIS HAPPENED");
-//
-//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            mCurrentImage.setImageResource(R.drawable.beer_landscape);
-//        } else {
-//            mCurrentImage.setImageResource(R.drawable.beer);
-//        }
-//    }
 
     /**
      * This interface must be implemented by activities that contain this
