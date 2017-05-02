@@ -17,13 +17,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourHolderFragment;
 
 public class MainActivity extends AppCompatActivity implements FirstFragment
         .OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener, ThirdFragment
-        .OnFragmentInteractionListener, FourthFragment.OnFragmentInteractionListener {
+        .OnFragmentInteractionListener, FourthFragment.OnFragmentInteractionListener,
+        BrewTourHolderFragment.OnListFragmentInteractionListener {
 
     FirstFragment mFirstFragment = new FirstFragment();
-
+    BrewTourHolderFragment mBrewFrag = new BrewTourHolderFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,28 +62,51 @@ public class MainActivity extends AppCompatActivity implements FirstFragment
 
     @Override
     public void onFragmentInteraction(String message) {
-        FourthFragment fourthFragment;
-        fourthFragment = (FourthFragment) getSupportFragmentManager().
-                findFragmentById(R.id.userNameView);
-        if (fourthFragment != null) {
-            fourthFragment.updateContent(message);
-        } else {
-            fourthFragment = new FourthFragment();
-            Bundle args = new Bundle();
-            args.putSerializable(getString(R.string.message), message);
-            fourthFragment.setArguments(args);
+        //Toast lets the user know that login/register was a success.
+        Toast.makeText(this, message, Toast.LENGTH_LONG)
+                .show();
+        BrewTourHolderFragment brewFrag = new BrewTourHolderFragment();
+//        brewFrag = (BrewTourHolderFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.brew_frag_holder);
+//        Bundle args = new Bundle();
+//        args.putSerializable("Message", message);
+//        brewFrag.setArguments(args);
 
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer, fourthFragment)
-                    .addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
-        }
+        FragmentTransaction trans = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, brewFrag)
+                .addToBackStack(null);
+        //Commit the Transaction.
+        trans.commit();
+
+//        FourthFragment fourthFragment;
+//        fourthFragment = (FourthFragment) getSupportFragmentManager().
+//                findFragmentById(R.id.userNameView);
+//        if (fourthFragment != null) {
+//            fourthFragment.updateContent(message);
+//        } else {
+//            fourthFragment = new FourthFragment();
+//            Bundle args = new Bundle();
+//            args.putSerializable(getString(R.string.message), message);
+//            fourthFragment.setArguments(args);
+//
+//            FragmentTransaction transaction = getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragmentContainer, fourthFragment)
+//                    .addToBackStack(null);
+//            // Commit the transaction
+//            transaction.commit();
+//        }
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+
+    @Override
+    public void onListFragmentInteraction(String item) {
 
     }
 }

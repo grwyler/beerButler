@@ -25,6 +25,7 @@ public class FourthFragment extends Fragment {
     }
 
     public void updateContent(String message) {
+
         TextView tvU = (TextView) getActivity().findViewById(R.id.userNameView);
         tvU.setText(message);
     }
