@@ -1,0 +1,82 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/brew_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:elevation="10dp"
+        card_view:cardCornerRadius="15dp"
+        android:layout_margin="8dp"
+        android:id="@+id/cv"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/brew_pic"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/brewery"
+                android:layout_toRightOf="@+id/brew_pic"
+                android:layout_toEndOf="@+id/brew_pic"
+                android:layout_alignParentTop="true"
+                android:textSize="18sp"
+                android:text="Brewery: 7Seas Brewery"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating"
+                android:layout_toRightOf="@+id/brew_pic"
+                android:layout_toEndOf="@+id/brew_pic"
+                android:layout_below="@+id/brewery"
+                android:textSize="18sp"
+                android:text="Rating: 4.1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dist"
+                android:layout_toRightOf="@+id/brew_pic"
+                android:layout_toEndOf="@+id/brew_pic"
+                android:layout_below="@+id/rating"
+                android:textSize="14sp"
+                android:text="Distnce: 0.5 miles       "
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_below="@+id/brewery"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/dist"
+                android:layout_toRightOf="@+id/dist"
+                android:background="@color/colorPrimary"
+                android:text="Nav" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
