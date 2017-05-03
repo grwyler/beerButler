@@ -25,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Pattern;
 
 
 /**
@@ -33,20 +34,23 @@ import java.net.URLEncoder;
  */
 public class ThirdFragment extends Fragment implements View.OnClickListener {
 
-    /** The start for all error messages for lack of filled fields.*/
     private static final String ERROR_MESSAGE = "Please enter a ";
-    /** End error message if the user didn't enter the verify password.*/
     private static final String VERIFY_ERROR = "Please re-enter the password.";
-    /** Used when the two passwords do not match.*/
+    private static final String PASSWORD = "password.";
+    private static final String USER_NAME = "user name.";
     private static final String MATCH_ERROR = "The passwords do not match.";
-    /** Start of the URL to the data base*/
+    private static final String ALPHANUMERIC_ERROR = "Password must contain at least one number " +
+            "and at least one letter";
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/challenge";
-    /** The fragment interaction listener used to communicate with the main activity.*/
+
     private OnFragmentInteractionListener mListener;
 
-    /** Required empty public constructor. */
-    public ThirdFragment() {}
+
+
+    public ThirdFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,24 +111,35 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         String usrString = userName.getText().toString();
         String pswrdString = password.getText().toString();
         String vPswrdString = vPassword.getText().toString();
+        String string = password.getText().toString();
+        //enforces alpha numeric entry for passwords using regex.
+        Pattern letter = Pattern.compile("[a-zA-Z]");
+        Pattern digit = Pattern.compile("[0-9]");
+
         if(usrString.length() == 0) {
             userName.setHintTextColor(Color.RED);
-            userName.setError(ERROR_MESSAGE + "user name.");
+            userName.setError(ERROR_MESSAGE + USER_NAME);
         } else if(pswrdString.length() == 0 &&
                 vPassword.getText().length() == 0) {
             password.setHintTextColor(Color.RED);
-            password.setError(ERROR_MESSAGE + "password.");
+            password.setError(ERROR_MESSAGE + PASSWORD);
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
-        } else if(pswrdString.length() == 0) {
+        } else if(pswrdString.length() < 5) {
             password.setHintTextColor(Color.RED);
-            password.setError(ERROR_MESSAGE + "password.");
-        } else if(vPswrdString.length() == 0) {
+            password.setError(ERROR_MESSAGE + PASSWORD);
+        } else if(vPswrdString.length() < 5) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
         } else if(!vPswrdString.equals(pswrdString)) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(MATCH_ERROR);
+        } else if (!digit.matcher(string).find()) {
+            password.setHintTextColor(Color.RED);
+            password.setError(ALPHANUMERIC_ERROR);
+        } else if (!letter.matcher(string).find()) {
+            password.setHintTextColor(Color.RED);
+            password.setError(ALPHANUMERIC_ERROR);
         } else cont = true;
         return cont;
     }
@@ -133,10 +148,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     public interface OnFragmentInteractionListener {
-        /**
-         * Used to notify the activity that the registration was successful.
-         * @param message The message to send to the activity.
-         */
         void onFragmentInteraction(String message);
     }
 
