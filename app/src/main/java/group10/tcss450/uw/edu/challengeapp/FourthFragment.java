@@ -1,3 +1,9 @@
+/*
+ * TCSS 450 A Spring 2017
+ * Project: Beer Butler App
+ * Group 10: Ben, Chris, Tom, and Garrett
+ */
+
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
@@ -23,6 +29,7 @@ public class FourthFragment extends Fragment {
     public FourthFragment() {
         // Required empty public constructor
     }
+
 
     public void updateContent(String message) {
         TextView tvU = (TextView) getActivity().findViewById(R.id.userNameView);

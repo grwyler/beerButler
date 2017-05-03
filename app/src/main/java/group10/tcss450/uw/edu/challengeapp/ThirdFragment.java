@@ -1,3 +1,9 @@
+/*
+ * TCSS 450 A Spring 2017
+ * Project: Beer Butler App
+ * Group 10: Ben, Chris, Tom, and Garrett
+ */
+
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
@@ -22,29 +28,25 @@ import java.net.URLEncoder;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ThirdFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
+ * This fragment handles new registration. Upon successful registration the fragment
+ * interaction listener tells the main activity to load the main page.
  */
 public class ThirdFragment extends Fragment implements View.OnClickListener {
 
+    /** The start for all error messages for lack of filled fields.*/
     private static final String ERROR_MESSAGE = "Please enter a ";
+    /** End error message if the user didn't enter the verify password.*/
     private static final String VERIFY_ERROR = "Please re-enter the password.";
-    private static final String PASSWORD = "password.";
-    private static final String USER_NAME = "user name.";
+    /** Used when the two passwords do not match.*/
     private static final String MATCH_ERROR = "The passwords do not match.";
+    /** Start of the URL to the data base*/
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/challenge";
-
+    /** The fragment interaction listener used to communicate with the main activity.*/
     private OnFragmentInteractionListener mListener;
 
-
-
-    public ThirdFragment() {
-        // Required empty public constructor
-    }
+    /** Required empty public constructor. */
+    public ThirdFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,6 +93,15 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * Helper method that warns the user if incorrect parameters have been entered to the
+     * login fields.
+     *
+     * @param userName the User name edit text.
+     * @param password the Password edit text.
+     * @param vPassword the Password verifier edit text.
+     * @return true if the user entered something into the fields false otherwise.
+     */
     private boolean warnUser(EditText userName, EditText password, EditText vPassword) {
         boolean cont = false;
         String usrString = userName.getText().toString();
@@ -98,16 +109,16 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         String vPswrdString = vPassword.getText().toString();
         if(usrString.length() == 0) {
             userName.setHintTextColor(Color.RED);
-            userName.setError(ERROR_MESSAGE + USER_NAME);
+            userName.setError(ERROR_MESSAGE + "user name.");
         } else if(pswrdString.length() == 0 &&
                 vPassword.getText().length() == 0) {
             password.setHintTextColor(Color.RED);
-            password.setError(ERROR_MESSAGE + PASSWORD);
+            password.setError(ERROR_MESSAGE + "password.");
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
         } else if(pswrdString.length() == 0) {
             password.setHintTextColor(Color.RED);
-            password.setError(ERROR_MESSAGE + PASSWORD);
+            password.setError(ERROR_MESSAGE + "password.");
         } else if(vPswrdString.length() == 0) {
             vPassword.setHintTextColor(Color.RED);
             vPassword.setError(VERIFY_ERROR);
@@ -119,34 +130,42 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        /**
+         * Used to notify the activity that the registration was successful.
+         * @param message The message to send to the activity.
+         */
         void onFragmentInteraction(String message);
     }
 
+    /**
+     * A local AsyncTask class used to access the database and communicate back to the
+     * activity.
+     */
     private class PostWebServiceTask extends AsyncTask<String, Void, String> {
 
-        private final String SERVICE = "_post.php";
+        /** Exception message for too few or too many args*/
+        private final String EXCEPTION_MSG = "Three String arguments required.";
+        /** Start of the message to notify the user of connection failure.*/
+        private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
+        /** The start of a string returned if there was an error connecting to the DB.*/
+        private final String START_ERROR = "Unable to";
+        /** The error message if the user enters wrong data for logging in*/
+        private final String TOAST_ERROR = "That user name is already being used";
+
 
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 3) {
-                throw new IllegalArgumentException("Three String arguments required.");
+                throw new IllegalArgumentException(EXCEPTION_MSG);
             }
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             try {
-                URL urlObject = new URL(url + SERVICE);
+                URL urlObject = new URL(url + "_post.php");
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
@@ -164,7 +183,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                     response += s;
                 }
             } catch (Exception e) {
-                response = "Unable to connect, Reason: " + e.getMessage();
+                response = EXCEPTION_MSG_2 + e.getMessage();
             } finally {
                 if (urlConnection != null) urlConnection.disconnect();
             }
@@ -173,13 +192,13 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
-            if (result.startsWith("Unable to")) {
+            if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
                 return;
             } else if(result.startsWith("Successfully")) {
                 mListener.onFragmentInteraction(result);
             } else {
-                Toast.makeText(getActivity(), "That user name is already being used", Toast
+                Toast.makeText(getActivity(), TOAST_ERROR, Toast
                         .LENGTH_SHORT).show();
             }
         }
