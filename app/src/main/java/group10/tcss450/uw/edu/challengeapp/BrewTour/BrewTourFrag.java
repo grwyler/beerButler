@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.FourthFragment;
 import group10.tcss450.uw.edu.challengeapp.R;
@@ -22,6 +24,7 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class BrewTourFrag extends Fragment implements View.OnClickListener{
     public static final String KEY = "I love beer!";
+    private ArrayList<TopBrewery> breweries = new ArrayList<TopBrewery>();
 
     // Required empty public constructor
     public BrewTourFrag() {
@@ -51,6 +54,10 @@ public class BrewTourFrag extends Fragment implements View.OnClickListener{
         tv.setText("Rating: " + data.getHours());
     }
 
+    /**
+     *
+     * Parsing the JSON response to put into an array of Breweries
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -61,12 +68,20 @@ public class BrewTourFrag extends Fragment implements View.OnClickListener{
                 String st = getArguments().getString(KEY);
                 System.out.print(st);
                 JSONObject jsonO = new JSONObject(st);
+                int num = 0;
+                num  = jsonO.getInt("totalResults");
+                if (jsonO.getString("status").toString().equals("success") && num != 0) {
+                    JSONArray data = jsonO.getJSONArray("data");
 
-                if (jsonO.getInt("error_code") == 0) {
-                    JSONObject response = jsonO.getJSONObject("response");
-                    JSONObject show = response.getJSONArray("data").getJSONObject(0);
-                    BreweryData s = new BreweryData().set(show);
-                    setData(s);
+                    for(int i=0; i<data.length(); i++){
+                        TopBrewery brewery = TopBrewery.create(data.getJSONObject(i));
+                        breweries.add(brewery);
+                    }
+                }
+                else {
+                    /**
+                     * ToDo need a code branch to handle zero result responses
+                     */
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
