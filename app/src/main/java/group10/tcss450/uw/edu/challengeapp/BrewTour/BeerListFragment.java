@@ -6,8 +6,11 @@
 package group10.tcss450.uw.edu.challengeapp.BrewTour;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +24,28 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class BeerListFragment extends Fragment {
 
-    // Required empty public constructor
-    public BeerListFragment() {
-    }
+    /** The recycler view used to cycle through the card views.*/
+    private RecyclerView mRecyclerView;
+    /** The requisite adapter for recycler view*/
+    private RecyclerView.Adapter mAdapter;
+    /** The requisite layout manager*/
+    private RecyclerView.LayoutManager mLayoutManager;
 
+    /** Required empty public constructor*/
+    public BeerListFragment() {}
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_beer);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(new Activity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        String[] myDataset = new String[0];
+//        mAdapter = new RecViewAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
