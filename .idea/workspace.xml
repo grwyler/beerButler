@@ -9,41 +9,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="Commit from master. Created a BrewTourFrag Fragment and coresponding xml that">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/stout.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/ben.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_26_0_0_alpha1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_26_0_0_alpha1.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setlist.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" />
     </list>
     <ignored path="ChallengeApp .iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,19 +60,20 @@
       <file leaf-file-name="BrewTourFrag.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="80" column="120" selection-start-line="80" selection-start-column="120" selection-end-line="80" selection-end-column="120" />
+            <state relative-caret-position="68">
+              <caret line="4" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
               <folding>
+                <element signature="e#0#3952#0" expanded="true" />
                 <element signature="e#2483#2510#0" expanded="true" />
                 <marker date="1493855815079" expanded="false" signature="3459:3486" ph="&quot;Message&quot;" />
               </folding>
@@ -137,12 +107,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeerListFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BeerListFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding />
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#1110#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreweryData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#237#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyCardViewAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MyCardViewAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#465#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2011,11 +2007,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SecondFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/ThirdFragment.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MyCardViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" />
       </list>
     </option>
   </component>
@@ -2592,7 +2590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493849289237</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Commit from master. Created a BrewTourFrag Fragment, BeerListFragment and coresponding xmls. They have a card views with some default data. The views can be overwritten in the fragment classes that are associated wth them.">
+      <created>1493855934265</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1493855934265</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2674,7 +2679,8 @@
     <MESSAGE value="Commit from branch" />
     <MESSAGE value="Commit from branch. updated warnUser in SecondFragment" />
     <MESSAGE value="Commit from branch. updated warnUser in ThirdFragment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from branch. updated warnUser in ThirdFragment" />
+    <MESSAGE value="Commit from master. Created a BrewTourFrag Fragment, BeerListFragment and coresponding xmls. They have a card views with some default data. The views can be overwritten in the fragment classes that are associated wth them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from master. Created a BrewTourFrag Fragment, BeerListFragment and coresponding xmls. They have a card views with some default data. The views can be overwritten in the fragment classes that are associated wth them." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2970,22 +2976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MyCardViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SecondFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1134">
@@ -3043,29 +3033,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="4" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#3952#0" expanded="true" />
+            <element signature="e#2483#2510#0" expanded="true" />
+            <marker date="1493855815079" expanded="false" signature="3459:3486" ph="&quot;Message&quot;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MyCardViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#465#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="80" column="120" selection-start-line="80" selection-start-column="120" selection-end-line="80" selection-end-column="120" />
+        <state relative-caret-position="272">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#2483#2510#0" expanded="true" />
-            <marker date="1493855815079" expanded="false" signature="3459:3486" ph="&quot;Message&quot;" />
+            <element signature="e#0#1110#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment that shows data about breweries in the area. The data is displayed in CardViews to
+ * make everything consistent across the application.
  */
 public class BrewTourFrag extends Fragment {
 
-
+    // Required empty public constructor
     public BrewTourFrag() {
-        // Required empty public constructor
     }
 
 
