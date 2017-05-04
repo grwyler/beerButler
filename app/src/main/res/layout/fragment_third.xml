@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context="group10.tcss450.uw.edu.challengeapp.ThirdFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <EditText
         android:id="@+id/rUserNameText"
         android:layout_width="0dp"

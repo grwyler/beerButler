@@ -81,7 +81,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        AsyncTask<String, Void, String> task = null;
+        AsyncTask<String, Void, String> task;
         View parent = (View) view.getParent();
         EditText userName = (EditText) parent.findViewById(R.id.rUserNameText);
         EditText password = (EditText) parent.findViewById(R.id.rPasswordText);
@@ -145,10 +145,18 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
+     * Get this class.
+     * @return this , This class
+     */
+    public Fragment getThisClass() {
+        return this;
+    }
+
+    /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(String message);
+        void onFragmentInteraction(Fragment frag, String message);
     }
 
     /**
@@ -189,7 +197,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                 wr.flush();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }
@@ -205,9 +213,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
             // Something wrong with the network or the URL.
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-                return;
             } else if(result.startsWith("Successfully")) {
-                mListener.onFragmentInteraction(result);
+                mListener.onFragmentInteraction(getThisClass(), result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast
                         .LENGTH_SHORT).show();

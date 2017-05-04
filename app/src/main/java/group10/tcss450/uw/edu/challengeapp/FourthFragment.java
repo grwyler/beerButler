@@ -7,81 +7,127 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FourthFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
+ *
  */
-public class FourthFragment extends Fragment {
+public class FourthFragment extends Fragment implements View.OnClickListener {
 
-    private OnFragmentInteractionListener mListener;
+    private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
+            "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
+    private SecondFragment.OnFragmentInteractionListener mListener;
 
     public FourthFragment() {
         // Required empty public constructor
     }
 
-
-    public void updateContent(String message) {
-        TextView tvU = (TextView) getActivity().findViewById(R.id.userNameView);
-        tvU.setText(message);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fourth, container, false);
+        View v = inflater.inflate(R.layout.fragment_fourth, container, false);
+        Button b = (Button) v.findViewById(R.id.brew_tour_button);
+        b.setOnClickListener(this);
+        b = (Button) v.findViewById(R.id.beer_list_button);
+        b.setOnClickListener(this);
+        return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        AsyncTask<String, Void, String> task;
+        if (mListener != null) {
+            switch (v.getId()) {
+                case R.id.brew_tour_button:
+                    String lat = "47.255053";
+                    String lng = "122.445805";
+                    task = new BrewTourWebServiceTask();
+                    task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
+                    break;
+                default:
+                    Toast.makeText(getActivity(),
+                            "something went horibly wrong!",
+                            Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof SecondFragment.OnFragmentInteractionListener) {
+            mListener = (SecondFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (getArguments() != null) {
-            String message = getArguments().getString("Message");
-            String password = getArguments().getString("Password Key");
-            updateContent(message);
-        }
+    /**
+     * Get this class.
+     *
+     * @return this , This class
+     */
+    public Fragment getThisClass() {
+        return this;
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * Asyncrinous task that contacts the breweryDB API to get breweries in the area.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    private class BrewTourWebServiceTask extends AsyncTask<String, Void, String> {
+        //private final String SERVICE = "_post.php";
+        @Override
+        protected String doInBackground(String... strings) {
+            if (strings.length != 2) {
+                throw new IllegalArgumentException("Two String arguments required.");
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            try {
+                URL urlObject = new URL(strings[0] + strings[1]);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                InputStream content = urlConnection.getInputStream();
+
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s;
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+
+            } catch (Exception e) {
+                response = "Unable to connect, Reason: "
+                        + e.getMessage();
+            } finally {
+                if (urlConnection != null)
+                    urlConnection.disconnect();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Something wrong with the network or the URL.
+            if (result.startsWith("Unable to")) {
+                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+            mListener.onFragmentInteraction(getThisClass(), result);
+        }
     }
 }

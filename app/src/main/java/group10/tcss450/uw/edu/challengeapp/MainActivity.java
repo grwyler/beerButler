@@ -7,6 +7,7 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,8 +20,7 @@ import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
  * The main activity class. Login, registration, and cardview are loaded and managed here.
  */
 public class MainActivity extends AppCompatActivity implements SecondFragment
-        .OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener,
-        FourthFragment.OnFragmentInteractionListener {
+        .OnFragmentInteractionListener, ThirdFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +63,33 @@ public class MainActivity extends AppCompatActivity implements SecondFragment
     }
 
     @Override
-    public void onFragmentInteraction(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        BrewTourFrag bf = new BrewTourFrag();
-        Bundle args = new Bundle();
-        args.putSerializable(getString(R.string.message), message);
-        bf.setArguments(args);
+    public void onFragmentInteraction(Fragment frag, String message) {
+        if (frag instanceof SecondFragment || frag instanceof ThirdFragment) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            FourthFragment fourthFragment = new FourthFragment();
+            Bundle args = new Bundle();
+            args.putSerializable(getString(R.string.message), message);
+            fourthFragment.setArguments(args);
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, fourthFragment)
+                    .addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+        } else if (frag instanceof FourthFragment) {
+            BrewTourFrag bf = new BrewTourFrag();
+            Bundle args = new Bundle();
+            args.putSerializable(BrewTourFrag.KEY, message);
+            bf.setArguments(args);
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, bf)
+                    .addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+        }
 
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, bf)
-                .addToBackStack(null);
-        // Commit the transaction
-        transaction.commit();
+
 
      //I commented this out to work on BrewTour we can put it back later and use it as our main page fragment
      // or delete it all together. We also do nit need it to be avilable on a tablet since we are only targeting phones.
@@ -100,8 +114,4 @@ public class MainActivity extends AppCompatActivity implements SecondFragment
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }

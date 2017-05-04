@@ -70,7 +70,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        AsyncTask<String, Void, String> task = null;
+        AsyncTask<String, Void, String> task;
         View parent = (View) view.getParent();
         EditText userName = (EditText) parent.findViewById(R.id.userNameText);
         EditText password = (EditText) parent.findViewById(R.id.passwordText);
@@ -129,6 +129,14 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     }
 
     /**
+     * Get this class.
+     * @return this , This class
+     */
+    private Fragment getThisClass() {
+        return this;
+    }
+
+    /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     public interface OnFragmentInteractionListener {
@@ -136,7 +144,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
          * Used to notify the activity that the sign-in was successful.
          * @param message The message to send to the activity.
          */
-        void onFragmentInteraction(String message);
+        void onFragmentInteraction(Fragment fragment, String message);
     }
 
     /**
@@ -169,7 +177,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }
@@ -184,12 +192,10 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL
-            String success = result;
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-                return;
             } else if(result.startsWith("Successfully")) {
-                mListener.onFragmentInteraction(success);
+                mListener.onFragmentInteraction(getThisClass(), result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
             }
