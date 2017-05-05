@@ -30,7 +30,6 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
-            android:text="Brewery: 7Seas Brewery"
             android:textSize="15sp" />
 
         <TextView
@@ -40,7 +39,6 @@
             android:layout_below="@+id/brewery_name"
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
-            android:text="Hours: Open today 10:00 - 10:00 "
             android:textSize="12sp" />
 
         <TextView
@@ -50,21 +48,20 @@
             android:layout_below="@+id/hours"
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
-            android:text="Distnce: 0.5 miles       "
             android:textSize="12sp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="false"
-            android:layout_below="@+id/brewery_name"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/hours"
-            android:layout_toRightOf="@+id/hours"
-            android:background="@color/colorPrimary"
-            android:text="Nav"
-            android:id="@+id/nav_button" />
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="false"-->
+            <!--android:layout_below="@+id/brewery_name"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_toEndOf="@+id/hours"-->
+            <!--android:layout_toRightOf="@+id/hours"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="Nav"-->
+            <!--android:id="@+id/nav_button" />-->
 
         <!--<Spinner-->
         <!--android:id="@+id/hours_spinner"-->

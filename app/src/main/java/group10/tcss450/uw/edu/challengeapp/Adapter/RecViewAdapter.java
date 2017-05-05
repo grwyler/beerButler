@@ -40,7 +40,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
             mBreweryName = (TextView) cardView.findViewById(R.id.brewery_name);
             mHours = (TextView) cardView.findViewById(R.id.hours);
             mDist = (TextView) cardView.findViewById(R.id.dist);
-            mButton = (Button) cardView.findViewById(R.id.nav_button);
+//            mButton = (Button) cardView.findViewById(R.id.nav_button);
 
         }
     }
@@ -66,9 +66,14 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
     @Override
     public void onBindViewHolder (ViewHolder holder, int position) {
         holder.mImageView.setImageResource(R.drawable.stout);
-        holder.mBreweryName.setText("Brewery: " + mDataset.get(position).getName());
+        String name, hours;
+        name = mDataset.get(position).getName();
+        hours = mDataset.get(position).getHoursOfOperation();
+        if (name == null) name = "Pub";
+        if (hours == null) hours = "Always Open";
+        holder.mBreweryName.setText("Brewery: " + name);
         holder.mDist.setText("Distance: " + mDataset.get(position).getDistance());
-        holder.mHours.setText("Rating: " + mDataset.get(position).getHoursOfOperation());
+        holder.mHours.setText("Hours: " + hours);
     }
 
     @Override
