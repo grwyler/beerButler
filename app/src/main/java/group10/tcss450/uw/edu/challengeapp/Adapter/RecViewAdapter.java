@@ -9,7 +9,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,23 +24,31 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
 
     private ArrayList<TopBrewery> mDataset;
 
-
+    /**
+     * A View Holder used to change the elements inside the recycler view.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        /**The ImageView for the brewery logo to go into.*/
         public ImageView mImageView;
+        /** The TextView to display the name of the brewery.*/
         public TextView mBreweryName;
+        /** The TextView to display the hours of the brewery.*/
         public TextView mHours;
+        /** The TextView to display the distance from your location*/
         public TextView mDist;
-        public Button mButton;
 
+
+        /**
+         * Constructor class. Initialize all fields.
+         * @param cardView the Cardview being passed. 
+         */
         public ViewHolder(CardView cardView) {
             super(cardView);
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mBreweryName = (TextView) cardView.findViewById(R.id.brewery_name);
             mHours = (TextView) cardView.findViewById(R.id.hours);
             mDist = (TextView) cardView.findViewById(R.id.dist);
-//            mButton = (Button) cardView.findViewById(R.id.nav_button);
-
         }
     }
 
