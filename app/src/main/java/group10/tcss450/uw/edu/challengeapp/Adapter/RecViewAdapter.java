@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import group10.tcss450.uw.edu.challengeapp.BrewTour.BreweryData;
+import java.util.ArrayList;
+
+import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -21,7 +23,7 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHolder> {
 
-    private BreweryData[] mDataset;
+    private ArrayList<TopBrewery> mDataset;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -39,12 +41,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
             mHours = (TextView) cardView.findViewById(R.id.hours);
             mDist = (TextView) cardView.findViewById(R.id.dist);
             mButton = (Button) cardView.findViewById(R.id.nav_button);
-//            super(imageView, hours, breweryName, dist, button);
-//            mImageView = imageView;
-//            mBreweryName = breweryName;
-//            mHours = hours;
-//            mDist = dist;
-//            mButton = button;
+
         }
     }
 
@@ -52,7 +49,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
      * Recycler view adapter constructor.
      * @param myDataset the desired dataset for the recycler view.
      */
-    public RecViewAdapter (BreweryData[] myDataset) {
+    public RecViewAdapter (ArrayList<TopBrewery> myDataset) {
         mDataset = myDataset;
     }
 
@@ -69,13 +66,13 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
     @Override
     public void onBindViewHolder (ViewHolder holder, int position) {
         holder.mImageView.setImageResource(R.drawable.stout);
-        holder.mBreweryName.setText("Brewery: " + mDataset[position].getName());
-        holder.mDist.setText("Distance: " + mDataset[position].getDistance());
-        holder.mHours.setText("Rating: " + mDataset[position].getHours());
+        holder.mBreweryName.setText("Brewery: " + mDataset.get(position).getName());
+        holder.mDist.setText("Distance: " + mDataset.get(position).getDistance());
+        holder.mHours.setText("Rating: " + mDataset.get(position).getHoursOfOperation());
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

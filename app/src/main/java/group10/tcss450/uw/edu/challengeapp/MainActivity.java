@@ -6,7 +6,6 @@
 
 package group10.tcss450.uw.edu.challengeapp;
 
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
