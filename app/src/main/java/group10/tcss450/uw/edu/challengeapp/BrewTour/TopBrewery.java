@@ -312,7 +312,7 @@ public class TopBrewery implements Serializable {
         this.yearOpened = yearOpened;
     }
 
-    private static class brewery implements Serializable {
+    public static class brewery implements Serializable {
 
         private String id;
         private String name;
