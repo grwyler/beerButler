@@ -5,6 +5,7 @@
  */
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,10 +16,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
 import group10.tcss450.uw.edu.challengeapp.R;
 
@@ -31,29 +30,29 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
 
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<TopBrewery> mDataset;
-    /** A brewery Object. Needed to get names and specific data for each brewery. */
-    private brewery mBrewery;
+    /** Resources to use string resources */
+    private Resources mResources;
 
     /**
      * A View Holder used to change the elements inside the recycler view.
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**The ImageView for the mBrewery logo to go into.*/
-        public ImageView mImageView;
+        ImageView mImageView;
         /** The TextView to display the name of the mBrewery.*/
-        public TextView mBreweryName;
+        TextView mBreweryName;
         /** The TextView to display the hours of the mBrewery.*/
-        public TextView mHours;
+        TextView mHours;
         /** The TextView to display the distance from your location*/
-        public TextView mDist;
+        TextView mDist;
 
 
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
          */
-        public ViewHolder(CardView cardView) {
+        ViewHolder(CardView cardView) {
             super(cardView);
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mBreweryName = (TextView) cardView.findViewById(R.id.brewery_name);
@@ -74,8 +73,8 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
     public RecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.brew_tour_card_view,parent, false);
-        ViewHolder vh = new ViewHolder(cv);
-        return vh;
+        mResources = parent.getContext().getResources();
+        return new ViewHolder(cv);
     }
 
     @Override
@@ -98,13 +97,13 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
         } else {
             holder.mImageView.setImageResource(R.drawable.stout);
         }
-        if (name == null || name == "") name = "Brewery";
+        if (name == null || name.equals("")) name = "Brewery";
         if (hours == null) hours = "not available";
         if (topBrewery.getDistance() == null) distance = "unavailable";
         else distance = "" + mDataset.get(position).getDistance();
-        holder.mBreweryName.setText("Brewery: " + name);
-        holder.mDist.setText("Distance: " + distance);
-        holder.mHours.setText("Hours: " + hours);
+        holder.mBreweryName.setText(mResources.getString(R.string.text_view_brewery) + name);
+        holder.mDist.setText(mResources.getString(R.string.text_view_distance) + distance);
+        holder.mHours.setText(mResources.getString(R.string.text_view_hours) + hours);
     }
 
     @Override
@@ -112,13 +111,25 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
         return mDataset.size();
     }
 
+    /**
+     * Helper class used to download and return an image.
+     */
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+        private ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
+        /**
+         * Constructor
+         * @param bmImage The ImageView to be updated.
+         */
+        DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
+        /**
+         * Makes a connection to the URL, downloads the image, and saves it as bitmap
+         * @param urls the URLs to check for an image.
+         * @return a Bitmap image from the url.
+         */
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -132,6 +143,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
             return mIcon11;
         }
 
+        @Override
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
