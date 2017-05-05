@@ -47,6 +47,7 @@ public class TopBrewery implements Serializable {
     private String breweryId;
     private brewery brewery; //this is a subclass
     private country country; //this is a subclass
+    private String yearOpened;
     private Double distance;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -63,18 +64,23 @@ public class TopBrewery implements Serializable {
             Iterator<String> it = brewery.keys();
             while (it.hasNext()) {
                 String next = it.next();
+                Class<?> doubleType = Double.class;
+                Class<?> stringType = String.class;
                 Field f = result.getClass().getDeclaredField(next);
-/*                if (f.getType() instanceof Class) {
+                if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
+                    if ( brewery.get(next) != null) {
+                        f.set(result, brewery.get(next));
+                    }
+                } else {
                     //nasty stuff
-                    Class tempClass = f.getClass();
-                    Class[] cArg = new Class[1];
-                    cArg[0] = JSONObject.class;
-                    Method m = tempClass.getDeclaredMethod("create", cArg);
-                    f.set(result, m.invoke(brewery.get(next)));
-
-                } else {*/
-                    f.set(result, brewery.get(next));
-                //}
+                    Class tempClass = f.getType();
+                    Class[] carg = new Class[1];
+                    carg[0] = JSONObject.class;
+                    Constructor<?> constructor = tempClass.getConstructor(JSONObject.class);
+                    constructor.setAccessible(true);
+                    Object c = constructor.newInstance(brewery.getJSONObject(next));
+                    f.set(result,c);
+                }
             }
         }
         catch (Exception e) {
@@ -298,8 +304,15 @@ public class TopBrewery implements Serializable {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+    public String getYearOpened() {
+        return yearOpened;
+    }
 
-    private class brewery implements Serializable {
+    public void setYearOpened(String yearOpened) {
+        this.yearOpened = yearOpened;
+    }
+
+    private static class brewery implements Serializable {
 
         private String id;
         private String name;
@@ -314,31 +327,37 @@ public class TopBrewery implements Serializable {
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 
-        public brewery create(JSONObject brewery) {
-            brewery result = new brewery();
+        public brewery (JSONObject brewery) {
 
             try {
                 Iterator<String> it = brewery.keys();
                 while (it.hasNext()) {
                     String next = it.next();
-                    Field f = result.getClass().getDeclaredField(next);
-                    if (f.getType() instanceof Class) {
-                        //nasty stuff
-                        Class tempClass = f.getClass();
-                        Class[] cArg = new Class[1];
-                        cArg[0] = JSONObject.class;
-                        Method m = tempClass.getDeclaredMethod("create", cArg);
-                        f.set(result, m.invoke(brewery.get(next)));
+                    Field f = this.getClass().getDeclaredField(next);
+                    Class<?> stringType = String.class;
+                    if ( f.getType().isAssignableFrom(stringType)) {
+                        f.set(this, brewery.get(next));
                     } else {
-                        f.set(result, brewery.get(next));
+                        //nasty stuff
+                        Class tempClass = f.getType();
+                        Class[] carg = new Class[1];
+                        carg[0] = JSONObject.class;
+                        Constructor<?> constructor = tempClass.getConstructor(JSONObject.class);
+                        constructor.setAccessible(true);
+                        Object c = constructor.newInstance(brewery.getJSONObject(next));
+                        f.set(this,c);
                     }
                 }
             }
             catch (Exception e) {
                 Log.e("TOPBREWERY", e.toString());
             }
-            return result;
+            //return result;
         }
+
+        public brewery() {
+        }
+
         public String getId() {
             return id;
         }
@@ -429,7 +448,7 @@ public class TopBrewery implements Serializable {
 
     }
 
-    public class country implements Serializable {
+    public static class country implements Serializable {
 
         private String isoCode;
         private String name;
@@ -439,31 +458,36 @@ public class TopBrewery implements Serializable {
         private String createDate;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-        public country create(JSONObject country) {
-            country result = new country();
+        public country (JSONObject country) {
 
             try {
                 Iterator<String> it = country.keys();
                 while (it.hasNext()) {
                     String next = it.next();
-                    Field f = result.getClass().getDeclaredField(next);
-                    if (f.getType() instanceof Class) {
-                        //nasty stuff
-                        Class tempClass = f.getClass();
-                        Class[] cArg = new Class[1];
-                        cArg[0] = JSONObject.class;
-                        Method m = tempClass.getDeclaredMethod("create", cArg);
-                        f.set(result, m.invoke(country.get(next)));
-
+                    Class<?> intType = Integer.class;
+                    Class<?> stringType = String.class;
+                    Field f = this.getClass().getDeclaredField(next);
+                    if (f.getType().isAssignableFrom(intType) || f.getType().isAssignableFrom(stringType)) {
+                        f.set(this, country.get(next));
                     } else {
-                        f.set(result, country.get(next));
+                        //nasty stuff
+                        Class tempClass = f.getType();
+                        Class[] carg = new Class[1];
+                        carg[0] = JSONObject.class;
+                        Constructor<?> constructor = tempClass.getConstructor(JSONObject.class);
+                        constructor.setAccessible(true);
+                        Object c = constructor.newInstance(country.getJSONObject(next));
+                        f.set(this,c);
                     }
                 }
             }
             catch (Exception e) {
                 Log.e("TOPBREWERY", e.toString());
             }
-            return result;
+            //return result;
+        }
+
+        public country() {
         }
 
         public String getIsoCode() {
@@ -525,7 +549,7 @@ public class TopBrewery implements Serializable {
     }
 
 
-    public class images implements Serializable {
+    public static class images implements Serializable {
 
         private String icon;
         private String medium;
@@ -534,31 +558,37 @@ public class TopBrewery implements Serializable {
         private String squareLarge;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-        public images create (JSONObject images) {
-            images result = new images();
+        public images (JSONObject images) {
+
             try {
                 Iterator<String> it = images.keys();
                 while (it.hasNext()) {
                     String next = it.next();
-                    Field f = result.getClass().getDeclaredField(next);
-                    if (f.getType() instanceof Class) {
-                        //nasty stuff
-                        Class tempClass = f.getClass();
-                        Class[] cArg = new Class[1];
-                        cArg[0] = JSONObject.class;
-                        Method m = tempClass.getDeclaredMethod("create", cArg);
-                        f.set(result, m.invoke(images.get(next)));
-
+                    Class<?> stringType = String.class;
+                    Field f = this.getClass().getDeclaredField(next);
+                    if (f.getType().isAssignableFrom(stringType)) {
+                        f.set(this, images.get(next));
                     } else {
-                        f.set(result, images.get(next));
+                        //nasty stuff
+                        Class tempClass = f.getType();
+                        Class[] carg = new Class[1];
+                        carg[0] = JSONObject.class;
+                        Constructor<?> constructor = tempClass.getConstructor(JSONObject.class);
+                        constructor.setAccessible(true);
+                        Object c = constructor.newInstance(images.getJSONObject(next));
+                        f.set(this,c);
                     }
                 }
             }
             catch (Exception e) {
                 Log.e("TOPBREWERY", e.toString());
             }
-            return result;
+            //return result;
         }
+        public images() {
+
+        }
+
         public String getIcon() {
             return icon;
         }
