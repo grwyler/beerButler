@@ -53,7 +53,7 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
             switch (v.getId()) {
                 case R.id.brew_tour_button:
                     String lat = "47.255053";
-                    String lng = "122.445805";
+                    String lng = "-122.445805";
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
