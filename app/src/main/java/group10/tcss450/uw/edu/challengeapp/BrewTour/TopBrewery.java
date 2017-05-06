@@ -66,10 +66,24 @@ public class TopBrewery implements Serializable {
                 String next = it.next();
                 Class<?> doubleType = Double.class;
                 Class<?> stringType = String.class;
-                Field f = result.getClass().getDeclaredField(next);
+                Field f = null;
+                try {
+                    f = result.getClass().getDeclaredField(next);
+                } catch (NoSuchFieldException e) { //nothing to do here but go to next iteration
+                    Log.e("TOPBREWERY", e.toString());
+                    continue;
+                }
                 if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
                     if ( brewery.get(next) != null) {
-                        f.set(result, brewery.get(next));
+                        try {
+                            /**
+                             * Todo This is causing problems, the exception is being generated and I need to figure out what to do about it
+                             * When this happens, other data does not get set.
+                             */
+                            f.set(result, brewery.get(next));
+                        } catch (IllegalArgumentException e) {
+                            Log.e("TOPBREWERY", e.getMessage().toString());
+                        }
                     }
                 } else {
                     //nasty stuff
@@ -333,7 +347,13 @@ public class TopBrewery implements Serializable {
                 Iterator<String> it = brewery.keys();
                 while (it.hasNext()) {
                     String next = it.next();
-                    Field f = this.getClass().getDeclaredField(next);
+                    Field f = null;
+                    try {
+                        f = this.getClass().getDeclaredField(next);
+                    } catch (NoSuchFieldException e) {
+                        Log.e("TOPBREWERY", e.toString());
+                        continue;
+                    }
                     Class<?> stringType = String.class;
                     if ( f.getType().isAssignableFrom(stringType)) {
                         f.set(this, brewery.get(next));
@@ -466,7 +486,13 @@ public class TopBrewery implements Serializable {
                     String next = it.next();
                     Class<?> intType = Integer.class;
                     Class<?> stringType = String.class;
-                    Field f = this.getClass().getDeclaredField(next);
+                    Field f = null;
+                    try {
+                        f = this.getClass().getDeclaredField(next);
+                    } catch (NoSuchFieldException e) {
+                        Log.e("TOPBREWERY", e.toString());
+                        continue;
+                    }
                     if (f.getType().isAssignableFrom(intType) || f.getType().isAssignableFrom(stringType)) {
                         f.set(this, country.get(next));
                     } else {
@@ -565,7 +591,13 @@ public class TopBrewery implements Serializable {
                 while (it.hasNext()) {
                     String next = it.next();
                     Class<?> stringType = String.class;
-                    Field f = this.getClass().getDeclaredField(next);
+                    Field f = null;
+                    try {
+                        f = this.getClass().getDeclaredField(next);
+                    } catch (NoSuchFieldException e) {
+                        Log.e("TOPBREWERY", e.toString());
+                        continue;
+                    }
                     if (f.getType().isAssignableFrom(stringType)) {
                         f.set(this, images.get(next));
                     } else {
