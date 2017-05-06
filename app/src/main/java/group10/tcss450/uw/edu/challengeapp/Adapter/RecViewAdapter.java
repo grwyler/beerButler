@@ -90,7 +90,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
             name = brewery.getName();
 
             if(images != null) {
-                new DownloadImageTask(imageView).execute(images.getMedium());
+                new DownloadImageTask(imageView).execute(images.getSquareLarge());
             } else {
                 holder.mImageView.setImageResource(R.drawable.stout);
             }
