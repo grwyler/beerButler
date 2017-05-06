@@ -82,6 +82,10 @@ public class TopBrewery implements Serializable {
                              */
                             f.set(result, brewery.get(next));
                         } catch (IllegalArgumentException e) {
+                            if (f.getType() == Double.class) {
+                                double d = (double)brewery.get(next);
+                                f.set(result, d);
+                            }
                             Log.e("TOPBREWERY", e.getMessage().toString());
                         }
                     }
