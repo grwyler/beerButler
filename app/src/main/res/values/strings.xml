@@ -14,11 +14,8 @@
     <string name="image_description">Image</string>
     <string name="beer_list_button">Beer List</string>
     <string name="brew_tour_button">Brew Tour</string>
-<<<<<<< HEAD
     <string name="user_profile_button">User Profile</string>
-=======
     <string name="text_view_brewery">Brewery: </string>
     <string name="text_view_hours">Hours: </string>
     <string name="text_view_distance">Distance: </string>
->>>>>>> b13ce1877e4c634cb0cdaafc8930b8fa2c926eae
 </resources>
