@@ -61,11 +61,26 @@ public class MainActivity extends AppCompatActivity implements SecondFragment
         transaction.commit();
     }
 
+    /**
+     * Loads the user profile fragment when the user pushes the 'user profile' button.
+     * @param view the Button the user pressed.
+     */
+    public void goToUserProfile(View view) {
+        UserProfile userProfile = new UserProfile();
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, userProfile)
+                .addToBackStack(null);
+        // Commit the transaction
+        transaction.commit();
+    }
+
     @Override
     public void onFragmentInteraction(Fragment frag, String message) {
         if (frag instanceof SecondFragment || frag instanceof ThirdFragment) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             FourthFragment fourthFragment = new FourthFragment();
+
             Bundle args = new Bundle();
             args.putSerializable(getString(R.string.message), message);
             fourthFragment.setArguments(args);
@@ -77,9 +92,11 @@ public class MainActivity extends AppCompatActivity implements SecondFragment
             transaction.commit();
         } else if (frag instanceof FourthFragment) {
             BrewTourFrag bf = new BrewTourFrag();
+            UserProfile us = new UserProfile();
             Bundle args = new Bundle();
             args.putSerializable(BrewTourFrag.KEY, message);
             bf.setArguments(args);
+            us.setArguments(args);
             FragmentTransaction transaction = getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, bf)

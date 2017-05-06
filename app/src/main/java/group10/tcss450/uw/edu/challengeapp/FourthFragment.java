@@ -57,6 +57,9 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
+                case R.id.user_profile_button:
+
+                    break;
                 default:
                     Toast.makeText(getActivity(),
                             "something went horibly wrong!",

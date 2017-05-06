@@ -3,30 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\ben\Desktop\BeerButtler\beerButler\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\Tom\git\beerButler\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="668f609d96ca618b7333578fedb96943e60370ee">
+        <dex dex="C:\Users\Tom\git\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a5e57ec89c4d8744a807b22134c052e28d8bf292\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Tom\git\beerButler\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\ben\Desktop\BeerButtler\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c920a6005eb036ab83eef80562bd9d424b6e3d5d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ben\Desktop\BeerButtler\beerButler\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="49a3d9005070ff7481a0570a2e0d2c679c1797ed">
-        <dex dex="C:\Users\ben\Desktop\BeerButtler\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_652936c1abacf6e69ab174790d2e2d7a838cde43\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ben\.android\build-cache\08bb4e9146e500bdd277a881f49f731445a9eb9f\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
-        <dex dex="C:\Users\ben\Desktop\BeerButtler\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d610c7be713ed78a3455843eeab9987b8a5e19aa\classes.dex" />
+        <dex dex="C:\Users\Tom\git\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_59a982860a5580bf009201691f1481ea9af483c7\classes.dex" />
     </item>
 
 </items>
