@@ -55,7 +55,7 @@ public class TopBrewery implements Serializable {
      * Consider this a modified constructor, required to parse a JSON response.
      *
      * @param brewery: a JSONObject representing the response from our API
-     * @return: new TopBrewery object
+     * @return: new TopBrewery object, which contains nested brewery and country objects
      */
     public static TopBrewery create(JSONObject brewery) {
         TopBrewery result = new TopBrewery();
@@ -76,14 +76,13 @@ public class TopBrewery implements Serializable {
                 if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
                     if ( brewery.get(next) != null) {
                         try {
-                            /**
-                             * Todo This is causing problems, the exception is being generated and I need to figure out what to do about it
-                             * When this happens, other data does not get set.
-                             */
                             f.set(result, brewery.get(next));
                         } catch (IllegalArgumentException e) {
+                            /**
+                             * This is caused by distance occasionally being recognized as an int when it needs to be a double
+                             */
                             if (f.getType() == Double.class) {
-                                double d = (double)brewery.get(next);
+                                double d = (double)((Integer)brewery.get(next)).intValue();;
                                 f.set(result, d);
                             }
                             Log.e("TOPBREWERY", e.getMessage().toString());
@@ -360,7 +359,11 @@ public class TopBrewery implements Serializable {
                     }
                     Class<?> stringType = String.class;
                     if ( f.getType().isAssignableFrom(stringType)) {
-                        f.set(this, brewery.get(next));
+                        try {
+                            f.set(this, brewery.get(next));
+                        } catch (IllegalArgumentException e) {
+                            Log.e("TOPBREWERY", e.getMessage().toString());
+                        }
                     } else {
                         //nasty stuff
                         Class tempClass = f.getType();
@@ -498,7 +501,11 @@ public class TopBrewery implements Serializable {
                         continue;
                     }
                     if (f.getType().isAssignableFrom(intType) || f.getType().isAssignableFrom(stringType)) {
-                        f.set(this, country.get(next));
+                        try {
+                            f.set(this, country.get(next));
+                        } catch (IllegalArgumentException e) {
+                            Log.e("TOPBREWERY", e.getMessage().toString());
+                        }
                     } else {
                         //nasty stuff
                         Class tempClass = f.getType();
@@ -603,7 +610,11 @@ public class TopBrewery implements Serializable {
                         continue;
                     }
                     if (f.getType().isAssignableFrom(stringType)) {
-                        f.set(this, images.get(next));
+                        try {
+                            f.set(this, images.get(next));
+                        } catch (IllegalArgumentException e) {
+                            Log.e("TOPBREWERY", e.getMessage().toString());
+                        }
                     } else {
                         //nasty stuff
                         Class tempClass = f.getType();
