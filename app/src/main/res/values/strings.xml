@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">"ChallengeApp "</string>
+    <string name="app_name">"Beer Butler "</string>
     <string name="name_hint">Enter a User Name</string>
     <string name="password_hint">Password</string>
     <string name="sign_in_button">Sign In</string>
