@@ -1,7 +1,7 @@
 /*
  * TCSS 450 A Spring 2017
  * Project: Beer Butler App
- * Group 10: Ben, Chris, Tom, and Garrett
+ * Group 10: Ben, Chris and Garrett
  */
 
 package group10.tcss450.uw.edu.challengeapp;
@@ -104,30 +104,6 @@ public class MainActivity extends AppCompatActivity implements SecondFragment
             // Commit the transaction
             transaction.commit();
         }
-
-
-
-     //I commented this out to work on BrewTour we can put it back later and use it as our main page fragment
-     // or delete it all together. We also do nit need it to be avilable on a tablet since we are only targeting phones.
-//        FourthFragment fourthFragment;
-//        fourthFragment = (FourthFragment) getSupportFragmentManager().
-//                findFragmentById(R.id.userNameView);
-//        if (fourthFragment != null) {
-//            fourthFragment.updateContent(message);
-//        } else {
-//            fourthFragment = new FourthFragment();
-//            Bundle args = new Bundle();
-//            args.putSerializable(getString(R.string.message), message);
-//            fourthFragment.setArguments(args);
-//
-//            FragmentTransaction transaction = getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.fragmentContainer, fourthFragment)
-//                    .addToBackStack(null);
-//            // Commit the transaction
-//            transaction.commit();
-//        }
-
     }
 
 }
