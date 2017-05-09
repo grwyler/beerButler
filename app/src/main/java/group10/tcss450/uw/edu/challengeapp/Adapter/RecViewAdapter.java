@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
 import group10.tcss450.uw.edu.challengeapp.R;
 
@@ -26,12 +28,42 @@ import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
 /**
  * An adapter class to coordinate the recycler view
  */
-public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHolder> {
+public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHolder>
+        implements ItemTouchHelperAdapter {
 
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<TopBrewery> mDataset;
     /** Resources to use string resources */
     private Resources mResources;
+
+    /**
+     * This seems to do nothing, the original example allows for views to be swapped
+     * But I believe it won't work within our RecyclerView
+     *
+     * @param fromPosition
+     * @param toPosition
+     * @return
+     */
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mDataset, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mDataset, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        mDataset.remove(position);
+        notifyItemRemoved(position);
+    }
 
     /**
      * A View Holder used to change the elements inside the recycler view.
