@@ -22,7 +22,8 @@
             android:scaleType="fitXY"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:paddingRight="5dp"/>
 
         <TextView
             android:id="@+id/brewery_name"
@@ -31,7 +32,8 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/hours"

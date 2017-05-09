@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperAdapter;
+import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
 import group10.tcss450.uw.edu.challengeapp.Adapter.RecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
 
@@ -32,6 +35,8 @@ public class BrewTourFrag extends Fragment {
     private RecyclerView.Adapter mAdapter;
     /** The requisite layout manager*/
     private RecyclerView.LayoutManager mLayoutManager;
+    /** The adapter for the ItemTouchHelper*/
+    private ItemTouchHelperAdapter mITHAdapter;
 
     // Required empty public constructor
     public BrewTourFrag() {
@@ -51,6 +56,8 @@ public class BrewTourFrag extends Fragment {
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
         mLayoutManager = new LinearLayoutManager(new Activity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+
 
         Bundle b = getArguments();
         if (b != null) {
@@ -78,6 +85,11 @@ public class BrewTourFrag extends Fragment {
             }
             mAdapter = new RecViewAdapter(breweries);
             mRecyclerView.setAdapter(mAdapter);
+
+            ItemTouchHelper.Callback callback =
+                    new ItemTouchHelperSimpleCallback((RecViewAdapter)mAdapter);
+            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+            touchHelper.attachToRecyclerView(mRecyclerView);
         }
     }
 }
