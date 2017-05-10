@@ -117,6 +117,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
         String distance;
         brewery brewery = topBrewery.getBrewery();
         ImageView imageView = holder.mImageView;
+        holder.mImageView.setImageResource(R.drawable.stout);
         if (brewery != null) {
             TopBrewery.images images = brewery.getImages();
             name = brewery.getName();
