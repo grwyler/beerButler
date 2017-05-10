@@ -40,9 +40,9 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
      * This seems to do nothing, the original example allows for views to be swapped
      * But I believe it won't work within our RecyclerView
      *
-     * @param fromPosition
-     * @param toPosition
-     * @return
+     * @param fromPosition more info
+     * @param toPosition more info
+     * @return boolean
      */
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
