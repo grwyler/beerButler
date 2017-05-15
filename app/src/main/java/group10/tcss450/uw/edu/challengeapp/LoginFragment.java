@@ -7,7 +7,6 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,13 +21,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.regex.Pattern;
 
 /**
  * This fragment handles login input. If the user successfully logs in the fragment
  * interaction listener calls back to main activity and loads the main page.
  */
-public class SecondFragment extends Fragment implements View.OnClickListener{
+public class LoginFragment extends Fragment implements View.OnClickListener{
 
     /** The first part of the URL used for loading the database. */
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
@@ -39,13 +37,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     /**
      * Required empty public constructor
      */
-    public SecondFragment() {}
+    public LoginFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_second, container, false);
+        View v = inflater.inflate(R.layout.fragment_login, container, false);
         Button b = (Button) v.findViewById(R.id.signInButton);
         b.setOnClickListener(this);
         return v;
@@ -75,66 +73,46 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         EditText userName = (EditText) parent.findViewById(R.id.userNameText);
         EditText password = (EditText) parent.findViewById(R.id.passwordText);
         String usr, pwd;
-        if(parent != null) {
-            // If all fields have been entered execute the task.
-            if(warnUser(userName, password)) {
-                usr = userName.getText().toString();
-                pwd = password.getText().toString();
-                task = new GetWebServiceTask();
-                task.execute(PARTIAL_URL, usr, pwd);
-            }
-        }
+        usr = userName.getText().toString();
+        pwd = password.getText().toString();
+        task = new GetWebServiceTask();
+        task.execute(PARTIAL_URL, usr, pwd);
+//        if(parent != null) {
+//            // If all fields have been entered execute the task.
+////            if(warnUser(userName, password)) {
+//                usr = userName.getText().toString();
+//                pwd = password.getText().toString();
+//                task = new GetWebServiceTask();
+//                task.execute(PARTIAL_URL, usr, pwd);
+////            }
+//        }
 
     }
 
-    /**
-     * Helper method that warns the user if incorrect parameters have been entered to the
-     * login fields.
-     *
-     * @param userName the User name edit text.
-     * @param password the Password edit text.
-     * @return true if the user entered something into the fields false otherwise.
-     */
-    private boolean warnUser(EditText userName, EditText password) {
-        boolean cont = true;
-        if(userName.getText().toString().length() <= 2) {
-            userName.setHintTextColor(Color.RED);
-            userName.setError("User name must be more than 2 characters");
-            cont = false;
-        }
+//    /**
+//     * Helper method that warns the user if incorrect parameters have been entered to the
+//     * login fields.
+//     *
+//     * @param userName the User name edit text.
+//     * @param password the Password edit text.
+//     * @return true if the user entered something into the fields false otherwise.
+//     */
+//    private boolean warnUser(EditText userName, EditText password) {
+//        boolean cont = true;
+//        if(userName.getText().toString().length() <= 2) {
+//            userName.setHintTextColor(Color.RED);
+//            userName.setError("User name must be more than 2 characters");
+//            cont = false;
+//        }
+//
+//        if(password.getText().toString().length() < 5) {
+//            password.setHintTextColor(Color.RED);
+//            password.setError("Password must be more than 5 characters");
+//            cont = false;
+//        }
+//        return cont;
+//    }
 
-        if(password.getText().toString().length() < 5) {
-            password.setHintTextColor(Color.RED);
-            password.setError("Password must be more than 5 characters");
-            cont = false;
-        }
-
-        String string = password.getText().toString();
-        //enforces alpha numeric entry for passwords using regex.
-        Pattern letter = Pattern.compile("[a-zA-Z]");
-        Pattern digit = Pattern.compile("[0-9]");
-        if (!digit.matcher(string).find()){
-            password.setHintTextColor(Color.RED);
-            password.setError("Password must contain at least one number");
-            cont = false;
-        }
-
-        if (!letter.matcher(string).find()){
-            password.setHintTextColor(Color.RED);
-            password.setError("Password must contain at least one letter");
-            cont = false;
-        }
-
-        return cont;
-    }
-
-    /**
-     * Get this class.
-     * @return this , This class
-     */
-    private Fragment getThisClass() {
-        return this;
-    }
 
     /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
@@ -142,9 +120,9 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     public interface OnFragmentInteractionListener {
         /**
          * Used to notify the activity that the sign-in was successful.
-         * @param message The message to send to the activity.
+         * @param json The message to send to the activity.
          */
-        void onFragmentInteraction(Fragment fragment, String message);
+        void onLoginFragmentInteraction(String json);
     }
 
     /**
@@ -195,7 +173,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
-                mListener.onFragmentInteraction(getThisClass(), result);
+                mListener.onLoginFragmentInteraction(result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
             }

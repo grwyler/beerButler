@@ -8,6 +8,15 @@
     android:background="@color/colorAle"
     tools:context="group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:background="@color/cardview_light_background"
+        android:text="@string/radius"/>
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_brew"
         android:scrollbars="vertical"

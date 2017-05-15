@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,20 +24,20 @@ import java.net.URL;
 /**
  *
  */
-public class FourthFragment extends Fragment implements View.OnClickListener {
+public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
-    private SecondFragment.OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
-    public FourthFragment() {
+    public MainPageFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fourth, container, false);
+        View v = inflater.inflate(R.layout.fragment_main_page, container, false);
         Button b = (Button) v.findViewById(R.id.brew_tour_button);
         b.setOnClickListener(this);
         b = (Button) v.findViewById(R.id.beer_list_button);
@@ -58,11 +57,17 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
                 case R.id.user_profile_button:
+                    Toast.makeText(getActivity(),
+                            "User profile is not implemented yet!",
+                            Toast.LENGTH_LONG).show();
+                    break;
+                case R.id.beer_list_button:
 
+                    mListener.onMainPageBeerListFragmentInteraction("Hello");
                     break;
                 default:
                     Toast.makeText(getActivity(),
-                            "something went horibly wrong!",
+                            "Error in the button selection process!",
                             Toast.LENGTH_LONG).show();
             }
         }
@@ -71,12 +76,25 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof SecondFragment.OnFragmentInteractionListener) {
-            mListener = (SecondFragment.OnFragmentInteractionListener) context;
+        if (context instanceof LoginFragment.OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    /**
+     * An interface for the activity to implement to facilitate inter-fragment communication.
+     */
+    public interface OnFragmentInteractionListener {
+        /**
+         * Used to notify the activity that the sign-in was successful.
+         * @param json The message to send to the activity.
+         */
+        void onMainPageBrewTourFragmentInteraction(String json);
+
+        void onMainPageBeerListFragmentInteraction(String json);
     }
 
     /**
@@ -130,7 +148,8 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
                         .show();
                 return;
             }
-            mListener.onFragmentInteraction(getThisClass(), result);
+            mListener.onMainPageBrewTourFragmentInteraction(result);
         }
     }
+
 }

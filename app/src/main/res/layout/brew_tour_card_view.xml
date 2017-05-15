@@ -53,28 +53,18 @@
             android:layout_toRightOf="@+id/brew_pic"
             android:textSize="12sp" />
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="false"-->
-            <!--android:layout_below="@+id/brewery_name"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:layout_toEndOf="@+id/hours"-->
-            <!--android:layout_toRightOf="@+id/hours"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:text="Nav"-->
-            <!--android:id="@+id/nav_button" />-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/brew_pic"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:layout_toStartOf="@+id/dist"
+            android:layout_toLeftOf="@+id/dist"
+            android:background="@color/colorAle"
+            android:text="@string/nav"
+            android:id="@+id/nav_button" />
 
-        <!--<Spinner-->
-        <!--android:id="@+id/hours_spinner"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/brewery_name"-->
-        <!--android:layout_toRightOf="@+id/brew_pic"-->
-        <!--android:layout_alignRight="@+id/brewery_name"-->
-        <!--android:layout_alignEnd="@+id/brewery_name"-->
-        <!--android:text="Hours: Open today 10:00 - 10:00"/>-->
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -5,7 +5,7 @@
     android:id="@+id/firstFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="group10.tcss450.uw.edu.challengeapp.FirstFragment">
+    tools:context="group10.tcss450.uw.edu.challengeapp.LoginSelectionFragment">
 
     <ImageView
         android:id="@+id/imageView"

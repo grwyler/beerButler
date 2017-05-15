@@ -19,7 +19,7 @@ import android.widget.ImageView;
  * The initially loaded screen for new users. The related XML file contains the Login and
  * Register buttons.
  */
-public class FirstFragment extends Fragment {
+public class LoginSelectionFragment extends Fragment {
 
     /** The main image loaded on start*/
     private ImageView mCurrentImage;
@@ -29,12 +29,12 @@ public class FirstFragment extends Fragment {
     /**
      * Required empty public constructor.
      */
-    public FirstFragment() {}
+    public LoginSelectionFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_first, container, false);
+        View v = inflater.inflate(R.layout.fragment_login_selection, container, false);
         mCurrentImage = (ImageView) v.findViewById(R.id.imageView);
         mMottoImage = (ImageView) v.findViewById(R.id.imageView2);
         if (this.getResources().getConfiguration().orientation == Configuration

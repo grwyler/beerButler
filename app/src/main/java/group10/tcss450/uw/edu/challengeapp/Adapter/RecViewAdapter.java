@@ -112,6 +112,36 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
     @Override
     public void onBindViewHolder (ViewHolder holder, int position) {
         TopBrewery topBrewery = mDataset.get(position);
+
+//        if (topBrewery.getBrewery() != null) {
+//            String name;
+//            String hours;
+//            String distance;
+//
+//            if (topBrewery.getDistance() != null && topBrewery.getHoursOfOperation() != null) {
+//                holder.mImageView.setImageResource(R.drawable.stout);
+//                hours = topBrewery.getHoursOfOperation();
+//                distance = "" + mDataset.get(position).getDistance();
+//                ImageView imageView = holder.mImageView;
+//                holder.mImageView.setImageResource(R.drawable.stout);
+//                TopBrewery.images images = topBrewery.getBrewery().getImages();
+//                name = topBrewery.getBrewery().getName();
+//
+//                if(images != null) {
+//                    new DownloadImageTask(imageView).execute(images.getSquareLarge());
+//                } else {
+//                    holder.mImageView.setImageResource(R.drawable.stout);
+//                }
+//
+//                name = mResources.getString(R.string.text_view_brewery) + name;
+//                distance = mResources.getString(R.string.text_view_distance) + distance;
+//                hours = mResources.getString(R.string.text_view_hours) + hours;
+//                holder.mBreweryName.setText(name);
+//                holder.mDist.setText(distance);
+//                holder.mHours.setText(hours);
+//            }
+//
+//        }
         String name = "";
         String hours = topBrewery.getHoursOfOperation();
         String distance;
@@ -134,9 +164,13 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
         if (hours == null) hours = "not available";
         if (topBrewery.getDistance() == null) distance = "unavailable";
         else distance = "" + mDataset.get(position).getDistance();
-        holder.mBreweryName.setText(mResources.getString(R.string.text_view_brewery) + name);
-        holder.mDist.setText(mResources.getString(R.string.text_view_distance) + distance);
-        holder.mHours.setText(mResources.getString(R.string.text_view_hours) + hours);
+
+        name = mResources.getString(R.string.text_view_brewery) + name;
+        distance = mResources.getString(R.string.text_view_distance) + distance;
+        hours = mResources.getString(R.string.text_view_hours) + hours;
+        holder.mBreweryName.setText(name);
+        holder.mDist.setText(distance);
+        holder.mHours.setText(hours);
     }
 
     @Override

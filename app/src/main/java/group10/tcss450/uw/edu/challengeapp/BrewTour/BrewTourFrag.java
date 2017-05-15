@@ -28,7 +28,7 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class BrewTourFrag extends Fragment {
     public static final String KEY = "I love beer!";
-    private ArrayList<TopBrewery> breweries = new ArrayList<TopBrewery>();
+    private ArrayList<TopBrewery> breweries = new ArrayList<>();
     /** The recycler view used to cycle through the card views.*/
     private RecyclerView mRecyclerView;
     /** The requisite adapter for recycler view*/

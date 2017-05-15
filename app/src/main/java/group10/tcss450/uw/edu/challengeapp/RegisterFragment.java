@@ -32,12 +32,12 @@ import java.util.regex.Pattern;
  * This fragment handles new registration. Upon successful registration the fragment
  * interaction listener tells the main activity to load the main page.
  */
-public class ThirdFragment extends Fragment implements View.OnClickListener {
+public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     private static final String ERROR_MESSAGE = "Please enter a ";
     private static final String VERIFY_ERROR = "Please re-enter the password.";
     private static final String PASSWORD = "password.";
-    private static final String USER_NAME = "user name.";
+    private static final String USER_NAME = "user name with at least two characters.";
     private static final String MATCH_ERROR = "The passwords do not match.";
     private static final String ALPHANUMERIC_ERROR = "Password must contain at least one number " +
             "and at least one letter";
@@ -48,7 +48,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
 
 
-    public ThirdFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
     }
 
@@ -56,7 +56,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_third, container, false);
+        View v = inflater.inflate(R.layout.fragment_register, container, false);
         Button b = (Button) v.findViewById(R.id.registerButton);
         b.setOnClickListener(this);
         return v;
@@ -79,6 +79,12 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
+    /**
+     * When the submit button is clicked an AsyncTask is called that sends the values in the
+     * userName, password and vPassword to a database toe be stored as user profile information.
+     * If the username or password is already in the database then it returns an error.
+     * @param view the view that was clicked in this case the submit button in the RegisterFragment
+     */
     @Override
     public void onClick(View view) {
         AsyncTask<String, Void, String> task;
@@ -116,7 +122,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         Pattern letter = Pattern.compile("[a-zA-Z]");
         Pattern digit = Pattern.compile("[0-9]");
 
-        if(usrString.length() == 0) {
+        if(usrString.length() < 2) {
             userName.setHintTextColor(Color.RED);
             userName.setError(ERROR_MESSAGE + USER_NAME);
         } else if(pswrdString.length() == 0 &&
@@ -145,18 +151,10 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * Get this class.
-     * @return this , This class
-     */
-    public Fragment getThisClass() {
-        return this;
-    }
-
-    /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Fragment frag, String message);
+        void onRegisterFragmentInteraction(String message);
     }
 
     /**
@@ -214,7 +212,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
-                mListener.onFragmentInteraction(getThisClass(), result);
+                mListener.onRegisterFragmentInteraction(result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast
                         .LENGTH_SHORT).show();

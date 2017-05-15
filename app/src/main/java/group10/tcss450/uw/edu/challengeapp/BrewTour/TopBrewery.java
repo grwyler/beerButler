@@ -78,14 +78,14 @@ public class TopBrewery implements Serializable {
                         try {
                             f.set(result, brewery.get(next));
                         } catch (IllegalArgumentException e) {
-                            /**
+                            /*
                              * This is caused by distance occasionally being recognized as an int when it needs to be a double
                              */
                             if (f.getType() == Double.class) {
                                 double d = (double)((Integer)brewery.get(next)).intValue();;
                                 f.set(result, d);
                             }
-                            Log.e("TOPBREWERY", e.getMessage().toString());
+                            Log.e("TOPBREWERY", e.getMessage());
                         }
                     }
                 } else {

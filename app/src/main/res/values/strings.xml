@@ -18,4 +18,10 @@
     <string name="text_view_brewery">Brewery: </string>
     <string name="text_view_hours">Hours: </string>
     <string name="text_view_distance">Distance: </string>
+    <string name="add_beer">Add Beer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="radius">Here are all the breweries within a 10 mile radius.</string>
+    <string name="nav">Nav</string>
 </resources>
