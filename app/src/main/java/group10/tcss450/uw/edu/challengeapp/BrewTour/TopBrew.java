@@ -299,7 +299,7 @@ public class TopBrew implements Serializable {
                                     double d = (double)((Integer)style.get(next)).intValue();;
                                     f.set(this, d);
                                 }
-                                Log.e("TOPBREWERY", e.getMessage());
+                                Log.e("TOPBREW", e.getMessage());
                             }
                         }
                     } else {
