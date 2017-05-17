@@ -21,15 +21,14 @@ import java.util.Map;
  * The nested subclass 'Style' has its own nested subclass 'Category'
  * it is intended for subclasses to have a lowercase class name, to aid with reflection
  */
-
 public class TopBrew implements Serializable {
 
     private String id;
     private String name;
     private String nameDisplay;
     private String description;
-    private String abv;
-    private String ibu;
+    private Double abv;
+    private Double ibu;
     private String glasswareId;
     private String availableId;
     private String styleId;
@@ -67,11 +66,18 @@ public class TopBrew implements Serializable {
                     Log.e("TOPBREW", e.toString());
                     continue;
                 }
-                if (f.getType().isAssignableFrom(stringType)) {
+                if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
                     if (brew.get(next) != null) {
                         try {
                             f.set(result, brew.get(next));
                         } catch (IllegalArgumentException e) {
+                            /*
+                             * This is caused by 'next' occasionally being recognized as an int when it needs to be a double
+                             */
+                            if (f.getType() == Double.class) {
+                                double d = (double)((Integer)brew.get(next)).intValue();;
+                                f.set(result, d);
+                            }
                             Log.e("TOPBREW", e.getMessage());
                         }
                     }
@@ -124,19 +130,19 @@ public class TopBrew implements Serializable {
         this.description = description;
     }
 
-    public String getAbv() {
+    public Double getAbv() {
         return abv;
     }
 
-    public void setAbv(String abv) {
+    public void setAbv(Double abv) {
         this.abv = abv;
     }
 
-    public String getIbu() {
+    public Double getIbu() {
         return ibu;
     }
 
-    public void setIbu(String ibu) {
+    public void setIbu(Double ibu) {
         this.ibu = ibu;
     }
 
@@ -253,15 +259,15 @@ public class TopBrew implements Serializable {
         private String name;
         private String shortName;
         private String description;
-        private String ibuMin;
-        private String ibuMax;
-        private String abvMin;
-        private String abvMax;
-        private String srmMin;
-        private String srmMax;
-        private String ogMin;
-        private String fgMin;
-        private String fgMax;
+        private Double ibuMin;
+        private Double ibuMax;
+        private Double abvMin;
+        private Double abvMax;
+        private Double srmMin;
+        private Double srmMax;
+        private Double ogMin;
+        private Double fgMin;
+        private Double fgMax;
         private String createDate;
         private String updateDate;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -279,12 +285,22 @@ public class TopBrew implements Serializable {
                         Log.e("TOPBREW", e.toString());
                         continue;
                     }
+                    Class<?> doubleType = Double.class;
                     Class<?> stringType = String.class;
-                    if (f.getType().isAssignableFrom(stringType)) {
-                        try {
-                            f.set(this, style.get(next));
-                        } catch (IllegalArgumentException e) {
-                            Log.e("TOPBREW", e.getMessage().toString());
+                    if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
+                        if (style.get(next) != null) {
+                            try {
+                                f.set(this, style.get(next));
+                            } catch (IllegalArgumentException e) {
+                            /*
+                             * This is caused by distance occasionally being recognized as an int when it needs to be a double
+                             */
+                                if (f.getType() == Double.class) {
+                                    double d = (double)((Integer)style.get(next)).intValue();;
+                                    f.set(this, d);
+                                }
+                                Log.e("TOPBREWERY", e.getMessage());
+                            }
                         }
                     } else {
                         //nasty stuff
@@ -351,75 +367,75 @@ public class TopBrew implements Serializable {
             this.description = description;
         }
 
-        public String getIbuMin() {
+        public Double getIbuMin() {
             return ibuMin;
         }
 
-        public void setIbuMin(String ibuMin) {
+        public void setIbuMin(Double ibuMin) {
             this.ibuMin = ibuMin;
         }
 
-        public String getIbuMax() {
+        public Double getIbuMax() {
             return ibuMax;
         }
 
-        public void setIbuMax(String ibuMax) {
+        public void setIbuMax(Double ibuMax) {
             this.ibuMax = ibuMax;
         }
 
-        public String getAbvMin() {
+        public Double getAbvMin() {
             return abvMin;
         }
 
-        public void setAbvMin(String abvMin) {
+        public void setAbvMin(Double abvMin) {
             this.abvMin = abvMin;
         }
 
-        public String getAbvMax() {
+        public Double getAbvMax() {
             return abvMax;
         }
 
-        public void setAbvMax(String abvMax) {
+        public void setAbvMax(Double abvMax) {
             this.abvMax = abvMax;
         }
 
-        public String getSrmMin() {
+        public Double getSrmMin() {
             return srmMin;
         }
 
-        public void setSrmMin(String srmMin) {
+        public void setSrmMin(Double srmMin) {
             this.srmMin = srmMin;
         }
 
-        public String getSrmMax() {
+        public Double getSrmMax() {
             return srmMax;
         }
 
-        public void setSrmMax(String srmMax) {
+        public void setSrmMax(Double srmMax) {
             this.srmMax = srmMax;
         }
 
-        public String getOgMin() {
+        public Double getOgMin() {
             return ogMin;
         }
 
-        public void setOgMin(String ogMin) {
+        public void setOgMin(Double ogMin) {
             this.ogMin = ogMin;
         }
 
-        public String getFgMin() {
+        public Double getFgMin() {
             return fgMin;
         }
 
-        public void setFgMin(String fgMin) {
+        public void setFgMin(Double fgMin) {
             this.fgMin = fgMin;
         }
 
-        public String getFgMax() {
+        public Double getFgMax() {
             return fgMax;
         }
 
-        public void setFgMax(String fgMax) {
+        public void setFgMax(Double fgMax) {
             this.fgMax = fgMax;
         }
 
