@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="group10.tcss450.uw.edu.challengeapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/stout"
@@ -20,6 +24,7 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
+
 
 </manifest>

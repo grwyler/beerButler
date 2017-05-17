@@ -7,6 +7,7 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_login, container, false);
         Button b = (Button) v.findViewById(R.id.signInButton);
         b.setOnClickListener(this);
+        b = (Button) v.findViewById(R.id.registerFromLoginButton);
+        b.setOnClickListener(this);
+
         return v;
     }
 
@@ -68,25 +72,31 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        AsyncTask<String, Void, String> task;
-        View parent = (View) view.getParent();
-        EditText userName = (EditText) parent.findViewById(R.id.userNameText);
-        EditText password = (EditText) parent.findViewById(R.id.passwordText);
-        String usr, pwd;
-        usr = userName.getText().toString();
-        pwd = password.getText().toString();
-        task = new GetWebServiceTask();
-        task.execute(PARTIAL_URL, usr, pwd);
-//        if(parent != null) {
-//            // If all fields have been entered execute the task.
-////            if(warnUser(userName, password)) {
-//                usr = userName.getText().toString();
-//                pwd = password.getText().toString();
-//                task = new GetWebServiceTask();
-//                task.execute(PARTIAL_URL, usr, pwd);
-////            }
-//        }
+        if (view.getId() == R.id.signInButton) {
+            AsyncTask<String, Void, String> task;
+            View parent = (View) view.getParent();
+            EditText userName = (EditText) parent.findViewById(R.id.userNameText);
+            EditText password = (EditText) parent.findViewById(R.id.passwordText);
+            String usr, pwd;
+            usr = userName.getText().toString();
+            pwd = password.getText().toString();
+            task = new GetWebServiceTask();
+            task.execute(PARTIAL_URL, usr, pwd);
+        } else if (view.getId() == R.id.registerFromLoginButton) {
+            mListener.onLoginRegisterButtonInteraction();
+        }
+    }
 
+    /**
+     * An interface for the activity to implement to facilitate inter-fragment communication.
+     */
+    public interface OnFragmentInteractionListener {
+        /**
+         * Used to notify the activity that the sign-in was successful.
+         * @param json The message to send to the activity.
+         */
+        void onLoginFragmentInteraction(String json);
+        void onLoginRegisterButtonInteraction();
     }
 
 //    /**
@@ -115,17 +125,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
 
     /**
-     * An interface for the activity to implement to facilitate inter-fragment communication.
-     */
-    public interface OnFragmentInteractionListener {
-        /**
-         * Used to notify the activity that the sign-in was successful.
-         * @param json The message to send to the activity.
-         */
-        void onLoginFragmentInteraction(String json);
-    }
-
-    /**
      * A local AsyncTask class used to access the database and communicate back to the
      * activity.
      */
@@ -134,7 +133,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         /** The start of a string returned if there was an error connecting to the DB.*/
         private final String START_ERROR = "Unable to";
         /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "Not a recognized account";
+        private final String TOAST_ERROR = "Not a recognized account, Please register a new user";
         /** Exception message for too few or too many args*/
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/

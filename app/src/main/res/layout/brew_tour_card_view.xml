@@ -23,7 +23,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:paddingRight="5dp"/>
+            android:padding="5dp" />
 
         <TextView
             android:id="@+id/brewery_name"
@@ -52,18 +52,6 @@
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
             android:textSize="12sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/brew_pic"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:layout_toStartOf="@+id/dist"
-            android:layout_toLeftOf="@+id/dist"
-            android:background="@color/colorAle"
-            android:text="@string/nav"
-            android:id="@+id/nav_button" />
 
     </RelativeLayout>
 

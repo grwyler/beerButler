@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class TopBrewery implements Serializable {
 
     private String id;

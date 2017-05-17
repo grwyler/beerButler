@@ -10,11 +10,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,6 +32,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
     private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
     private OnFragmentInteractionListener mListener;
+    private String mLongitude;
+    private String mLatitude;
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -42,6 +47,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
         b = (Button) v.findViewById(R.id.beer_list_button);
         b.setOnClickListener(this);
+
         return v;
     }
 
@@ -50,19 +56,27 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         AsyncTask<String, Void, String> task;
         if (mListener != null) {
             switch (v.getId()) {
+                //start async task to hit the API and then open the BrewTourFrag
                 case R.id.brew_tour_button:
-                    String lat = "47.255053";
-                    String lng = "-122.445805";
                     task = new BrewTourWebServiceTask();
-                    task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
+//                    String lat = "47.248731";
+//                    String lng = "-122.444532";
+//                    if (MainActivity.getPermission()) {
+//                        Log.d("MainPageFrag ", mLatitude + ", " + mLongitude);
+//                        lng = mLongitude;
+//                        lat = mLatitude;
+//                    }
+                    Log.d("MainPageFrag ", mLatitude + ", " + mLongitude);
+                    task.execute(PARTIAL_URL, "lat=" + mLatitude + "&lng=" + mLongitude);
                     break;
+                //open the UserProfileFragment
                 case R.id.user_profile_button:
                     Toast.makeText(getActivity(),
                             "User profile is not implemented yet!",
                             Toast.LENGTH_LONG).show();
                     break;
+                // Open the BeerListFragment
                 case R.id.beer_list_button:
-
                     mListener.onMainPageBeerListFragmentInteraction("Hello");
                     break;
                 default:
@@ -84,30 +98,32 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void setmLongitude(String mLongitude) {
+        this.mLongitude = mLongitude;
+    }
+
+    public void setmLatitude(String mLatitude) {
+        this.mLatitude = mLatitude;
+    }
+
     /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         /**
-         * Used to notify the activity that the sign-in was successful.
+         * Used to notify the activity the BrewTourFrag needs to be opened.
          * @param json The message to send to the activity.
          */
         void onMainPageBrewTourFragmentInteraction(String json);
-
+        /**
+         * Used to notify the activity that the BeerListFragment needs to be opened.
+         * @param json The message to send to the activity.
+         */
         void onMainPageBeerListFragmentInteraction(String json);
     }
 
     /**
-     * Get this class.
-     *
-     * @return this , This class
-     */
-    public Fragment getThisClass() {
-        return this;
-    }
-
-    /**
-     * Asyncrinous task that contacts the breweryDB API to get breweries in the area.
+     * Asynchronous task that contacts the breweryDB API to get breweries in the area.
      */
     private class BrewTourWebServiceTask extends AsyncTask<String, Void, String> {
         //private final String SERVICE = "_post.php";
