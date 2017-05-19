@@ -1,18 +1,26 @@
 package group10.tcss450.uw.edu.challengeapp.BrewTour;
+
+/**
+ * Created by chris on 5/2/17.
+ */
+
+/**
+ * The top level class 'TopBrewery' contains a nested class 'brewery' and 'country'.
+ * The nested 'brewery' class contains another class 'images'
+ *
+ * it is intended for subclasses to have a lowercase class name, to aid with reflection
+ */
+
 import android.util.Log;
+
 import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.lang.reflect.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-
-/**
- * The top level class 'TopBrewery' contains a nested class 'brewery' and 'country'.
- * The nested 'brewery' class contains another class 'images'
- *
- */
 public class TopBrewery implements Serializable {
 
     private String id;
