@@ -28,7 +28,7 @@ import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
 /**
  * An adapter class to coordinate the recycler view
  */
-public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHolder>
+public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecViewAdapter.ViewHolder>
         implements ItemTouchHelperAdapter {
 
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
@@ -97,12 +97,12 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
      * Recycler view adapter constructor.
      * @param myDataset the desired dataset for the recycler view.
      */
-    public RecViewAdapter (ArrayList<TopBrewery> myDataset) {
+    public BrewTourRecViewAdapter(ArrayList<TopBrewery> myDataset) {
         mDataset = myDataset;
     }
 
     @Override
-    public RecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BrewTourRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.brew_tour_card_view,parent, false);
         mResources = parent.getContext().getResources();
@@ -154,12 +154,8 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.ViewHold
 
             if(images != null) {
                 new DownloadImageTask(imageView).execute(images.getSquareLarge());
-            } else {
-                holder.mImageView.setImageResource(R.drawable.stout);
-            }
-        } else {
-            holder.mImageView.setImageResource(R.drawable.stout);
-        }
+            } else holder.mImageView.setImageResource(R.drawable.stout);
+        } else holder.mImageView.setImageResource(R.drawable.stout);
         if (name == null || name.equals("")) name = "Brewery";
         if (hours == null) hours = "not available";
         if (topBrewery.getDistance() == null) distance = "unavailable";

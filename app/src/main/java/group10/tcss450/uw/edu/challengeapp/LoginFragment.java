@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,6 +34,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             "~grwyler/beerButler/challenge";
     /** The fragment interaction listener used to communicate with the main activity.*/
     private OnFragmentInteractionListener mListener;
+
+
 
     /**
      * Required empty public constructor
@@ -149,7 +152,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String args = "?name=" + strings[1] + "&pswd=" + strings[2];
-            System.out.println(url + "_get.php" + args);
             try {
                 URL urlObject = new URL(url + "_get.php" + args);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();

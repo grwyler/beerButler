@@ -7,6 +7,7 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,12 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
+    private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
+            "~grwyler/beerButler/beerList";
+
     private OnFragmentInteractionListener mListener;
+
+    private String mUsername;
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -42,6 +48,9 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
         b = (Button) v.findViewById(R.id.beer_list_button);
         b.setOnClickListener(this);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
+                .login_prefs), Context.MODE_PRIVATE);
+        mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
         return v;
     }
 
@@ -62,8 +71,9 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                             Toast.LENGTH_LONG).show();
                     break;
                 case R.id.beer_list_button:
-
-                    mListener.onMainPageBeerListFragmentInteraction("Hello");
+                    task = new GetBeerListTask();
+                    task.execute(BEERLIST_PARTIAL_URL);
+//                    mListener.onMainPageBeerListFragmentInteraction("Hello");
                     break;
                 default:
                     Toast.makeText(getActivity(),
@@ -149,6 +159,59 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 return;
             }
             mListener.onMainPageBrewTourFragmentInteraction(result);
+        }
+    }
+
+    /**
+     * A local AsyncTask class used to access the database and communicate back to the
+     * activity.
+     */
+    private class GetBeerListTask extends AsyncTask<String, Void, String> {
+
+        /** The start of a string returned if there was an error connecting to the DB.*/
+        private final String START_ERROR = "Unable to";
+        /** The error message if the user enters wrong data for logging in*/
+        private final String TOAST_ERROR = "Not a recognized account";
+        /** Exception message for too few or too many args*/
+        private final String EXCEPTION_MSG = "One String arguments required.";
+        /** Start of the message to notify the user of connection failure.*/
+        private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
+
+        @Override
+        protected String doInBackground(String... strings) {
+            if (strings.length != 1) {
+                throw new IllegalArgumentException(EXCEPTION_MSG);
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            try {
+                URL urlObject = new URL(strings[0] + "_get.php" + "?name=" + mUsername);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                InputStream content = urlConnection.getInputStream();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s;
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+            } catch (Exception e) {
+                response = EXCEPTION_MSG_2 + e.getMessage();
+            } finally {
+                if (urlConnection != null) urlConnection.disconnect();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mListener.onMainPageBeerListFragmentInteraction(result);
+            // Something wrong with the network or the URL
+//            if (result.startsWith(START_ERROR)) {
+//                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+//            } else if(result.startsWith("Successfully")) {
+//                mListener.onLoginFragmentInteraction(result);
+//            } else {
+//                Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
+//            }
         }
     }
 

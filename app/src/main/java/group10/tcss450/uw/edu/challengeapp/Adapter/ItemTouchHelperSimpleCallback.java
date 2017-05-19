@@ -9,9 +9,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 public class ItemTouchHelperSimpleCallback extends ItemTouchHelper.Callback {
 
-    private final RecViewAdapter mAdapter;
+    private final BrewTourRecViewAdapter mAdapter;
 
-    public ItemTouchHelperSimpleCallback (RecViewAdapter adapter) {
+    public ItemTouchHelperSimpleCallback (BrewTourRecViewAdapter adapter) {
         mAdapter = adapter;
     }
 

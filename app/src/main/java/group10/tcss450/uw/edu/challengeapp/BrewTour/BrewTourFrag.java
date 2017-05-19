@@ -17,9 +17,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import group10.tcss450.uw.edu.challengeapp.Adapter.BrewTourRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
-import group10.tcss450.uw.edu.challengeapp.Adapter.RecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -57,8 +57,6 @@ public class BrewTourFrag extends Fragment {
         mLayoutManager = new LinearLayoutManager(new Activity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
-
         Bundle b = getArguments();
         if (b != null) {
 
@@ -83,11 +81,11 @@ public class BrewTourFrag extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mAdapter = new RecViewAdapter(breweries);
+            mAdapter = new BrewTourRecViewAdapter(breweries);
             mRecyclerView.setAdapter(mAdapter);
 
             ItemTouchHelper.Callback callback =
-                    new ItemTouchHelperSimpleCallback((RecViewAdapter)mAdapter);
+                    new ItemTouchHelperSimpleCallback((BrewTourRecViewAdapter)mAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(mRecyclerView);
         }

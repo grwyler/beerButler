@@ -19,6 +19,11 @@
     <string name="text_view_hours">Hours: </string>
     <string name="text_view_distance">Distance: </string>
     <string name="add_beer">Add Beer</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login_prefs">loginPrefs</string>
+    <string name="save_login">saveLogin</string>
+    <string name="usernamePrefs">username</string>
+    <string name="log_out">Log out</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
