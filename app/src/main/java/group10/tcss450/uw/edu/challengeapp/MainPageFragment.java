@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,6 +32,15 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
+
+    /** The start of a string returned if there was an error connecting to the DB.*/
+    private final String START_ERROR = "Unable to";
+    /** The error message if the user enters wrong data for logging in*/
+    private final String TOAST_ERROR = "Not a recognized account";
+    /** Exception message for too few or too many args*/
+    private final String EXCEPTION_MSG = "One String arguments required.";
+    /** Start of the message to notify the user of connection failure.*/
+    private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
 
     private OnFragmentInteractionListener mListener;
 
@@ -141,8 +151,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 }
 
             } catch (Exception e) {
-                response = "Unable to connect, Reason: "
-                        + e.getMessage();
+                response = EXCEPTION_MSG_2 + e.getMessage();
             } finally {
                 if (urlConnection != null)
                     urlConnection.disconnect();
@@ -153,7 +162,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
-            if (result.startsWith("Unable to")) {
+            if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG)
                         .show();
                 return;
@@ -167,15 +176,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
      * activity.
      */
     private class GetBeerListTask extends AsyncTask<String, Void, String> {
-
-        /** The start of a string returned if there was an error connecting to the DB.*/
-        private final String START_ERROR = "Unable to";
-        /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "Not a recognized account";
-        /** Exception message for too few or too many args*/
-        private final String EXCEPTION_MSG = "One String arguments required.";
-        /** Start of the message to notify the user of connection failure.*/
-        private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
 
         @Override
         protected String doInBackground(String... strings) {
@@ -204,15 +204,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             mListener.onMainPageBeerListFragmentInteraction(result);
-            // Something wrong with the network or the URL
-//            if (result.startsWith(START_ERROR)) {
-//                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-//            } else if(result.startsWith("Successfully")) {
-//                mListener.onLoginFragmentInteraction(result);
-//            } else {
-//                Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
-//            }
         }
+
     }
 
 }

@@ -6,11 +6,14 @@
 package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +28,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
+import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -39,6 +44,10 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
     private String mUsername;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private BeerListRecViewAdapter mAdapter;
+    private ArrayList<Beer> mBeerList;
 
     /** Required empty public constructor*/
     public BeerListFragment() {}
@@ -54,9 +63,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-//        RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(new Activity());
-//        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_beer);
+        mLayoutManager = new LinearLayoutManager(new Activity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
 
@@ -73,6 +82,8 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs), Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
+        mAdapter = new BeerListRecViewAdapter(mBeerList);
+        mRecyclerView.setAdapter(mAdapter);
 
 //        Bundle b = getArguments();
 //        if (b != null) {
@@ -131,8 +142,53 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             } else {
                 mAutoCompleteTextView.setError(beerName + " isn't a recognized beer.");
             }
+        }
+    }
+
+    public void setRecView(String result) {
+        int size = Integer.valueOf(result.substring(0, result.indexOf("name=")));
+        String beers = result;
+
+        mBeerList = new ArrayList<>();
+        String[] identifiers = new String[10];
+        identifiers[0] = "name=";
+        identifiers[1] = "style=";
+        identifiers[2] = "isOrganic=";
+        identifiers[3] = "labelLink=";
+        identifiers[4] = "brewery=";
+        identifiers[5] = "abv=";
+        identifiers[6] = "ibu=";
+        identifiers[7] = "description=";
+        identifiers[8] = "notes=";
+        identifiers[9] = "rating=";
+        String[] states = new String[10];
+        for (int i = 0; i < size; i++) {
+            boolean alreadyAdded = false;
+            for (int j = 0; j < states.length; j++) {
+                if (j == states.length - 1) {
+                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j]
+                            .length(), beers.indexOf("$$$"));
+                } else {
+                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j].length(),
+                            beers.indexOf(identifiers[j + 1]));
+                }
+            }
+
+            for (int j = 0; j < mBeerList.size(); j++) {
+                if(mBeerList.get(j).getmName().equals(states[0])) {
+                    alreadyAdded = true;
+                }
+            }
+            if (!alreadyAdded) {
+                boolean isOrganic = states[2].equals("1") ? true : false;
+                mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
+                        Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
+                        Integer.valueOf(states[9])));
+            }
+            beers = beers.substring(beers.indexOf("$$$") + 3);
 
         }
+
     }
 
     /**
@@ -202,7 +258,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
-            System.out.println(result);
+//            System.out.println(result);
 //            if (result.startsWith(START_ERROR)) {
 //                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
 //            } else if(result.startsWith("Successfully")) {
