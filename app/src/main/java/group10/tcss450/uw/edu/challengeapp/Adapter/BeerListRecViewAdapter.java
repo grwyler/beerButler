@@ -29,6 +29,10 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         mDataset = beerList;
     }
 
+    public void addBeer(Beer beer) {
+        mDataset.add(beer);
+    }
+
     /**
      * A View Holder used to change the elements inside the recycler view.
      */
@@ -104,7 +108,9 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        int size = 0;
+        if (mDataset != null) size = mDataset.size();
+        return size;
     }
 
 }

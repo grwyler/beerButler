@@ -175,7 +175,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
      * A local AsyncTask class used to access the database and communicate back to the
      * activity.
      */
-    private class GetBeerListTask extends AsyncTask<String, Void, String> {
+    public class GetBeerListTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {

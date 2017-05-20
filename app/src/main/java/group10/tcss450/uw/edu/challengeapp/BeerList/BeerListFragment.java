@@ -136,9 +136,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             if (true/*If beerName is in the API*/) {
                 // TODO: Add the new beer to the BeerListRecViewAdapter's list using a setter method
                 AsyncTask<String, Void, String> task;
+                Beer beer = new Beer(beerName, "s", false, "labelLink", "brewery", 1.0, 1.0,
+                        "description", "notes", 1);
                 task = new AddBeerToDBTask();
                 task.execute(BEERLIST_PARTIAL_URL, beerName, "s", "0", "labelLink", "brewery",
                         "1.0", "1.0", "description", "notes", "1");
+                mAdapter.addBeer(beer);
             } else {
                 mAutoCompleteTextView.setError(beerName + " isn't a recognized beer.");
             }
