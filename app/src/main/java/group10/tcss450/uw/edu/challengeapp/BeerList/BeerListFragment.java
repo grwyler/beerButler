@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
+import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -82,8 +84,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs), Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
-        mAdapter = new BeerListRecViewAdapter(mBeerList);
+        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
+                mUsername);
         mRecyclerView.setAdapter(mAdapter);
+        ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(mRecyclerView);
 
 //        Bundle b = getArguments();
 //        if (b != null) {
@@ -146,52 +152,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 mAutoCompleteTextView.setError(beerName + " isn't a recognized beer.");
             }
         }
-    }
-
-    public void setRecView(String result) {
-        int size = Integer.valueOf(result.substring(0, result.indexOf("name=")));
-        String beers = result;
-
-        mBeerList = new ArrayList<>();
-        String[] identifiers = new String[10];
-        identifiers[0] = "name=";
-        identifiers[1] = "style=";
-        identifiers[2] = "isOrganic=";
-        identifiers[3] = "labelLink=";
-        identifiers[4] = "brewery=";
-        identifiers[5] = "abv=";
-        identifiers[6] = "ibu=";
-        identifiers[7] = "description=";
-        identifiers[8] = "notes=";
-        identifiers[9] = "rating=";
-        String[] states = new String[10];
-        for (int i = 0; i < size; i++) {
-            boolean alreadyAdded = false;
-            for (int j = 0; j < states.length; j++) {
-                if (j == states.length - 1) {
-                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j]
-                            .length(), beers.indexOf("$$$"));
-                } else {
-                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j].length(),
-                            beers.indexOf(identifiers[j + 1]));
-                }
-            }
-
-            for (int j = 0; j < mBeerList.size(); j++) {
-                if(mBeerList.get(j).getmName().equals(states[0])) {
-                    alreadyAdded = true;
-                }
-            }
-            if (!alreadyAdded) {
-                boolean isOrganic = states[2].equals("1") ? true : false;
-                mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
-                        Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
-                        Integer.valueOf(states[9])));
-            }
-            beers = beers.substring(beers.indexOf("$$$") + 3);
-
-        }
-
     }
 
     /**

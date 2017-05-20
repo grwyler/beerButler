@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BrewTourRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperAdapter;
-import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -84,10 +82,10 @@ public class BrewTourFrag extends Fragment {
             mAdapter = new BrewTourRecViewAdapter(breweries);
             mRecyclerView.setAdapter(mAdapter);
 
-            ItemTouchHelper.Callback callback =
-                    new ItemTouchHelperSimpleCallback((BrewTourRecViewAdapter)mAdapter);
-            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-            touchHelper.attachToRecyclerView(mRecyclerView);
+//            ItemTouchHelper.Callback callback =
+//                    new ItemTouchHelperSimpleCallback((BrewTourRecViewAdapter)mAdapter);
+//            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+//            touchHelper.attachToRecyclerView(mRecyclerView);
         }
     }
 }

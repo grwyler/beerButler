@@ -182,10 +182,6 @@ public class MainActivity extends AppCompatActivity implements
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
-        if (!json.equals("false")) {
-            bl.setRecView(json);
-        }
-
     }
 
     @Override
