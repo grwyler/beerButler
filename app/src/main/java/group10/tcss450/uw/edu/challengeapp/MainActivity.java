@@ -171,11 +171,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onMainPageBeerListFragmentInteraction(String json) {
+    public void onMainPageBeerListFragmentInteraction() {
         BeerListFragment bl = new BeerListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(BeerListFragment.KEY, json);
-        bl.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putSerializable(BeerListFragment.KEY, json);
+//        bl.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)
@@ -214,4 +214,5 @@ public class MainActivity extends AppCompatActivity implements
                 .replace(R.id.fragmentContainer, frag).addToBackStack(null);
         transaction.commit();
     }
+
 }

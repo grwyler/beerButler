@@ -1,6 +1,5 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -23,57 +22,57 @@ import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
- * Created by Garrett on 5/19/2017.
+ * An adapter class to coordinate the recycler view
  */
-
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
 
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<Beer> mBeerList;
     private String mUsername;
-    /** Resources to use string resources */
-    private Resources mResources;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
 
     public BeerListRecViewAdapter(String beerList, String username) {
         mBeerList = new ArrayList<>();
         mUsername = username;
-        if (!beerList.equals("false")) populateList(beerList);
+        populateList(beerList);
     }
 
-    private void populateList(String beerList) {
+    public void populateList(String beerList) {
         int size = Integer.valueOf(beerList.substring(0, beerList.indexOf("name=")));
         String beers = beerList;
         String[] identifiers = makeIdentifiers();
         String[] states = new String[10];
         for (int i = 0; i < size; i++) {
             boolean alreadyAdded = false;
-            for (int j = 0; j < states.length; j++) {
-                if (j == states.length - 1) {
-                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j]
-                            .length(), beers.indexOf("$$$"));
-                } else {
-                    states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j].length(),
-                            beers.indexOf(identifiers[j + 1]));
+            if (beers.length() > 3) {
+                for (int j = 0; j < states.length; j++) {
+                    if (j >= states.length - 1) {
+                        states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j]
+                                .length(), beers.indexOf("$$$"));
+                    } else {
+                        states[j] = beers.substring(beers.indexOf(identifiers[j]) + identifiers[j].length(),
+                                beers.indexOf(identifiers[j + 1]));
+                    }
                 }
-            }
 
-            for (int j = 0; j < mBeerList.size(); j++) {
-                if(mBeerList.get(j).getmName().equals(states[0])) {
-                    alreadyAdded = true;
+                for (int j = 0; j < mBeerList.size(); j++) {
+                    if(mBeerList.get(j).getmName().equals(states[0])) {
+                        alreadyAdded = true;
+                        i--;
+                    }
                 }
+                if (!alreadyAdded) {
+                    mBeerList.add(new Beer(states[0], states[1], states[2].equals("1"), states[3],
+                            states[4], Double.valueOf(states[5]), Double.valueOf(states[6]),
+                            states[7], states[8], Integer.valueOf(states[9])));
+                }
+                beers = beers.substring(beers.indexOf("$$$") + 3);
             }
-            if (!alreadyAdded) {
-                boolean isOrganic = states[2].equals("1") ? true : false;
-                mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
-                        Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
-                        Integer.valueOf(states[9])));
-            }
-            beers = beers.substring(beers.indexOf("$$$") + 3);
 
         }
+
     }
 
     private String[] makeIdentifiers() {
@@ -89,10 +88,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         identifiers[8] = "notes=";
         identifiers[9] = "rating=";
         return identifiers;
-    }
-
-    public void addBeer(Beer beer) {
-        mBeerList.add(beer);
     }
 
     /**
@@ -128,6 +123,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     }
 
 
+
     /**
      * A View Holder used to change the elements inside the recycler view.
      */
@@ -155,8 +151,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mNotes;
         /** The TextView to display the distance from your location*/
         TextView mRating;
-
-
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
@@ -181,7 +175,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     public BeerListRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.beer_list_card_view, parent, false);
-        mResources = parent.getContext().getResources();
         return new BeerListRecViewAdapter.ViewHolder(cv);
     }
 
@@ -216,11 +209,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
         private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
-        /** The start of a string returned if there was an error connecting to the DB.*/
-        private final String START_ERROR = "Unable to";
-        /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "That user name is already being used";
-
 
         @Override
         protected String doInBackground(String... strings) {
@@ -267,7 +255,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
-            System.out.println(result);
 //            if (result.startsWith(START_ERROR)) {
 //                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
 //            } else if(result.startsWith("Successfully")) {

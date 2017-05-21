@@ -29,7 +29,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
@@ -40,16 +39,16 @@ import group10.tcss450.uw.edu.challengeapp.R;
  * make everything consistent across the application.
  */
 public class BeerListFragment extends Fragment implements View.OnClickListener {
-    public static final String KEY = "I love beer!";
+    /** Exception message for too few or too many args*/
+    private final String EXCEPTION_MSG = "Three String arguments required.";
+    /** Start of the message to notify the user of connection failure.*/
+    private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
     private AutoCompleteTextView mAutoCompleteTextView;
-    private OnFragmentInteractionListener mListener;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
     private String mUsername;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
     private BeerListRecViewAdapter mAdapter;
-    private ArrayList<Beer> mBeerList;
+    private AsyncTask<String, Void, String> mGetBeersTask;
 
     /** Required empty public constructor*/
     public BeerListFragment() {}
@@ -65,31 +64,24 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_beer);
-        mLayoutManager = new LinearLayoutManager(new Activity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
-
         mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
                 auto_complete_beers_text);
-
         //TODO: populate this list with all beer names from the API
         String[] beerNames = new String[10];
         for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout
                 .simple_dropdown_item_1line, beerNames);
         mAutoCompleteTextView.setAdapter(adapter);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs), Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
-        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
-                mUsername);
-        mRecyclerView.setAdapter(mAdapter);
-        ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        touchHelper.attachToRecyclerView(mRecyclerView);
+        mGetBeersTask = new GetBeerListTask();
+        mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
+//        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
+//                mUsername);
+
 
 //        Bundle b = getArguments();
 //        if (b != null) {
@@ -125,13 +117,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //        }
     }
 
-    /**
-     * An interface for the activity to implement to facilitate inter-fragment communication.
-     */
-    public interface OnFragmentInteractionListener {
-        void onRegisterFragmentInteraction(String message);
-    }
-
     @Override
     public void onClick(View v) {
         String beerName = mAutoCompleteTextView.getText().toString();
@@ -140,14 +125,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             // TODO: Call the api and search for beerName
         } else {
             if (true/*If beerName is in the API*/) {
-                // TODO: Add the new beer to the BeerListRecViewAdapter's list using a setter method
                 AsyncTask<String, Void, String> task;
-                Beer beer = new Beer(beerName, "s", false, "labelLink", "brewery", 1.0, 1.0,
-                        "description", "notes", 1);
                 task = new AddBeerToDBTask();
                 task.execute(BEERLIST_PARTIAL_URL, beerName, "s", "0", "labelLink", "brewery",
                         "1.0", "1.0", "description", "notes", "1");
-                mAdapter.addBeer(beer);
+                mGetBeersTask = new GetBeerListTask();
+                mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
             } else {
                 mAutoCompleteTextView.setError(beerName + " isn't a recognized beer.");
             }
@@ -159,15 +142,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
      * activity.
      */
     private class AddBeerToDBTask extends AsyncTask<String, Void, String> {
-
-        /** Exception message for too few or too many args*/
-        private final String EXCEPTION_MSG = "Three String arguments required.";
-        /** Start of the message to notify the user of connection failure.*/
-        private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
-        /** The start of a string returned if there was an error connecting to the DB.*/
-        private final String START_ERROR = "Unable to";
-        /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "That user name is already being used";
 
 
         @Override
@@ -220,16 +194,59 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            // Something wrong with the network or the URL.
-//            System.out.println(result);
-//            if (result.startsWith(START_ERROR)) {
-//                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-//            } else if(result.startsWith("Successfully")) {
-//                mListener.onRegisterFragmentInteraction(result);
-//            } else {
-//                Toast.makeText(getActivity(), TOAST_ERROR, Toast
-//                        .LENGTH_SHORT).show();
-//            }
+
         }
+    }
+
+    /**
+     * A local AsyncTask class used to access the database and communicate back to the
+     * activity.
+     */
+    private class GetBeerListTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            if (strings.length != 1) {
+                throw new IllegalArgumentException(EXCEPTION_MSG);
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            try {
+                URL urlObject = new URL(strings[0] + "_get.php" + "?name=" + mUsername);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                InputStream content = urlConnection.getInputStream();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s;
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+            } catch (Exception e) {
+                response = EXCEPTION_MSG_2 + e.getMessage();
+            } finally {
+                if (urlConnection != null) urlConnection.disconnect();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (!result.equals("false")) {
+                if (mAdapter == null) {
+                    RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
+                            .recycler_view_beer);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
+                    mAdapter = new BeerListRecViewAdapter(result, mUsername);
+                    recyclerView.setAdapter(mAdapter);
+                    ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
+                    ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+                    touchHelper.attachToRecyclerView(recyclerView);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    mAdapter.populateList(result);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+
     }
 }
