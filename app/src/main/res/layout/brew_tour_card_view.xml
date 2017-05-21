@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/brew_tour_cv"
         android:padding="8dp">
 
         <ImageView

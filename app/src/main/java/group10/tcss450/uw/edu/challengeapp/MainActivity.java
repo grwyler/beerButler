@@ -15,6 +15,7 @@ import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.android.gms.location.LocationServices;
 
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BeerListFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
 
 /**
  * The main activity class. Login, registration, and cardview are loaded and managed here.
@@ -36,10 +38,11 @@ public class MainActivity extends AppCompatActivity implements
         LoginFragment.OnFragmentInteractionListener,
         RegisterFragment.OnFragmentInteractionListener,
         MainPageFragment.OnFragmentInteractionListener,
+        RateBeerFragment.OnFragmentInteractionListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
-
+    public static FragmentManager mFragManager;
     MainPageFragment mMainPage;
     private GoogleApiClient mGoogleApiClient;
 
@@ -56,10 +59,10 @@ public class MainActivity extends AppCompatActivity implements
         if (savedInstanceState == null) {
             if (findViewById(R.id.fragmentContainer) != null) {
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragmentContainer, new LoginSelectionFragment()).commit();
+                        .add(R.id.fragmentContainer, mMainPage).commit();
             }
         }
-
+        mFragManager = getSupportFragmentManager();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
@@ -203,11 +206,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainPageBeerListFragmentInteraction(String json) {
         BeerListFragment bl = new BeerListFragment();
-        UserProfileFragment us = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putSerializable(BeerListFragment.KEY, json);
         bl.setArguments(args);
-        us.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)
@@ -215,6 +216,12 @@ public class MainActivity extends AppCompatActivity implements
         // Commit the transaction
         transaction.commit();
     }
+
+    @Override
+    public void onRateBeerFragmentInteraction(String string) {
+
+    }
+
 
     /**
      * Ask the user for permission to use their phones location.
@@ -250,22 +257,6 @@ public class MainActivity extends AppCompatActivity implements
 //    }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
     public void onLocationChanged(Location location) {
         //Log.d("MainActivity ", "Location changed! " + location.getLatitude());
         mMainPage.setmLatitude(String.valueOf(location.getLatitude()));
@@ -286,4 +277,21 @@ public class MainActivity extends AppCompatActivity implements
     public void onProviderDisabled(String provider) {
 
     }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
 }

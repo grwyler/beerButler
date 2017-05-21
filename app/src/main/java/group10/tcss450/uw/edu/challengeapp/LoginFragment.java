@@ -7,7 +7,6 @@
 package group10.tcss450.uw.edu.challengeapp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,6 +33,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             "~grwyler/beerButler/challenge";
     /** The fragment interaction listener used to communicate with the main activity.*/
     private OnFragmentInteractionListener mListener;
+    /**
+     * The username is  set so it can be used later to add beer information to the database
+     * by user.
+     */
+    private static String mUsername;
 
     /**
      * Required empty public constructor
@@ -81,16 +85,21 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             usr = userName.getText().toString();
             pwd = password.getText().toString();
             task = new GetWebServiceTask();
+            mUsername = usr;
             task.execute(PARTIAL_URL, usr, pwd);
         } else if (view.getId() == R.id.registerFromLoginButton) {
             mListener.onLoginRegisterButtonInteraction();
         }
     }
 
+    public static String getmUsername() {
+        return mUsername;
+    }
+
     /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         /**
          * Used to notify the activity that the sign-in was successful.
          * @param json The message to send to the activity.

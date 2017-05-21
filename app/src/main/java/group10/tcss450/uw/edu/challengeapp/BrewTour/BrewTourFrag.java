@@ -10,6 +10,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +19,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperAdapter;
+//import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
 import group10.tcss450.uw.edu.challengeapp.Adapter.RecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
@@ -29,14 +31,14 @@ import group10.tcss450.uw.edu.challengeapp.R;
 public class BrewTourFrag extends Fragment {
     public static final String KEY = "I love beer!";
     private ArrayList<TopBrewery> breweries = new ArrayList<>();
-    /** The recycler view used to cycle through the card views.*/
-    private RecyclerView mRecyclerView;
-    /** The requisite adapter for recycler view*/
-    private RecyclerView.Adapter mAdapter;
-    /** The requisite layout manager*/
-    private RecyclerView.LayoutManager mLayoutManager;
-    /** The adapter for the ItemTouchHelper*/
-    private ItemTouchHelperAdapter mITHAdapter;
+//    /** The recycler view used to cycle through the card views.*/
+//    private RecyclerView mRecyclerView;
+//    /** The requisite adapter for recycler view*/
+//    private RecyclerView.Adapter mAdapter;
+//    /** The requisite layout manager*/
+//    private RecyclerView.LayoutManager mLayoutManager;
+//    /** The adapter for the ItemTouchHelper*/
+//    private ItemTouchHelperAdapter mITHAdapter;
 
     // Required empty public constructor
     public BrewTourFrag() {
@@ -47,17 +49,17 @@ public class BrewTourFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_brew_tour, container, false);
+        View v = inflater.inflate(R.layout.fragment_brew_tour, container, false);
+        //RelativeLayout cv = (RelativeLayout) v.findViewById(R.id.brew_tour_cv);
+        return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
-        mLayoutManager = new LinearLayoutManager(new Activity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-
+        RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(new Activity());
+        recyclerView.setLayoutManager(layoutManager);
 
         Bundle b = getArguments();
         if (b != null) {
@@ -65,31 +67,30 @@ public class BrewTourFrag extends Fragment {
             try {
                 String st = getArguments().getString(KEY);
                 JSONObject jsonO = new JSONObject(st);
-                int num = 0;
+                int num;
                 num  = jsonO.getInt("totalResults");
-                if (jsonO.getString("status").toString().equals("success") && num != 0) {
+                if (jsonO.getString("status").equals("success") && num != 0) {
                     JSONArray data = jsonO.getJSONArray("data");
 
                     for(int i=0; i<data.length(); i++){
                         TopBrewery brewery = TopBrewery.create(data.getJSONObject(i));
                         breweries.add(brewery);
                     }
-                }
-                else {
-                    /**
-                     * ToDo need a code branch to handle zero result responses
-                     */
+                } else {
+                    Toast.makeText(getActivity(), "No brewey data to show", Toast
+                            .LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mAdapter = new RecViewAdapter(breweries);
-            mRecyclerView.setAdapter(mAdapter);
+            RecyclerView.Adapter adapter = new RecViewAdapter(breweries);
+            recyclerView.setAdapter(adapter);
+
 
             ItemTouchHelper.Callback callback =
-                    new ItemTouchHelperSimpleCallback((RecViewAdapter)mAdapter);
+                    new ItemTouchHelperSimpleCallback((RecViewAdapter)adapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-            touchHelper.attachToRecyclerView(mRecyclerView);
+            touchHelper.attachToRecyclerView(recyclerView);
         }
     }
 }

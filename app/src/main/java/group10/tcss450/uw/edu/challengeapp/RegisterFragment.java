@@ -93,14 +93,20 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         EditText password = (EditText) parent.findViewById(R.id.rPasswordText);
         EditText vPassword = (EditText) parent.findViewById(R.id.rPasswordVText);
         String usr, pwd;
-        if(parent != null) {
-            if(warnUser(userName, password, vPassword)) {
-                usr = userName.getText().toString();
-                pwd = password.getText().toString();
-                task = new PostWebServiceTask();
-                task.execute(PARTIAL_URL, usr, pwd);
-            }
+        if(warnUser(userName, password, vPassword)) {
+            usr = userName.getText().toString();
+            pwd = password.getText().toString();
+            task = new PostWebServiceTask();
+            task.execute(PARTIAL_URL, usr, pwd);
         }
+//        if(parent != null) {
+//            if(warnUser(userName, password, vPassword)) {
+//                usr = userName.getText().toString();
+//                pwd = password.getText().toString();
+//                task = new PostWebServiceTask();
+//                task.execute(PARTIAL_URL, usr, pwd);
+//            }
+//        }
     }
 
     /**
@@ -153,7 +159,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         void onRegisterFragmentInteraction(String message);
     }
 
