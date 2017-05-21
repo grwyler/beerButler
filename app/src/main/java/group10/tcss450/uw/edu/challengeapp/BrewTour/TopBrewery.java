@@ -8,6 +8,7 @@ package group10.tcss450.uw.edu.challengeapp.BrewTour;
  * The top level class 'TopBrewery' contains a nested class 'brewery' and 'country'.
  * The nested 'brewery' class contains another class 'images'
  *
+ * it is intended for subclasses to have a lowercase class name, to aid with reflection
  */
 
 import android.util.Log;

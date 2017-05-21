@@ -2,15 +2,20 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/beer_frag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorAle"
-    tools:context="group10.tcss450.uw.edu.challengeapp.BrewTour.BeerListFragment">
+    tools:context="group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment">
+
+    <AutoCompleteTextView
+        android:id="@+id/auto_complete_beers_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/add_beer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_beer"/>
