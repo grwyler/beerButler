@@ -57,9 +57,9 @@ public class TopBrewery implements Serializable {
      * Consider this a modified constructor, required to parse a JSON response.
      *
      * @param brewery: a JSONObject representing the response from our API
-     * @return: new TopBrewery object, which contains nested brewery and country objects
+     * @return result: new TopBrewery object, which contains nested brewery and country objects
      */
-    public static TopBrewery create(JSONObject brewery) {
+    static TopBrewery create(JSONObject brewery) {
         TopBrewery result = new TopBrewery();
 
         try {

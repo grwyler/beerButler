@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\ben\Desktop\BeerButler\beerButler\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ef112104ee06232a6f875293f95c809ea0e6ef2a">
-        <dex dex="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cecfb15d6fbcfcd6d6dfec2147bb511b9be9aafb\classes.dex" />
+        sha1="95dc27632867525ed0987c9ce76cb725cb451522">
+        <dex dex="C:\Users\ben\Desktop\BeerButler\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_4fd7f4b218a78d0b282c631ad81d3249594e346c\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\ben\Desktop\BeerButler\beerButler\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f47c11507dc7c53a4fac692a89141fe52eba367a\classes.dex" />
+        <dex dex="C:\Users\ben\Desktop\BeerButler\beerButler\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b90502394606f9aa354a6101e279d9aba283ead4\classes.dex" />
     </item>
 
 </items>

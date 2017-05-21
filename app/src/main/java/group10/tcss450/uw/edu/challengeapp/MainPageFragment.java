@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
     private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
 
     private OnFragmentInteractionListener mListener;
+    private String mLongitude;
+    private String mLatitude;
 
     private String mUsername;
 
@@ -69,9 +72,11 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         AsyncTask<String, Void, String> task;
         if (mListener != null) {
             switch (v.getId()) {
+                //start async task to hit the API and then open the BrewTourFrag
                 case R.id.brew_tour_button:
-                    String lat = "47.255053";
-                    String lng = "-122.445805";
+                    String lat = mLatitude;
+                    String lng = mLongitude;
+//                    Log.d("MainPageFragemnt", lat + ", " + lng);
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
@@ -104,10 +109,18 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void setmLongitude(String mLongitude) {
+        this.mLongitude = mLongitude;
+    }
+
+    public void setmLatitude(String mLatitude) {
+        this.mLatitude = mLatitude;
+    }
+
     /**
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         /**
          * Used to notify the activity that the sign-in was successful.
          * @param json The message to send to the activity.
@@ -115,15 +128,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         void onMainPageBrewTourFragmentInteraction(String json);
 
         void onMainPageBeerListFragmentInteraction();
-    }
-
-    /**
-     * Get this class.
-     *
-     * @return this , This class
-     */
-    public Fragment getThisClass() {
-        return this;
     }
 
     /**

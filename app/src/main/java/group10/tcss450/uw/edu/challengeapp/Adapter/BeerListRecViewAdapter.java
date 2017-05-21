@@ -1,9 +1,11 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -157,6 +161,17 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
          */
         ViewHolder(CardView cardView) {
             super(cardView);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RateBeerFragment rf = new RateBeerFragment();
+                    FragmentTransaction tran = MainActivity.mFragManager
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, rf)
+                            .addToBackStack(null);
+                    tran.commit();
+                }
+            });
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mName = (TextView) cardView.findViewById(R.id.name_view);
             mStyle = (TextView) cardView.findViewById(R.id.style_view);

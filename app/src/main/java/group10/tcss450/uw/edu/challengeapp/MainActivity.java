@@ -6,47 +6,76 @@
 
 package group10.tcss450.uw.edu.challengeapp;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
 
 
 /**
  * The main activity class. Login, registration, and cardview are loaded and managed here.
  */
 public class MainActivity extends AppCompatActivity implements
+        View.OnClickListener,
         LoginFragment.OnFragmentInteractionListener,
         RegisterFragment.OnFragmentInteractionListener,
-        MainPageFragment.OnFragmentInteractionListener {
+        MainPageFragment.OnFragmentInteractionListener,
+        RateBeerFragment.OnFragmentInteractionListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private SharedPreferences mLoginPreferences;
     private SharedPreferences.Editor mLoginPrefsEditor;
     private boolean mSaveLogin;
     private String mUsername;
+    public static FragmentManager mFragManager;
+    public MainPageFragment mMainPage;
+    private GoogleApiClient mGoogleApiClient;
+
+    private static final int MY_PERMISSIONS_LOCATIONS = 814;
+    protected LocationManager locationManager;
+    //static Boolean mPermission;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mMainPage = new MainPageFragment();
         setContentView(R.layout.activity_main);
         Fragment fragment;
-
+        mFragManager = getSupportFragmentManager();
         mLoginPreferences = getSharedPreferences(getString(R.string.login_prefs),
                 Context.MODE_PRIVATE);
         mLoginPrefsEditor = mLoginPreferences.edit();
         mSaveLogin = mLoginPreferences.getBoolean(getString(R.string.save_login),
                 false);
         if (mSaveLogin == true) {
-            fragment = new MainPageFragment();
+            fragment = mMainPage;
         } else {
             fragment = new LoginSelectionFragment();
         }
@@ -56,6 +85,37 @@ public class MainActivity extends AppCompatActivity implements
                         .add(R.id.fragmentContainer, fragment).commit();
             }
         }
+        mFragManager = getSupportFragmentManager();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+
+       // mPermission = true;
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION
+                            , Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_LOCATIONS);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     /**
@@ -112,17 +172,21 @@ public class MainActivity extends AppCompatActivity implements
         mLoginPrefsEditor.commit();
 
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
-        MainPageFragment fourthFragment = new MainPageFragment();
 
         Bundle args = new Bundle();
         args.putSerializable(getString(R.string.message), json);
-        fourthFragment.setArguments(args);
+        mMainPage.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, fourthFragment)
+                .replace(R.id.fragmentContainer, mMainPage)
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
+    }
+
+    @Override
+    public void onLoginRegisterButtonInteraction() {
+        goToRegister(null);
     }
 
     /**
@@ -132,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onRegisterFragmentInteraction(String json) {
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
-        MainPageFragment fourthFragment = new MainPageFragment();
+
         mUsername = json.substring(json.lastIndexOf(" ") + 1);
         mLoginPrefsEditor.putBoolean(getString(R.string.save_login), true);
         mLoginPrefsEditor.putString(getString(R.string.usernamePrefs), mUsername);
@@ -140,10 +204,10 @@ public class MainActivity extends AppCompatActivity implements
 
         Bundle args = new Bundle();
         args.putSerializable(getString(R.string.message), json);
-        fourthFragment.setArguments(args);
+        mMainPage.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, fourthFragment)
+                .replace(R.id.fragmentContainer, mMainPage)
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
@@ -167,9 +231,10 @@ public class MainActivity extends AppCompatActivity implements
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
-
     }
-
+    /**
+     * opens the BeerListFragment
+     */
     @Override
     public void onMainPageBeerListFragmentInteraction() {
         BeerListFragment bl = new BeerListFragment();
@@ -191,6 +256,8 @@ public class MainActivity extends AppCompatActivity implements
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -209,10 +276,81 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Ask the user for permission to use their phones location.
+     * @param requestCode the request code;
+     * @param permissions an array of permissions requested.
+     * @param grantResults The grant results for the permissions requested.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_LOCATIONS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //mPermission = true;
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "Locations need to be working for this portion, " +
+                                    "please provide permission"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
     private void loadFragment(Fragment frag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, frag).addToBackStack(null);
         transaction.commit();
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        mMainPage.setmLatitude(String.valueOf(location.getLatitude()));
+        mMainPage.setmLongitude(String.valueOf(location.getLongitude()));
+        //Log.d("MainActivity ", "Location changed! " + String.valueOf(location.getLatitude()));
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+    @Override
+    public void onRateBeerFragmentInteraction(String string) {
+
+    }
 }

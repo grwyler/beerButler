@@ -78,25 +78,28 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         TextView mBreweryName;
         /** The TextView to display the hours of the mBrewery.*/
         TextView mHours;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the distance from your location.*/
         TextView mDist;
+        /** The textView to display the address.*/
+        TextView mAddress;
 
 
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
          */
-        ViewHolder(CardView cardView) {
+        ViewHolder(final CardView cardView) {
             super(cardView);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RateBeerFragment rf = new RateBeerFragment();
-                    FragmentTransaction tran = MainActivity.mFragManager
-                            .beginTransaction()
-                            .replace(R.id.fragmentContainer, rf)
-                            .addToBackStack(null);
-                    tran.commit();
+
+//                    RateBeerFragment rf = new RateBeerFragment();
+//                    FragmentTransaction tran = MainActivity.mFragManager
+//                            .beginTransaction()
+//                            .replace(R.id.fragmentContainer, rf)
+//                            .addToBackStack(null);
+//                    tran.commit();
                 }
             });
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
