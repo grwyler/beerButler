@@ -8,20 +8,19 @@ package group10.tcss450.uw.edu.challengeapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements
         mFragManager = getSupportFragmentManager();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-
        // mPermission = true;
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements
                     .addApi(LocationServices.API)
                     .build();
         }
-
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -174,11 +170,12 @@ public class MainActivity extends AppCompatActivity implements
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
 
         Bundle args = new Bundle();
+        MainPageFragment mainPageFragment = new MainPageFragment();
         args.putSerializable(getString(R.string.message), json);
-        mMainPage.setArguments(args);
+        mainPageFragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, mMainPage)
+                .replace(R.id.fragmentContainer, mainPageFragment)
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
@@ -204,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Bundle args = new Bundle();
         args.putSerializable(getString(R.string.message), json);
+        mMainPage = new MainPageFragment();
         mMainPage.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
@@ -269,6 +267,7 @@ public class MainActivity extends AppCompatActivity implements
         if (id == R.id.action_settings) {
             mLoginPrefsEditor.clear();
             mLoginPrefsEditor.commit();
+            //TODO: Do not allow the user to reload the fragment by pressing back after logout
             loadFragment(new LoginSelectionFragment());
             return true;
         }

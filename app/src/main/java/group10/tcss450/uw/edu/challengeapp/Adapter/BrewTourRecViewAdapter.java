@@ -9,21 +9,18 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
-import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
-import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
@@ -33,6 +30,7 @@ import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
  */
 public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecViewAdapter.ViewHolder>
         implements ItemTouchHelperAdapter {
+
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<TopBrewery> mDataset;
     /** Resources to use string resources */
@@ -48,16 +46,16 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
      */
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-//        if (fromPosition < toPosition) {
-//            for (int i = fromPosition; i < toPosition; i++) {
-//                Collections.swap(mDataset, i, i + 1);
-//            }
-//        } else {
-//            for (int i = fromPosition; i > toPosition; i--) {
-//                Collections.swap(mDataset, i, i - 1);
-//            }
-//        }
-//        notifyItemMoved(fromPosition, toPosition);
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mDataset, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mDataset, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
         return true;
     }
 
@@ -70,7 +68,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
     /**
      * A View Holder used to change the elements inside the recycler view.
      */
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**The ImageView for the mBrewery logo to go into.*/
         ImageView mImageView;
@@ -78,30 +76,16 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         TextView mBreweryName;
         /** The TextView to display the hours of the mBrewery.*/
         TextView mHours;
-        /** The TextView to display the distance from your location.*/
+        /** The TextView to display the distance from your location*/
         TextView mDist;
-        /** The textView to display the address.*/
-        TextView mAddress;
 
 
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
          */
-        ViewHolder(final CardView cardView) {
+        ViewHolder(CardView cardView) {
             super(cardView);
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-//                    RateBeerFragment rf = new RateBeerFragment();
-//                    FragmentTransaction tran = MainActivity.mFragManager
-//                            .beginTransaction()
-//                            .replace(R.id.fragmentContainer, rf)
-//                            .addToBackStack(null);
-//                    tran.commit();
-                }
-            });
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mBreweryName = (TextView) cardView.findViewById(R.id.brewery_name);
             mHours = (TextView) cardView.findViewById(R.id.hours);
@@ -128,6 +112,36 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
     @Override
     public void onBindViewHolder (ViewHolder holder, int position) {
         TopBrewery topBrewery = mDataset.get(position);
+
+//        if (topBrewery.getBrewery() != null) {
+//            String name;
+//            String hours;
+//            String distance;
+//
+//            if (topBrewery.getDistance() != null && topBrewery.getHoursOfOperation() != null) {
+//                holder.mImageView.setImageResource(R.drawable.stout);
+//                hours = topBrewery.getHoursOfOperation();
+//                distance = "" + mDataset.get(position).getDistance();
+//                ImageView imageView = holder.mImageView;
+//                holder.mImageView.setImageResource(R.drawable.stout);
+//                TopBrewery.images images = topBrewery.getBrewery().getImages();
+//                name = topBrewery.getBrewery().getName();
+//
+//                if(images != null) {
+//                    new DownloadImageTask(imageView).execute(images.getSquareLarge());
+//                } else {
+//                    holder.mImageView.setImageResource(R.drawable.stout);
+//                }
+//
+//                name = mResources.getString(R.string.text_view_brewery) + name;
+//                distance = mResources.getString(R.string.text_view_distance) + distance;
+//                hours = mResources.getString(R.string.text_view_hours) + hours;
+//                holder.mBreweryName.setText(name);
+//                holder.mDist.setText(distance);
+//                holder.mHours.setText(hours);
+//            }
+//
+//        }
         String name = "";
         String hours = topBrewery.getHoursOfOperation();
         String distance;
