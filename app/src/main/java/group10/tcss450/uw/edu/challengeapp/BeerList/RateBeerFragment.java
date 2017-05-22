@@ -1,4 +1,4 @@
-package group10.tcss450.uw.edu.challengeapp.BrewTour;
+package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
 import android.content.Context;
@@ -20,9 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import group10.tcss450.uw.edu.challengeapp.LoginFragment;
 import group10.tcss450.uw.edu.challengeapp.R;
-import group10.tcss450.uw.edu.challengeapp.UserProfileFragment;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -127,7 +127,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             if (true/*If beerName is in the API*/) {
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
-                task.execute(BEERLIST_PARTIAL_URL, beerName, "s", "0", "labelLink", "brewery",
+                task.execute(BEERLIST_PARTIAL_URL, beerName, "S", "0", "labelLink", "brewery",
                         "1.0", "1.0", "description", "notes", "1");
                 mGetBeersTask = new GetBeerListTask();
                 mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
@@ -158,14 +158,17 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
-                String data = eURL("name", "=") + eURL(strings[1], "&") + eURL("style", "=") +
-                        eURL(strings[2], "&") + eURL("isOrganic", "=") + eURL(strings[3], "&") +
-                        eURL("labelLink", "=") + eURL(strings[4], "&") + eURL("brewery", "=")
-                        + eURL(strings[5], "&") + eURL("abv", "=") + eURL(strings[6], "&") +
-                        eURL("ibu", "=") + eURL(strings[7], "&") + eURL("description", "=")
-                        + eURL(strings[8], "&") + eURL("notes", "=") + eURL(strings[9], "&") +
-                        eURL("rating", "=")  + eURL(strings[10], "&") + eURL("username", "=" +
-                        eURL(mUsername, ""));
+                String data = eURL("name", "=") + eURL(strings[1], "&")
+                        + eURL("style", "=") + eURL(strings[2], "&")
+                        + eURL("isOrganic", "=") + eURL(strings[3], "&")
+                        + eURL("labelLink", "=") + eURL(strings[4], "&")
+                        + eURL("brewery", "=") + eURL(strings[5], "&")
+                        + eURL("abv", "=") + eURL(strings[6], "&")
+                        + eURL("ibu", "=") + eURL(strings[7], "&")
+                        + eURL("description", "=") + eURL(strings[8], "&")
+                        + eURL("notes", "=") + eURL(strings[9], "&")
+                        + eURL("rating", "=")  + eURL(strings[10], "&")
+                        + eURL("username", "=" + eURL(mUsername, ""));
                 wr.write(data);
                 wr.flush();
                 InputStream content = urlConnection.getInputStream();

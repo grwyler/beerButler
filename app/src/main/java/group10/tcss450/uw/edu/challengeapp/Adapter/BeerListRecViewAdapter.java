@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
-import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
@@ -198,15 +198,28 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         Beer beer = mBeerList.get(position);
         holder.mImageView.setImageResource(R.drawable.stout);
         holder.mName.setText(beer.getmName());
-        holder.mStyle.setText(beer.getStyle());
-        holder.mLabelLink.setText(beer.getLabelLink());
-        holder.mBrewery.setText(beer.getBrewery());
-        holder.mAbv.setText(beer.getAbv() + "");
-        holder.mIbu.setText(beer.getIbu() + "");
-        holder.mDescription.setText(beer.getDescription());
-        holder.mNotes.setText(beer.getNotes());
-        holder.mRating.setText(beer.getRating() + "");
-        holder.mIsOrganic.setText(beer.getIsOrganic() + "");
+        String style = "Style: " + beer.getStyle();
+        holder.mStyle.setText(style);
+        String label = "Label: " + beer.getLabelLink();
+        holder.mLabelLink.setText(label);
+        String brewery = "Brewery: " + beer.getBrewery();
+        holder.mBrewery.setText(brewery);
+        String ABV = "ABV: " + beer.getAbv();
+        holder.mAbv.setText(ABV);
+        String IBU = "IBUs: " + beer.getIbu();
+        holder.mIbu.setText(IBU);
+        String desc = "Description: " + beer.getDescription();
+        holder.mDescription.setText(desc);
+        String notes = "Notes: " + beer.getNotes();
+        holder.mNotes.setText(notes);
+        String rating = "Rating: " + beer.getRating();
+        holder.mRating.setText(rating);
+        String boo;
+        if (beer.getIsOrganic()) {
+            boo = "yes";
+        } else { boo = "no"; }
+        String org = "Organic: " + boo;
+        holder.mIsOrganic.setText(org);
     }
 
     @Override

@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,9 +20,7 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
-import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
@@ -113,9 +110,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
      * Recycler view adapter constructor.
      * @param myDataset the desired dataset for the recycler view.
      */
-    public BrewTourRecViewAdapter(ArrayList<TopBrewery> myDataset) {
-        mDataset = myDataset;
-    }
+    public BrewTourRecViewAdapter(ArrayList<TopBrewery> myDataset) {mDataset = myDataset;}
 
     @Override
     public BrewTourRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

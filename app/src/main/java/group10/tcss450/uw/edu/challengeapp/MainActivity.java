@@ -21,7 +21,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,11 +32,11 @@ import com.google.android.gms.location.LocationServices;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
-import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 
 
 /**
- * The main activity class. Login, registration, and cardview are loaded and managed here.
+ * The main activity class. Login, registration, and card view are loaded and managed here.
  */
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int MY_PERMISSIONS_LOCATIONS = 814;
     protected LocationManager locationManager;
-    //static Boolean mPermission;
 
 
     @Override
