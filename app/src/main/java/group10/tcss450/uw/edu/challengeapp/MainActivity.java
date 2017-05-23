@@ -11,8 +11,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -33,8 +33,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
-import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
 import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
 
 
 /**
