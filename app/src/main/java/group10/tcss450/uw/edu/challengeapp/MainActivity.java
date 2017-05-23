@@ -8,14 +8,14 @@ package group10.tcss450.uw.edu.challengeapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -38,7 +38,7 @@ import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 
 
 /**
- * The main activity class. Login, registration, and card view are loaded and managed here.
+ * The main activity class. Login, registration, and cardview are loaded and managed here.
  */
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Bundle args = new Bundle();
         args.putSerializable(getString(R.string.message), json);
+        mMainPage = new MainPageFragment();
         mMainPage.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
@@ -349,9 +350,12 @@ public class MainActivity extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            mLoginPrefsEditor.clear();
-            mLoginPrefsEditor.commit();
-            loadFragment(new LoginSelectionFragment());
+            Fragment frag = new LoginSelectionFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            while(fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer, frag).commit();
             return true;
         }
 

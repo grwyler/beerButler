@@ -6,6 +6,7 @@
 
 package group10.tcss450.uw.edu.challengeapp;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,8 @@ public class LoginSelectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().getSharedPreferences(getString(R.string.login_prefs), Context.MODE_PRIVATE)
+                .edit().clear().commit();
         View v = inflater.inflate(R.layout.fragment_login_selection, container, false);
         mCurrentImage = (ImageView) v.findViewById(R.id.imageView);
         mMottoImage = (ImageView) v.findViewById(R.id.imageView2);
