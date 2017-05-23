@@ -2,9 +2,11 @@ package group10.tcss450.uw.edu.challengeapp.Adapter;
 
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,12 +22,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
  * Created by Garrett on 5/19/2017.
  */
-
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
 
@@ -162,6 +165,17 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
          */
         ViewHolder(CardView cardView) {
             super(cardView);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RateBeerFragment rf = new RateBeerFragment();
+                    FragmentTransaction tran = MainActivity.mFragManager
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, rf)
+                            .addToBackStack(null);
+                    tran.commit();
+                }
+            });
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mName = (TextView) cardView.findViewById(R.id.name_view);
             mStyle = (TextView) cardView.findViewById(R.id.style_view);
@@ -189,15 +203,28 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         Beer beer = mBeerList.get(position);
         holder.mImageView.setImageResource(R.drawable.stout);
         holder.mName.setText(beer.getmName());
-        holder.mStyle.setText(beer.getStyle());
-        holder.mLabelLink.setText(beer.getLabelLink());
-        holder.mBrewery.setText(beer.getBrewery());
-        holder.mAbv.setText(beer.getAbv() + "");
-        holder.mIbu.setText(beer.getIbu() + "");
-        holder.mDescription.setText(beer.getDescription());
-        holder.mNotes.setText(beer.getNotes());
-        holder.mRating.setText(beer.getRating() + "");
-        holder.mIsOrganic.setText(beer.getIsOrganic() + "");
+        String style = "Style: " + beer.getStyle();
+        holder.mStyle.setText(style);
+        String label = "Label: " + beer.getLabelLink();
+        holder.mLabelLink.setText(label);
+        String brewery = "Brewery: " + beer.getBrewery();
+        holder.mBrewery.setText(brewery);
+        String ABV = "ABV: " + beer.getAbv();
+        holder.mAbv.setText(ABV);
+        String IBU = "IBUs: " + beer.getIbu();
+        holder.mIbu.setText(IBU);
+        String desc = "Description: " + beer.getDescription();
+        holder.mDescription.setText(desc);
+        String notes = "Notes: " + beer.getNotes();
+        holder.mNotes.setText(notes);
+        String rating = "Rating: " + beer.getRating();
+        holder.mRating.setText(rating);
+        String boo;
+        if (beer.getIsOrganic()) {
+            boo = "yes";
+        } else { boo = "no"; }
+        String org = "Organic: " + boo;
+        holder.mIsOrganic.setText(org);
     }
 
     @Override

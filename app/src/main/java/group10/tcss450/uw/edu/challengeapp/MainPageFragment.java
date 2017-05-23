@@ -77,7 +77,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 case R.id.brew_tour_button:
                     String lat = mLatitude;
                     String lng = mLongitude;
-//                    Log.d("MainPageFragemnt", lat + ", " + lng);
+                    Log.d("MainPageFragemnt", lat + ", " + lng);
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
