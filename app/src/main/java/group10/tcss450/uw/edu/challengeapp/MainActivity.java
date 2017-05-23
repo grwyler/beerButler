@@ -21,7 +21,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
 
-       // mPermission = true;
+        // mPermission = true;
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -215,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * opens the BrewTourFragment
-     * @param json The json string to send to the activity.
+     * @param json The json string containing brewery data to send to the activity.
      */
     @Override
     public void onMainPageBrewTourFragmentInteraction(String json) {
@@ -234,13 +233,14 @@ public class MainActivity extends AppCompatActivity implements
     }
     /**
      * opens the BeerListFragment
+     * @param json The json string containing beers data to send to the activity
      */
     @Override
-    public void onMainPageBeerListFragmentInteraction() {
+    public void onMainPageBeerListFragmentInteraction(String json) {
         BeerListFragment bl = new BeerListFragment();
-//        Bundle args = new Bundle();
-//        args.putSerializable(BeerListFragment.KEY, json);
-//        bl.setArguments(args);
+        Bundle args = new Bundle();
+        args.putSerializable(BeerListFragment.KEY, json);
+        bl.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)

@@ -1,4 +1,4 @@
-package group10.tcss450.uw.edu.challengeapp.BrewTour;
+package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
 import android.util.Log;
@@ -27,11 +27,11 @@ public class TopBrew implements Serializable {
     private String name;
     private String nameDisplay;
     private String description;
-    private Double abv;
-    private Double ibu;
-    private String glasswareId;
-    private String availableId;
-    private String styleId;
+    private String abv;
+    private String ibu;
+    private Integer glasswareId;
+    private Integer availableId;
+    private Integer styleId;
     private String isOrganic;
     private labels labels;      //this is a subclass
     private String status;
@@ -50,8 +50,8 @@ public class TopBrew implements Serializable {
      * @param brew: a JSONObject representing the response from our API
      * @return: new TopBrew object, which contains nested objects
      */
-    public static TopBrewery create(JSONObject brew) {
-        TopBrewery result = new TopBrewery();
+    public static TopBrew create(JSONObject brew) {
+        TopBrew result = new TopBrew();
 
         try {
             Iterator<String> it = brew.keys();
@@ -59,6 +59,7 @@ public class TopBrew implements Serializable {
                 String next = it.next();
                 Class<?> doubleType = Double.class;
                 Class<?> stringType = String.class;
+                Class<?> intType = Integer.class;
                 Field f = null;
                 try {
                     f = result.getClass().getDeclaredField(next);
@@ -66,7 +67,8 @@ public class TopBrew implements Serializable {
                     Log.e("TOPBREW", e.toString());
                     continue;
                 }
-                if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
+                if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)
+                || f.getType().isAssignableFrom(intType)) {
                     if (brew.get(next) != null) {
                         try {
                             f.set(result, brew.get(next));
@@ -78,7 +80,7 @@ public class TopBrew implements Serializable {
                                 double d = (double)((Integer)brew.get(next)).intValue();;
                                 f.set(result, d);
                             }
-                            Log.e("TOPBREW", e.getMessage());
+                            //Log.e("TOPBREW", e.getMessage());
                         }
                     }
                 } else {
@@ -93,7 +95,8 @@ public class TopBrew implements Serializable {
                 }
             }
         } catch (Exception e) {
-            Log.e("TOPBREW", e.toString());
+            //Log.e("TOPBREW", e.toString());
+            Log.e("TOPBREW", "exception", e);
         }
         return result;
     }
@@ -130,43 +133,43 @@ public class TopBrew implements Serializable {
         this.description = description;
     }
 
-    public Double getAbv() {
+    public String getAbv() {
         return abv;
     }
 
-    public void setAbv(Double abv) {
+    public void setAbv(String abv) {
         this.abv = abv;
     }
 
-    public Double getIbu() {
+    public String getIbu() {
         return ibu;
     }
 
-    public void setIbu(Double ibu) {
+    public void setIbu(String ibu) {
         this.ibu = ibu;
     }
 
-    public String getGlasswareId() {
+    public Integer getGlasswareId() {
         return glasswareId;
     }
 
-    public void setGlasswareId(String glasswareId) {
+    public void setGlasswareId(Integer glasswareId) {
         this.glasswareId = glasswareId;
     }
 
-    public String getAvailableId() {
+    public Integer getAvailableId() {
         return availableId;
     }
 
-    public void setAvailableId(String availableId) {
+    public void setAvailableId(Integer availableId) {
         this.availableId = availableId;
     }
 
-    public String getStyleId() {
+    public Integer getStyleId() {
         return styleId;
     }
 
-    public void setStyleId(String styleId) {
+    public void setStyleId(Integer styleId) {
         this.styleId = styleId;
     }
 
@@ -317,6 +320,10 @@ public class TopBrew implements Serializable {
                 Log.e("TOPBREW", e.toString());
             }
             //return result;
+        }
+
+        public style() {
+
         }
 
         public String getId() {
@@ -507,6 +514,9 @@ public class TopBrew implements Serializable {
                 }
                 //return result;
             }
+            public category() {
+
+            }
 
             public String getId() {
                 return id;
@@ -589,6 +599,10 @@ public class TopBrew implements Serializable {
             //return result;
         }
 
+        public labels(){
+
+        }
+
         public String getIcon() {
             return icon;
         }
@@ -668,6 +682,10 @@ public class TopBrew implements Serializable {
             //return result;
         }
 
+        public available(){
+
+        }
+
         public String getId() {
             return id;
         }
@@ -745,6 +763,10 @@ public class TopBrew implements Serializable {
                 Log.e("TOPBREW", e.toString());
             }
             //return result;
+        }
+
+        public glass(){
+
         }
 
         public String getId() {

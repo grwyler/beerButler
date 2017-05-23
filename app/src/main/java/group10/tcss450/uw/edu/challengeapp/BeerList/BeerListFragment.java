@@ -3,42 +3,51 @@
  * Project: Beer Butler App
  * Group 10: Ben, Chris, Tom, and Garrett
  */
-package group10.tcss450.uw.edu.challengeapp.BeerList;
+        package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
+        import android.app.Activity;
+        import android.content.Context;
+        import android.content.SharedPreferences;
+        import android.os.AsyncTask;
+        import android.os.Bundle;
+        import android.support.v4.app.Fragment;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.RecyclerView;
+        import android.support.v7.widget.helper.ItemTouchHelper;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ArrayAdapter;
+        import android.widget.AutoCompleteTextView;
+        import android.widget.Button;
+        import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
-import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
-import group10.tcss450.uw.edu.challengeapp.R;
+        import java.io.BufferedReader;
+        import java.io.InputStream;
+        import java.io.InputStreamReader;
+        import java.io.OutputStreamWriter;
+        import java.net.HttpURLConnection;
+        import java.net.URL;
+        import java.net.URLEncoder;
+        import java.util.ArrayList;
+
+        import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
+        import group10.tcss450.uw.edu.challengeapp.Adapter.BrewTourRecViewAdapter;
+        import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
+        import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
  * A fragment that shows data about beer unique to each user. The data is displayed in CardViews to
  * make everything consistent across the application.
  */
 public class BeerListFragment extends Fragment implements View.OnClickListener {
+    public static final String KEY = "I love beer!";
+    private ArrayList<TopBrew> brews = new ArrayList<>();
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
@@ -64,6 +73,34 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+
+            try {
+                String st = getArguments().getString(KEY);
+                JSONObject jsonO = new JSONObject(st);
+                int num = 0;
+                num = jsonO.getInt("totalResults");
+                if (jsonO.getString("status").toString().equals("success") && num != 0) {
+                    JSONArray data = jsonO.getJSONArray("data");
+
+                    for (int i = 0; i < data.length(); i++) {
+                        TopBrew brew = TopBrew.create(data.getJSONObject(i));
+                        brews.add(brew);
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "No beer data to show", Toast
+                            .LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
         mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
@@ -83,38 +120,15 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //                mUsername);
 
 
-//        Bundle b = getArguments();
-//        if (b != null) {
-//
-//            try {
-//                String st = getArguments().getString(KEY);
-//                JSONObject jsonO = new JSONObject(st);
-//                int num = 0;
-//                num  = jsonO.getInt("totalResults");
-//                if (jsonO.getString("status").toString().equals("success") && num != 0) {
-//                    JSONArray data = jsonO.getJSONArray("data");
-//
-//                    for(int i=0; i<data.length(); i++){
-//                        TopBrewery brewery = TopBrewery.create(data.getJSONObject(i));
-//                        breweries.add(brewery);
-//                    }
-//                }
-//                else {
-//                    /**
-//                     * ToDo need a code branch to handle zero result responses
-//                     */
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            RecyclerView.Adapter adapter = new BrewTourRecViewAdapter(breweries);
+
+//            RecyclerView.Adapter adapter = new BeerListRecViewAdapter(brews);
 //            recyclerView.setAdapter(adapter);
 //
 //            ItemTouchHelper.Callback callback =
 //                    new ItemTouchHelperSimpleCallback((BrewTourRecViewAdapter)adapter);
 //            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
 //            touchHelper.attachToRecyclerView(recyclerView);
-//        }
+
     }
 
     @Override
