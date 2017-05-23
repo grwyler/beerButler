@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements
     private SharedPreferences mLoginPreferences;
     private SharedPreferences.Editor mLoginPrefsEditor;
     private boolean mSaveLogin;
+    private boolean mMenuItemEnabled;
     private String mUsername;
     public static FragmentManager mFragManager;
     public MainPageFragment mMainPage;
@@ -75,8 +76,10 @@ public class MainActivity extends AppCompatActivity implements
                 false);
         if (mSaveLogin == true) {
             fragment = mMainPage;
+            mMenuItemEnabled = true;
         } else {
             fragment = new LoginSelectionFragment();
+            mMenuItemEnabled = false;
         }
         if (savedInstanceState == null) {
             if (findViewById(R.id.fragmentContainer) != null) {
@@ -166,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements
         mLoginPrefsEditor.putBoolean(getString(R.string.save_login), true);
         mLoginPrefsEditor.putString(getString(R.string.usernamePrefs), mUsername);
         mLoginPrefsEditor.commit();
-
+        mMenuItemEnabled = true;
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
 
         Bundle args = new Bundle();
@@ -193,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onRegisterFragmentInteraction(String json) {
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
-
+        mMenuItemEnabled = true;
         mUsername = json.substring(json.lastIndexOf(" ") + 1);
         mLoginPrefsEditor.putBoolean(getString(R.string.save_login), true);
         mLoginPrefsEditor.putString(getString(R.string.usernamePrefs), mUsername);
@@ -248,29 +251,32 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.findItem(R.id.action_settings);
+//        MenuItem menuItem = (MenuItem) findViewById(R.id.action_settings);
+        menuItem.setEnabled(mMenuItemEnabled);
+        return true;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
+        item.setEnabled(false);
         if (id == R.id.action_settings) {
+            mMenuItemEnabled = false;
             Fragment frag = new LoginSelectionFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            while(fragmentManager.getBackStackEntryCount() > 0) {
-                fragmentManager.popBackStack();
+            FragmentManager fm = getSupportFragmentManager();
+            for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                fm.popBackStack();
             }
-            fragmentManager.beginTransaction().add(R.id.fragmentContainer, frag).commit();
+            fm.beginTransaction().add(R.id.fragmentContainer, frag).commit();
             return true;
         }
 
@@ -304,12 +310,6 @@ public class MainActivity extends AppCompatActivity implements
             // other 'case' lines to check for other
             // permissions this app might request
         }
-    }
-
-    private void loadFragment(Fragment frag) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainer, frag).addToBackStack(null);
-        transaction.commit();
     }
 
     @Override

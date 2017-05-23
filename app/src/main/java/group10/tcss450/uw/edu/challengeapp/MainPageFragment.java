@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +63,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs), Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
+//        MenuItem menuItem = (MenuItem) getActivity().findViewById(R.id.action_settings);
+//        menuItem.setEnabled(true);
         return v;
     }
 
