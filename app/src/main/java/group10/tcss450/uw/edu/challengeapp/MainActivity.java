@@ -265,10 +265,12 @@ public class MainActivity extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            mLoginPrefsEditor.clear();
-            mLoginPrefsEditor.commit();
-            //TODO: Do not allow the user to reload the fragment by pressing back after logout
-            loadFragment(new LoginSelectionFragment());
+            Fragment frag = new LoginSelectionFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            while(fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer, frag).commit();
             return true;
         }
 
