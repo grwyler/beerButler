@@ -11,21 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="ChallengeApp .iws" />
     <ignored path=".idea/workspace.xml" />
@@ -195,7 +181,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -2136,7 +2121,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="488" />
+    <option name="x" value="316" />
+    <option name="y" value="-20" />
     <option name="width" value="1007" />
     <option name="height" value="858" />
   </component>
@@ -2819,7 +2805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495412988956</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Commit Changes into benDev &#10;I fixed the location problems.">
+      <created>1495570336356</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1495570336356</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -2832,16 +2825,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="488" y="0" width="1007" height="858" extended-state="0" />
-    <editor active="true" />
+    <frame x="316" y="-20" width="1007" height="858" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32593855" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36461538" sideWeight="0.6973008" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15874036" sideWeight="0.5341615" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.50907713" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657143" sideWeight="0.487882" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657143" sideWeight="0.5142555" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657143" sideWeight="0.48574445" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21013728" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5477816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.4924357" order="8" side_tool="false" content_ui="tabs" />
@@ -2948,7 +2941,8 @@
     <MESSAGE value="Fixed a bug that would not allow you to totally remove a beer from the list." />
     <MESSAGE value="Merge remote-tracking branch 'origin/master' into benDev&#10;Fixed the location based Brew Tour.&#10;And added the on card view click goes to the rate beer fragment.&#10;rate beer fragment needs to do something when it is submitted." />
     <MESSAGE value="Commit Changes into benDev &#10;Made some formatting tweaks to the BeerListCardViews." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Changes into benDev &#10;Made some formatting tweaks to the BeerListCardViews." />
+    <MESSAGE value="Commit Changes into benDev &#10;I fixed the location problems." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Changes into benDev &#10;I fixed the location problems." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
