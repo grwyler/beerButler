@@ -254,23 +254,23 @@ public class TopBrew implements Serializable {
     }
 
 
-    public class style implements Serializable {
+    public static class style implements Serializable {
 
-        private String id;
-        private String categoryId;
+        private Integer id;
+        private Integer categoryId;
         private category category;  //this is a subclass
         private String name;
         private String shortName;
         private String description;
-        private Double ibuMin;
-        private Double ibuMax;
-        private Double abvMin;
-        private Double abvMax;
-        private Double srmMin;
-        private Double srmMax;
-        private Double ogMin;
-        private Double fgMin;
-        private Double fgMax;
+        private String ibuMin;
+        private String ibuMax;
+        private String abvMin;
+        private String abvMax;
+        private String srmMin;
+        private String srmMax;
+        private String ogMin;
+        private String fgMin;
+        private String fgMax;
         private String createDate;
         private String updateDate;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -290,7 +290,9 @@ public class TopBrew implements Serializable {
                     }
                     Class<?> doubleType = Double.class;
                     Class<?> stringType = String.class;
-                    if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)) {
+                    Class<?> intType = Integer.class;
+                    if (f.getType().isAssignableFrom(doubleType) || f.getType().isAssignableFrom(stringType)
+                            || f.getType().isAssignableFrom(intType)) {
                         if (style.get(next) != null) {
                             try {
                                 f.set(this, style.get(next));
@@ -326,19 +328,19 @@ public class TopBrew implements Serializable {
 
         }
 
-        public String getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
-        public String getCategoryId() {
+        public Integer getCategoryId() {
             return categoryId;
         }
 
-        public void setCategoryId(String categoryId) {
+        public void setCategoryId(Integer categoryId) {
             this.categoryId = categoryId;
         }
 
@@ -374,75 +376,75 @@ public class TopBrew implements Serializable {
             this.description = description;
         }
 
-        public Double getIbuMin() {
+        public String getIbuMin() {
             return ibuMin;
         }
 
-        public void setIbuMin(Double ibuMin) {
+        public void setIbuMin(String ibuMin) {
             this.ibuMin = ibuMin;
         }
 
-        public Double getIbuMax() {
+        public String getIbuMax() {
             return ibuMax;
         }
 
-        public void setIbuMax(Double ibuMax) {
+        public void setIbuMax(String ibuMax) {
             this.ibuMax = ibuMax;
         }
 
-        public Double getAbvMin() {
+        public String getAbvMin() {
             return abvMin;
         }
 
-        public void setAbvMin(Double abvMin) {
+        public void setAbvMin(String abvMin) {
             this.abvMin = abvMin;
         }
 
-        public Double getAbvMax() {
+        public String getAbvMax() {
             return abvMax;
         }
 
-        public void setAbvMax(Double abvMax) {
+        public void setAbvMax(String abvMax) {
             this.abvMax = abvMax;
         }
 
-        public Double getSrmMin() {
+        public String getSrmMin() {
             return srmMin;
         }
 
-        public void setSrmMin(Double srmMin) {
+        public void setSrmMin(String srmMin) {
             this.srmMin = srmMin;
         }
 
-        public Double getSrmMax() {
+        public String getSrmMax() {
             return srmMax;
         }
 
-        public void setSrmMax(Double srmMax) {
+        public void setSrmMax(String srmMax) {
             this.srmMax = srmMax;
         }
 
-        public Double getOgMin() {
+        public String getOgMin() {
             return ogMin;
         }
 
-        public void setOgMin(Double ogMin) {
+        public void setOgMin(String ogMin) {
             this.ogMin = ogMin;
         }
 
-        public Double getFgMin() {
+        public String getFgMin() {
             return fgMin;
         }
 
-        public void setFgMin(Double fgMin) {
+        public void setFgMin(String fgMin) {
             this.fgMin = fgMin;
         }
 
-        public Double getFgMax() {
+        public String getFgMax() {
             return fgMax;
         }
 
-        public void setFgMax(Double fgMax) {
+        public void setFgMax(String fgMax) {
             this.fgMax = fgMax;
         }
 
@@ -470,9 +472,9 @@ public class TopBrew implements Serializable {
             this.additionalProperties.put(name, value);
         }
 
-        public class category implements Serializable {
+        public static class category implements Serializable {
 
-            private String id;
+            private Integer id;
             private String name;
             private String createDate;
             private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -484,6 +486,7 @@ public class TopBrew implements Serializable {
                     while (it.hasNext()) {
                         String next = it.next();
                         Class<?> stringType = String.class;
+                        Class<?> intType = Integer.class;
                         Field f = null;
                         try {
                             f = this.getClass().getDeclaredField(next);
@@ -491,7 +494,7 @@ public class TopBrew implements Serializable {
                             Log.e("TOPBREW", e.toString());
                             continue;
                         }
-                        if (f.getType().isAssignableFrom(stringType)) {
+                        if (f.getType().isAssignableFrom(stringType) || f.getType().isAssignableFrom(intType)) {
                             try {
                                 f.set(this, category.get(next));
                             } catch (IllegalArgumentException e) {
@@ -518,11 +521,11 @@ public class TopBrew implements Serializable {
 
             }
 
-            public String getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(String id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
@@ -554,7 +557,7 @@ public class TopBrew implements Serializable {
 
     }
 
-    public class labels implements Serializable {
+    public static class labels implements Serializable {
 
         private String icon;
         private String medium;
@@ -637,9 +640,9 @@ public class TopBrew implements Serializable {
 
     }
 
-    public class available implements Serializable {
+    public static class available implements Serializable {
 
-        private String id;
+        private Integer id;
         private String name;
         private String description;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -651,6 +654,7 @@ public class TopBrew implements Serializable {
                 while (it.hasNext()) {
                     String next = it.next();
                     Class<?> stringType = String.class;
+                    Class<?> intType = Integer.class;
                     Field f = null;
                     try {
                         f = this.getClass().getDeclaredField(next);
@@ -658,7 +662,7 @@ public class TopBrew implements Serializable {
                         Log.e("TOPBREW", e.toString());
                         continue;
                     }
-                    if (f.getType().isAssignableFrom(stringType)) {
+                    if (f.getType().isAssignableFrom(stringType) || f.getType().isAssignableFrom(intType)) {
                         try {
                             f.set(this, available.get(next));
                         } catch (IllegalArgumentException e) {
@@ -686,11 +690,11 @@ public class TopBrew implements Serializable {
 
         }
 
-        public String getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -720,9 +724,9 @@ public class TopBrew implements Serializable {
 
     }
 
-    public class glass implements Serializable {
+    public static class glass implements Serializable {
 
-        private String id;
+        private Integer id;
         private String name;
         private String createDate;
         private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -734,6 +738,7 @@ public class TopBrew implements Serializable {
                 while (it.hasNext()) {
                     String next = it.next();
                     Class<?> stringType = String.class;
+                    Class<?> intType = Integer.class;
                     Field f = null;
                     try {
                         f = this.getClass().getDeclaredField(next);
@@ -741,7 +746,7 @@ public class TopBrew implements Serializable {
                         Log.e("TOPBREW", e.toString());
                         continue;
                     }
-                    if (f.getType().isAssignableFrom(stringType)) {
+                    if (f.getType().isAssignableFrom(stringType) || f.getType().isAssignableFrom(intType)) {
                         try {
                             f.set(this, glass.get(next));
                         } catch (IllegalArgumentException e) {
@@ -769,11 +774,11 @@ public class TopBrew implements Serializable {
 
         }
 
-        public String getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 

@@ -48,6 +48,7 @@
 public class BeerListFragment extends Fragment implements View.OnClickListener {
     public static final String KEY = "I love beer!";
     private ArrayList<TopBrew> brews = new ArrayList<>();
+    private ArrayList<String> beerNames = new ArrayList<>();
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
@@ -87,8 +88,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                     JSONArray data = jsonO.getJSONArray("data");
 
                     for (int i = 0; i < data.length(); i++) {
-                        TopBrew brew = TopBrew.create(data.getJSONObject(i));
-                        brews.add(brew);
+                        //TopBrew brew = TopBrew.create(data.getJSONObject(i));
+                        //brews.add(brew);
+                        beerNames.add((String)(data.getJSONObject(i)).get("name"));
                     }
                 } else {
                     Toast.makeText(getActivity(), "No beer data to show", Toast
@@ -105,9 +107,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
         mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
                 auto_complete_beers_text);
-        //TODO: populate this list with all beer names from the API
-        String[] beerNames = new String[10];
-        for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
+
+        //String[] beerNames = new String[10];
+        //for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout
                 .simple_dropdown_item_1line, beerNames);
         mAutoCompleteTextView.setAdapter(adapter);
