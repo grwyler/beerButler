@@ -34,4 +34,5 @@
     <string name="rate">Enter a rating between 0 and 5</string>
     <string name="notes">Enter some notes.</string>
     <string name="submit">Submit</string>
+    <string name="Add_beer_hint">Enter a beer to add to your list</string>
 </resources>

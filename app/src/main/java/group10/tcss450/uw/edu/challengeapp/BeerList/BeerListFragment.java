@@ -250,6 +250,5 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 }
             }
         }
-
     }
 }
