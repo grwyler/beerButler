@@ -11,8 +11,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -73,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
 
     private static final int MY_PERMISSIONS_LOCATIONS = 814;
-    protected LocationManager locationManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +81,7 @@ public class MainActivity extends AppCompatActivity implements
         Fragment fragment;
         mFragManager = getSupportFragmentManager();
 
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-
-        // mPermission = true;
+    // mPermission = true;
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -143,10 +136,6 @@ public class MainActivity extends AppCompatActivity implements
      * Requests location updates from the FusedLocationApi.
      */
     protected void startLocationUpdates() {
-       // Log.d("TEST", PackageManager.PERMISSION_GRANTED);
-        Log.d("TEST", Manifest.permission.ACCESS_FINE_LOCATION);
-        Log.d("TEST", Manifest.permission.ACCESS_COARSE_LOCATION);
-
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED &&
@@ -228,19 +217,19 @@ public class MainActivity extends AppCompatActivity implements
         transaction.commit();
     }
 
-    /**
-     * Loads the user profile fragment when the user pushes the 'user profile' button.
-     * @param view the Button the user pressed.
-     */
-    public void goToUserProfile(View view) {
-        UserProfileFragment userProfile = new UserProfileFragment();
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, userProfile)
-                .addToBackStack(null);
-        // Commit the transaction
-        transaction.commit();
-    }
+//    /**
+//     * Loads the user profile fragment when the user pushes the 'user profile' button.
+//     * @param view the Button the user pressed.
+//     */
+//    public void goToUserProfile(View view) {
+//        UserProfileFragment userProfile = new UserProfileFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fragmentContainer, userProfile)
+//                .addToBackStack(null);
+//        // Commit the transaction
+//        transaction.commit();
+//    }
 
     /**
      * opens the MainPageFragment
@@ -303,11 +292,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainPageBrewTourFragmentInteraction(String json) {
         BrewTourFrag bf = new BrewTourFrag();
-        UserProfileFragment us = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putSerializable(BrewTourFrag.KEY, json);
         bf.setArguments(args);
-        us.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bf)
@@ -321,15 +308,17 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainPageBeerListFragmentInteraction() {
         BeerListFragment bl = new BeerListFragment();
-//        Bundle args = new Bundle();
-//        args.putSerializable(BeerListFragment.KEY, json);
-//        bl.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)
                 .addToBackStack(null);
         // Commit the transaction
         transaction.commit();
+    }
+
+    @Override
+    public void onRateBeerFragmentInteraction(String string) {
+        onMainPageBeerListFragmentInteraction();
     }
 
     @Override
@@ -376,8 +365,8 @@ public class MainActivity extends AppCompatActivity implements
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // permission was granted, yay! Do the
-                // locations-related task you need to do.
+                    // permission was granted, yay! Do the
+                    // locations-related task you need to do.
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -420,7 +409,8 @@ public class MainActivity extends AppCompatActivity implements
         // moves to a new location, and then changes the device orientation, theoriginal location
         // is displayed as the activity is re-created.
         Log.d("TEST", "google client onConnection!!");
-
+        Log.d("TEST!!", Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.d("TEST!!", Manifest.permission.ACCESS_COARSE_LOCATION);
         if (mCurrentLocation == null) {
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
@@ -441,6 +431,8 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+
+
     @Override
     public void onConnectionSuspended(int i) {
 
@@ -450,10 +442,5 @@ public class MainActivity extends AppCompatActivity implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i("Main Location Test", "Connection failed: ConnectionResult.getErrorCode() = " +
                 connectionResult.getErrorCode());
-    }
-
-    @Override
-    public void onRateBeerFragmentInteraction(String string) {
-
     }
 }

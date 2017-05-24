@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -30,8 +32,8 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
     /** The first part of the URL used for loading the database. */
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/challenge";
-
     public OnFragmentInteractionListener mListener;
+
     public RateBeerFragment() {
         // Required empty public constructor
     }
@@ -58,21 +60,39 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * On submit button click start a task that posts a rating and notes to the database.
+     * The name of the current user and the beer are added programmatically.
+     * @param view the submit button.
+     */
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.submit_button) {
-            //TODO This needs to be changed to whatever the beer on the cardview is.
-            String beer = "Irish Death";
             AsyncTask<String, Void, String> task;
             View parent = (View) view.getParent();
             EditText rating = (EditText) parent.findViewById(R.id.rateBeerET);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
-            String rate, note;
-            rate = rating.getText().toString();
-            note = notes.getText().toString();
-            task = new RateBeerFragment.RateBeerTask();
-            //task.execute(PARTIAL_URL, beer, rate, note, LoginFragment.getmUsername());
 
+            String rate, note, beer, username;
+            rate = rating.getText().toString();
+            //make sure something is sent to the database.
+            if (rate == "") {
+                rate = "0";
+            }
+            note = notes.getText().toString();
+            //make sure something is sent to the database.
+            if (note == "") {
+                note = "no notes";
+            }
+            task = new RateBeerFragment.RateBeerTask();
+            if (getArguments() != null) {
+                beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
+                username = getArguments().getString(BeerListRecViewAdapter.USERNAME_KEY);
+                Log.d("RateBeerFrag", beer + ", " + username);
+                task.execute(PARTIAL_URL, beer, rate, note, username);
+            } else {
+                Toast.makeText(getActivity(), "Arguments were null!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -139,8 +159,9 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
-               //mListener.onRateBeerFragmentInteraction(result);
-
+                Log.d("RateBeerFragment", "Success!!!!!!!!!!");
+                System.out.print(result);
+                mListener.onRateBeerFragmentInteraction(result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast
                         .LENGTH_SHORT).show();

@@ -79,7 +79,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
         mGetBeersTask = new GetBeerListTask();
         mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
-//        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
+//        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.USERNAME_KEY).toString(),
 //                mUsername);
 
 
@@ -87,7 +87,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //        if (b != null) {
 //
 //            try {
-//                String st = getArguments().getString(KEY);
+//                String st = getArguments().getString(USERNAME_KEY);
 //                JSONObject jsonO = new JSONObject(st);
 //                int num = 0;
 //                num  = jsonO.getInt("totalResults");

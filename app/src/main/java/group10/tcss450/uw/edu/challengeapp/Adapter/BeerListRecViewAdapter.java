@@ -2,6 +2,7 @@ package group10.tcss450.uw.edu.challengeapp.Adapter;
 
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -31,10 +32,11 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
-
+    final public static String USERNAME_KEY = "Friends don't let friends drink light beer.";
+    final public static String BEERNAME_KEY = "Don't drink and drive kids. You will spill your beer.";
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<Beer> mBeerList;
-    private String mUsername;
+    public String mUsername;
     /** Resources to use string resources */
     private Resources mResources;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
@@ -78,9 +80,11 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                 }
                 beers = beers.substring(beers.indexOf("$$$") + 3);
             }
-
         }
+    }
 
+    public String getmUsername() {
+        return mUsername;
     }
 
     private String[] makeIdentifiers() {
@@ -159,16 +163,21 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mNotes;
         /** The TextView to display the distance from your location*/
         TextView mRating;
+
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
          */
-        ViewHolder(CardView cardView) {
+        ViewHolder(CardView cardView, final String username) {
             super(cardView);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     RateBeerFragment rf = new RateBeerFragment();
+                    Bundle args = new Bundle();
+                    args.putSerializable(USERNAME_KEY, username);
+                    args.putSerializable(BEERNAME_KEY, mName.getText().toString());
+                    rf.setArguments(args);
                     FragmentTransaction tran = MainActivity.mFragManager
                             .beginTransaction()
                             .replace(R.id.fragmentContainer, rf)
@@ -195,7 +204,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.beer_list_card_view, parent, false);
         mResources = parent.getContext().getResources();
-        return new BeerListRecViewAdapter.ViewHolder(cv);
+        return new BeerListRecViewAdapter.ViewHolder(cv, mUsername);
     }
 
     @Override

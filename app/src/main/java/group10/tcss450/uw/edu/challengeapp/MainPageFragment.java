@@ -174,42 +174,4 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             mListener.onMainPageBrewTourFragmentInteraction(result);
         }
     }
-
-//    /**
-//     * A local AsyncTask class used to access the database and communicate back to the
-//     * activity.
-//     */
-//    public class GetBeerListTask extends AsyncTask<String, Void, String> {
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            if (strings.length != 1) {
-//                throw new IllegalArgumentException(EXCEPTION_MSG);
-//            }
-//            String response = "";
-//            HttpURLConnection urlConnection = null;
-//            try {
-//                URL urlObject = new URL(strings[0] + "_get.php" + "?name=" + mUsername);
-//                urlConnection = (HttpURLConnection) urlObject.openConnection();
-//                InputStream content = urlConnection.getInputStream();
-//                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-//                String s;
-//                while ((s = buffer.readLine()) != null) {
-//                    response += s;
-//                }
-//            } catch (Exception e) {
-//                response = EXCEPTION_MSG_2 + e.getMessage();
-//            } finally {
-//                if (urlConnection != null) urlConnection.disconnect();
-//            }
-//            return response;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            mListener.onMainPageBeerListFragmentInteraction();
-//        }
-//
-//    }
-
 }
