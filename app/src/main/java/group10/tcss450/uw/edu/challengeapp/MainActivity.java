@@ -432,11 +432,12 @@ public class MainActivity extends AppCompatActivity implements
                 mCurrentLocation =
                         LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 Log.d("Main Location Test", "Location set");
-                if (mCurrentLocation != null)
+                if (mCurrentLocation != null) {
                     mMainPage.setmLatitude(String.valueOf(mCurrentLocation.getLatitude()));
                     mMainPage.setmLongitude(String.valueOf(mCurrentLocation.getLongitude()));
                     Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
                     Log.i("Main Location Test", mCurrentLocation.toString());
+                }
                 startLocationUpdates();
             }
         }

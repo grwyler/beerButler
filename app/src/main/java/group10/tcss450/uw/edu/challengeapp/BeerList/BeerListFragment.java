@@ -22,6 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -30,6 +35,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
