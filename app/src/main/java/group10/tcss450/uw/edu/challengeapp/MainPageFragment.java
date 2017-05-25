@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -78,15 +79,21 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 case R.id.brew_tour_button:
                     String lat = mLatitude;
                     String lng = mLongitude;
+//                    String lat = "";
+//                    String lng = "";
+//                    if (getArguments() != null) {
+//                        lat = getArguments().getString(getString(R.string.latitude));
+//                        lng = getArguments().getString(getString(R.string.longitude));
+//                    }
                     Log.d("MainPageFragemnt", lat + ", " + lng);
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
-                case R.id.user_profile_button:
-                    Toast.makeText(getActivity(),
-                            "User profile is not implemented yet!",
-                            Toast.LENGTH_LONG).show();
-                    break;
+//                case R.id.user_profile_button:
+//                    Toast.makeText(getActivity(),
+//                            "User profile is not implemented yet!",
+//                            Toast.LENGTH_LONG).show();
+//                    break;
                 case R.id.beer_list_button:
                     mListener.onMainPageBeerListFragmentInteraction();
 //                    task = new GetBeerListTask();

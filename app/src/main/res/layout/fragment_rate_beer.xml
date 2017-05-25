@@ -22,13 +22,27 @@
             tools:layout_editor_absoluteY="0dp"
             tools:layout_editor_absoluteX="8dp">
 
+            <TextView
+                android:id="@+id/beer_name_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:hint="Beer here"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/rate"
                 android:id="@+id/rateBeerET"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/beer_name_TV"
                 android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_margin="10dp"/>
 
             <EditText
@@ -45,7 +59,7 @@
     </android.support.v7.widget.CardView>
 
     <Button
-        android:id="@+id/submit_button"
+        android:id="@+id/submit_rating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"

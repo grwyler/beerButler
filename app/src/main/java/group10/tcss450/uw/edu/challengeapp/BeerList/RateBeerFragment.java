@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -31,7 +32,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
 
     /** The first part of the URL used for loading the database. */
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
-            "~grwyler/beerButler/challenge";
+            "~grwyler/beerButler/";
     public OnFragmentInteractionListener mListener;
 
     public RateBeerFragment() {
@@ -44,7 +45,9 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_rate_beer, container, false);
-        Button b = (Button) v.findViewById(R.id.submit_button);
+        TextView tv = (TextView) v.findViewById(R.id.beer_name_TV);
+        tv.setText(getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY));
+        Button b = (Button) v.findViewById(R.id.submit_rating_button);
         b.setOnClickListener(this);
         return v;
     }
@@ -67,7 +70,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
      */
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.submit_button) {
+        if (view.getId() == R.id.submit_rating_button) {
             AsyncTask<String, Void, String> task;
             View parent = (View) view.getParent();
             EditText rating = (EditText) parent.findViewById(R.id.rateBeerET);
@@ -109,7 +112,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         /** The start of a string returned if there was an error connecting to the DB.*/
         private final String START_ERROR = "Unable to";
         /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "Not a recognized account, Please register a new user";
+        private final String TOAST_ERROR = "Something went wrong while adding a rating or notes.";
         /** Exception message for too few or too many args*/
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
@@ -124,7 +127,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             try {
-                URL urlObject = new URL(url + "_rate.php");
+                URL urlObject = new URL(url + "rate.php");
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
@@ -160,11 +163,10 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
                 Log.d("RateBeerFragment", "Success!!!!!!!!!!");
-                System.out.print(result);
                 mListener.onRateBeerFragmentInteraction(result);
             } else {
-                Toast.makeText(getActivity(), TOAST_ERROR, Toast
-                        .LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), result, Toast
+                        .LENGTH_LONG).show();
             }
         }
     }
