@@ -1,5 +1,6 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
@@ -21,12 +22,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
-import group10.tcss450.uw.edu.challengeapp.BrewTour.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
- * An adapter class to coordinate the recycler view
+ * Created by Garrett on 5/19/2017.
  */
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
@@ -34,6 +35,8 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<Beer> mBeerList;
     private String mUsername;
+    /** Resources to use string resources */
+    private Resources mResources;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
 
@@ -68,9 +71,10 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                     }
                 }
                 if (!alreadyAdded) {
-                    mBeerList.add(new Beer(states[0], states[1], states[2].equals("1"), states[3],
-                            states[4], Double.valueOf(states[5]), Double.valueOf(states[6]),
-                            states[7], states[8], Integer.valueOf(states[9])));
+                    boolean isOrganic = states[2].equals("1") ? true : false;
+                    mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
+                            Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
+                            Integer.valueOf(states[9])));
                 }
                 beers = beers.substring(beers.indexOf("$$$") + 3);
             }
@@ -190,6 +194,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     public BeerListRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.beer_list_card_view, parent, false);
+        mResources = parent.getContext().getResources();
         return new BeerListRecViewAdapter.ViewHolder(cv);
     }
 
@@ -198,15 +203,28 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         Beer beer = mBeerList.get(position);
         holder.mImageView.setImageResource(R.drawable.stout);
         holder.mName.setText(beer.getmName());
-        holder.mStyle.setText(beer.getStyle());
-        holder.mLabelLink.setText(beer.getLabelLink());
-        holder.mBrewery.setText(beer.getBrewery());
-        holder.mAbv.setText(beer.getAbv() + "");
-        holder.mIbu.setText(beer.getIbu() + "");
-        holder.mDescription.setText(beer.getDescription());
-        holder.mNotes.setText(beer.getNotes());
-        holder.mRating.setText(beer.getRating() + "");
-        holder.mIsOrganic.setText(beer.getIsOrganic() + "");
+        String style = "Style: " + beer.getStyle();
+        holder.mStyle.setText(style);
+        String label = "Label: " + beer.getLabelLink();
+        holder.mLabelLink.setText(label);
+        String brewery = "Brewery: " + beer.getBrewery();
+        holder.mBrewery.setText(brewery);
+        String ABV = "ABV: " + beer.getAbv();
+        holder.mAbv.setText(ABV);
+        String IBU = "IBUs: " + beer.getIbu();
+        holder.mIbu.setText(IBU);
+        String desc = "Description: " + beer.getDescription();
+        holder.mDescription.setText(desc);
+        String notes = "Notes: " + beer.getNotes();
+        holder.mNotes.setText(notes);
+        String rating = "Rating: " + beer.getRating();
+        holder.mRating.setText(rating);
+        String boo;
+        if (beer.getIsOrganic()) {
+            boo = "yes";
+        } else { boo = "no"; }
+        String org = "Organic: " + boo;
+        holder.mIsOrganic.setText(org);
     }
 
     @Override
@@ -224,6 +242,11 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
         private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
+        /** The start of a string returned if there was an error connecting to the DB.*/
+        private final String START_ERROR = "Unable to";
+        /** The error message if the user enters wrong data for logging in*/
+        private final String TOAST_ERROR = "That user name is already being used";
+
 
         @Override
         protected String doInBackground(String... strings) {

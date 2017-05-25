@@ -3,43 +3,37 @@
  * Project: Beer Butler App
  * Group 10: Ben, Chris, Tom, and Garrett
  */
-        package group10.tcss450.uw.edu.challengeapp.BeerList;
+package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
-        import android.app.Activity;
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.helper.ItemTouchHelper;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.AutoCompleteTextView;
-        import android.widget.Button;
-        import android.widget.Toast;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.TextView;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 
-        import java.io.BufferedReader;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.OutputStreamWriter;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
-        import java.net.URLEncoder;
-        import java.util.ArrayList;
-
-        import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
-        import group10.tcss450.uw.edu.challengeapp.Adapter.BrewTourRecViewAdapter;
-        import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
-        import group10.tcss450.uw.edu.challengeapp.R;
+import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
+import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
+import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
  * A fragment that shows data about beer unique to each user. The data is displayed in CardViews to
@@ -107,30 +101,55 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
         mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
                 auto_complete_beers_text);
-
-        //String[] beerNames = new String[10];
-        //for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
+        //TODO: populate this list with all beer names from the API
+        String[] beerNames = new String[10];
+        for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout
                 .simple_dropdown_item_1line, beerNames);
         mAutoCompleteTextView.setAdapter(adapter);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
-                .login_prefs), Context.MODE_PRIVATE);
+                .login_prefs),
+                Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
         mGetBeersTask = new GetBeerListTask();
         mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
+
 //        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
 //                mUsername);
 
 
-
-//            RecyclerView.Adapter adapter = new BeerListRecViewAdapter(brews);
+//        Bundle b = getArguments();
+//        if (b != null) {
+//
+//            try {
+//                String st = getArguments().getString(KEY);
+//                JSONObject jsonO = new JSONObject(st);
+//                int num = 0;
+//                num  = jsonO.getInt("totalResults");
+//                if (jsonO.getString("status").toString().equals("success") && num != 0) {
+//                    JSONArray data = jsonO.getJSONArray("data");
+//
+//                    for(int i=0; i<data.length(); i++){
+//                        TopBrewery brewery = TopBrewery.create(data.getJSONObject(i));
+//                        breweries.add(brewery);
+//                    }
+//                }
+//                else {
+//                    /**
+//                     * ToDo need a code branch to handle zero result responses
+//                     */
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            RecyclerView.Adapter adapter = new BrewTourRecViewAdapter(breweries);
 //            recyclerView.setAdapter(adapter);
 //
 //            ItemTouchHelper.Callback callback =
 //                    new ItemTouchHelperSimpleCallback((BrewTourRecViewAdapter)adapter);
 //            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
 //            touchHelper.attachToRecyclerView(recyclerView);
-
+//        }
     }
 
     @Override
@@ -140,10 +159,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             mAutoCompleteTextView.setError("Search field cannot be empty!");
             // TODO: Call the api and search for beerName
         } else {
+            // Delete new lines entered by the stupid user.
+            if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
             if (true/*If beerName is in the API*/) {
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
-                task.execute(BEERLIST_PARTIAL_URL, beerName, "s", "0", "labelLink", "brewery",
+                task.execute(BEERLIST_PARTIAL_URL, beerName, "S", "0", "labelLink", "brewery",
                         "1.0", "1.0", "description", "notes", "1");
                 mGetBeersTask = new GetBeerListTask();
                 mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
@@ -174,14 +195,17 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
-                String data = eURL("name", "=") + eURL(strings[1], "&") + eURL("style", "=") +
-                        eURL(strings[2], "&") + eURL("isOrganic", "=") + eURL(strings[3], "&") +
-                        eURL("labelLink", "=") + eURL(strings[4], "&") + eURL("brewery", "=")
-                        + eURL(strings[5], "&") + eURL("abv", "=") + eURL(strings[6], "&") +
-                        eURL("ibu", "=") + eURL(strings[7], "&") + eURL("description", "=")
-                        + eURL(strings[8], "&") + eURL("notes", "=") + eURL(strings[9], "&") +
-                        eURL("rating", "=")  + eURL(strings[10], "&") + eURL("username", "=" +
-                        eURL(mUsername, ""));
+                String data = eURL("name", "=") + eURL(strings[1], "&")
+                        + eURL("style", "=") + eURL(strings[2], "&")
+                        + eURL("isOrganic", "=") + eURL(strings[3], "&")
+                        + eURL("labelLink", "=") + eURL(strings[4], "&")
+                        + eURL("brewery", "=") + eURL(strings[5], "&")
+                        + eURL("abv", "=") + eURL(strings[6], "&")
+                        + eURL("ibu", "=") + eURL(strings[7], "&")
+                        + eURL("description", "=") + eURL(strings[8], "&")
+                        + eURL("notes", "=") + eURL(strings[9], "&")
+                        + eURL("rating", "=")  + eURL(strings[10], "&")
+                        + eURL("username", "=" + eURL(mUsername, ""));
                 wr.write(data);
                 wr.flush();
                 InputStream content = urlConnection.getInputStream();
@@ -246,7 +270,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
+            TextView textView = (TextView) getActivity().findViewById(R.id.add_beer_suggestion);
             if (!result.equals("false")) {
+                textView.setVisibility(View.GONE);
                 if (mAdapter == null) {
                     RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
                             .recycler_view_beer);
@@ -261,6 +287,8 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                     mAdapter.populateList(result);
                     mAdapter.notifyDataSetChanged();
                 }
+            } else {
+                textView.setVisibility(View.VISIBLE);
             }
         }
 

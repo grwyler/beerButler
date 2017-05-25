@@ -66,6 +66,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs), Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
+//        MenuItem menuItem = (MenuItem) getActivity().findViewById(R.id.action_settings);
+//        menuItem.setEnabled(true);
         return v;
     }
 
@@ -78,7 +80,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 case R.id.brew_tour_button:
                     String lat = mLatitude;
                     String lng = mLongitude;
-//                    Log.d("MainPageFragemnt", lat + ", " + lng);
+                    Log.d("MainPageFragemnt", lat + ", " + lng);
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
