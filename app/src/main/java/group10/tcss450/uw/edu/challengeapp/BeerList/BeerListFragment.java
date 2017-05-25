@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -75,11 +76,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 .simple_dropdown_item_1line, beerNames);
         mAutoCompleteTextView.setAdapter(adapter);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
-                .login_prefs), Context.MODE_PRIVATE);
+                .login_prefs),
+                Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
         mGetBeersTask = new GetBeerListTask();
         mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
-//        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.USERNAME_KEY).toString(),
+//        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
 //                mUsername);
 
 
@@ -87,7 +89,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //        if (b != null) {
 //
 //            try {
-//                String st = getArguments().getString(USERNAME_KEY);
+//                String st = getArguments().getString(KEY);
 //                JSONObject jsonO = new JSONObject(st);
 //                int num = 0;
 //                num  = jsonO.getInt("totalResults");
@@ -124,6 +126,8 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             mAutoCompleteTextView.setError("Search field cannot be empty!");
             // TODO: Call the api and search for beerName
         } else {
+            // Delete new lines entered by the stupid user.
+            if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
             if (true/*If beerName is in the API*/) {
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
@@ -233,7 +237,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
+            TextView textView = (TextView) getActivity().findViewById(R.id.add_beer_suggestion);
             if (!result.equals("false")) {
+                textView.setVisibility(View.GONE);
                 if (mAdapter == null) {
                     RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
                             .recycler_view_beer);
@@ -248,6 +254,8 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                     mAdapter.populateList(result);
                     mAdapter.notifyDataSetChanged();
                 }
+            } else {
+                textView.setVisibility(View.VISIBLE);
             }
         }
     }

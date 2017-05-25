@@ -19,12 +19,24 @@
         android:id="@+id/add_beer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_beer"/>
+        android:text="@string/add_beer"
+        style="button"/>
+
+    <TextView
+        android:id="@+id/add_beer_suggestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:text="@string/add_some_beers"
+        android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_beer"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 
 </LinearLayout>

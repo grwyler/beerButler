@@ -24,6 +24,7 @@
     <string name="save_login">saveLogin</string>
     <string name="usernamePrefs">username</string>
     <string name="log_out">Log out</string>
+    <string name="add_some_beers">Your list is empty. Add some beers!</string>
 
     <string name="radius">Here are all the breweries within a 10 mile radius.</string>
     <string name="nav">Nav</string>
