@@ -219,7 +219,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            mListener.onMainPageBeerListFragmentInteraction(result);
+            mListener.onMainPageBeerListFragmentInteraction();
         }
 
     }
