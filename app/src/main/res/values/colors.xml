@@ -8,6 +8,7 @@
     <color name="colorStout">#3d2f03</color>
     <color name="colorPorter">#5e4a0b</color>
     <color name="colorCream">#e8e86d</color>
-
-
+    <color name="colorBlueish">#5b8091</color>
+    <color name="colorlighterGreenish">#74e56e</color>
+    <color name="colorGreenish">#18a810</color>
 </resources>

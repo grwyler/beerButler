@@ -5,11 +5,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -20,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 /**
@@ -29,9 +32,9 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
 
     /** The first part of the URL used for loading the database. */
     private static final String PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
-            "~grwyler/beerButler/challenge";
-
+            "~grwyler/beerButler/";
     public OnFragmentInteractionListener mListener;
+
     public RateBeerFragment() {
         // Required empty public constructor
     }
@@ -42,7 +45,9 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_rate_beer, container, false);
-        Button b = (Button) v.findViewById(R.id.submit_button);
+        TextView tv = (TextView) v.findViewById(R.id.beer_name_TV);
+        tv.setText(getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY));
+        Button b = (Button) v.findViewById(R.id.submit_rating_button);
         b.setOnClickListener(this);
         return v;
     }
@@ -58,21 +63,39 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * On submit button click start a task that posts a rating and notes to the database.
+     * The name of the current user and the beer are added programmatically.
+     * @param view the submit button.
+     */
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.submit_button) {
-            //TODO This needs to be changed to whatever the beer on the cardview is.
-            String beer = "Irish Death";
+        if (view.getId() == R.id.submit_rating_button) {
             AsyncTask<String, Void, String> task;
             View parent = (View) view.getParent();
             EditText rating = (EditText) parent.findViewById(R.id.rateBeerET);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
-            String rate, note;
-            rate = rating.getText().toString();
-            note = notes.getText().toString();
-            task = new RateBeerFragment.RateBeerTask();
-            //task.execute(PARTIAL_URL, beer, rate, note, LoginFragment.getmUsername());
 
+            String rate, note, beer, username;
+            rate = rating.getText().toString();
+            //make sure something is sent to the database.
+            if (rate == "") {
+                rate = "0";
+            }
+            note = notes.getText().toString();
+            //make sure something is sent to the database.
+            if (note == "") {
+                note = "no notes";
+            }
+            task = new RateBeerFragment.RateBeerTask();
+            if (getArguments() != null) {
+                beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
+                username = getArguments().getString(BeerListRecViewAdapter.USERNAME_KEY);
+                Log.d("RateBeerFrag", beer + ", " + username);
+                task.execute(PARTIAL_URL, beer, rate, note, username);
+            } else {
+                Toast.makeText(getActivity(), "Arguments were null!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -89,7 +112,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         /** The start of a string returned if there was an error connecting to the DB.*/
         private final String START_ERROR = "Unable to";
         /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "Not a recognized account, Please register a new user";
+        private final String TOAST_ERROR = "Something went wrong while adding a rating or notes.";
         /** Exception message for too few or too many args*/
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
@@ -104,7 +127,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             try {
-                URL urlObject = new URL(url + "_rate.php");
+                URL urlObject = new URL(url + "rate.php");
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
@@ -139,11 +162,11 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
-               //mListener.onRateBeerFragmentInteraction(result);
-
+                Log.d("RateBeerFragment", "Success!!!!!!!!!!");
+                mListener.onRateBeerFragmentInteraction(result);
             } else {
-                Toast.makeText(getActivity(), TOAST_ERROR, Toast
-                        .LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), result, Toast
+                        .LENGTH_LONG).show();
             }
         }
     }

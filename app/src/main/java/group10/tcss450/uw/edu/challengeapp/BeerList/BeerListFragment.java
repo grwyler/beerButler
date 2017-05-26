@@ -119,7 +119,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
         mGetBeersTask = new GetBeerListTask();
         mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
-
 //        mAdapter = new BeerListRecViewAdapter(getArguments().get(BeerListFragment.KEY).toString(),
 //                mUsername);
 

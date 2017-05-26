@@ -33,8 +33,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
-import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 
 
 /**
@@ -70,26 +70,21 @@ public class MainActivity extends AppCompatActivity implements
     private boolean mMenuItemEnabled;
     private String mUsername;
     public static FragmentManager mFragManager;
-    public MainPageFragment mMainPage;
+    private MainPageFragment mMainPage;
     private GoogleApiClient mGoogleApiClient;
 
     private static final int MY_PERMISSIONS_LOCATIONS = 814;
-    protected LocationManager locationManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMainPage = new MainPageFragment();
+        mMainPage.setArguments(new Bundle());
         setContentView(R.layout.activity_main);
         Fragment fragment;
         mFragManager = getSupportFragmentManager();
 
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-
-        // mPermission = true;
+    // mPermission = true;
         // Create an instance of GoogleAPIClient.
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -146,10 +141,6 @@ public class MainActivity extends AppCompatActivity implements
      * Requests location updates from the FusedLocationApi.
      */
     protected void startLocationUpdates() {
-       // Log.d("TEST", PackageManager.PERMISSION_GRANTED);
-        Log.d("TEST", Manifest.permission.ACCESS_FINE_LOCATION);
-        Log.d("TEST", Manifest.permission.ACCESS_COARSE_LOCATION);
-
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED &&
@@ -170,8 +161,7 @@ public class MainActivity extends AppCompatActivity implements
         // The final argument to {@code requestLocationUpdates()} is a LocationListener
         //(http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,
-                    (com.google.android.gms.location.LocationListener) this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
         }
     }
 
@@ -231,19 +221,19 @@ public class MainActivity extends AppCompatActivity implements
         transaction.commit();
     }
 
-    /**
-     * Loads the user profile fragment when the user pushes the 'user profile' button.
-     * @param view the Button the user pressed.
-     */
-    public void goToUserProfile(View view) {
-        UserProfileFragment userProfile = new UserProfileFragment();
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, userProfile)
-                .addToBackStack(null);
-        // Commit the transaction
-        transaction.commit();
-    }
+//    /**
+//     * Loads the user profile fragment when the user pushes the 'user profile' button.
+//     * @param view the Button the user pressed.
+//     */
+//    public void goToUserProfile(View view) {
+//        UserProfileFragment userProfile = new UserProfileFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fragmentContainer, userProfile)
+//                .addToBackStack(null);
+//        // Commit the transaction
+//        transaction.commit();
+//    }
 
     /**
      * opens the MainPageFragment
@@ -256,11 +246,16 @@ public class MainActivity extends AppCompatActivity implements
         mLoginPrefsEditor.putString(getString(R.string.usernamePrefs), mUsername);
         mLoginPrefsEditor.commit();
         mMenuItemEnabled = true;
+//        mMainPage = new MainPageFragment();
         Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
-
-        Bundle args = new Bundle();
-        args.putSerializable(getString(R.string.message), json);
-        mMainPage.setArguments(args);
+//        Bundle arg = mMainPage.getArguments();
+        if (mMainPage.getArguments() != null) {
+            mMainPage.getArguments().putString(getString(R.string.message), json);
+        } else {
+            Bundle args = new Bundle();
+            args.putSerializable(getString(R.string.message), json);
+            mMainPage.setArguments(args);
+        }
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, mMainPage)
@@ -301,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * opens the BrewTourFragment
-     * @param json The json string containing brewery data to send to the activity.
+     * @param json The json string to send to the activity.
      */
     @Override
     public void onMainPageBrewTourFragmentInteraction(String json) {
@@ -323,11 +318,8 @@ public class MainActivity extends AppCompatActivity implements
      * @param json The json string containing beers data to send to the activity
      */
     @Override
-    public void onMainPageBeerListFragmentInteraction(String json) {
+    public void onMainPageBeerListFragmentInteraction() {
         BeerListFragment bl = new BeerListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(BeerListFragment.KEY, json);
-        bl.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)
@@ -342,6 +334,11 @@ public class MainActivity extends AppCompatActivity implements
 //        MenuItem menuItem = (MenuItem) findViewById(R.id.action_settings);
         menuItem.setEnabled(mMenuItemEnabled);
         return true;
+    }
+
+    @Override
+    public void onRateBeerFragmentInteraction(String string) {
+        onMainPageBeerListFragmentInteraction();
     }
 
     @Override
@@ -383,8 +380,8 @@ public class MainActivity extends AppCompatActivity implements
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // permission was granted, yay! Do the
-                // locations-related task you need to do.
+                    // permission was granted, yay! Do the
+                    // locations-related task you need to do.
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -404,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements
         mCurrentLocation = location;
         mMainPage.setmLatitude(String.valueOf(location.getLatitude()));
         mMainPage.setmLongitude(String.valueOf(location.getLongitude()));
-        Log.d("MainActivity ", "Location changed! " + location.toString());
+//        Log.d("MainActivity ", "Location changed! " + location.toString());
     }
 
     @Override
@@ -420,25 +417,28 @@ public class MainActivity extends AppCompatActivity implements
         // user launches the activity,
         // moves to a new location, and then changes the device orientation, theoriginal location
         // is displayed as the activity is re-created.
-        Log.d("TEST", "google client onConnection!!");
 
-        if (mCurrentLocation == null) {
+        while (mCurrentLocation == null) {
+//            Log.d("TEST!!!", "google client onConnection!!");
+//            Log.d("TEST!!!", String.valueOf(ActivityCompat.checkSelfPermission(this,
+//                    Manifest.permission.ACCESS_FINE_LOCATION)));
+//            Log.d("TEST!!!", String.valueOf(ActivityCompat.checkSelfPermission(this,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION)));
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
-                mCurrentLocation =
-                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                Log.d("Main Location Test", "Location set");
-                if (mCurrentLocation != null) {
-                    mMainPage.setmLatitude(String.valueOf(mCurrentLocation.getLatitude()));
-                    mMainPage.setmLongitude(String.valueOf(mCurrentLocation.getLongitude()));
-                    Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
-                    Log.i("Main Location Test", mCurrentLocation.toString());
-                }
-                startLocationUpdates();
+                        mCurrentLocation = LocationServices.FusedLocationApi
+                                .getLastLocation(mGoogleApiClient);
+                        if (mCurrentLocation != null) {
+                            mMainPage.setmLatitude(String.valueOf(mCurrentLocation.getLatitude()));
+                            mMainPage.setmLongitude(String.valueOf(mCurrentLocation.getLongitude()));
+                            Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
+                            Log.i("Main Location Test", mCurrentLocation.toString());
+                        }
+                        startLocationUpdates();
             }
         }
     }
@@ -452,10 +452,5 @@ public class MainActivity extends AppCompatActivity implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i("Main Location Test", "Connection failed: ConnectionResult.getErrorCode() = " +
                 connectionResult.getErrorCode());
-    }
-
-    @Override
-    public void onRateBeerFragmentInteraction(String string) {
-
     }
 }
