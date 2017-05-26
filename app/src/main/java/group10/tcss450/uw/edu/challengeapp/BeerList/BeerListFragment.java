@@ -70,7 +70,11 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beer_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_beer_list, container, false);
+        Button b = (Button) v.findViewById(R.id.add_beer);
+        b.setOnClickListener(this);
+
+        return v;
     }
 
     @Override
@@ -162,6 +166,19 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
 //            touchHelper.attachToRecyclerView(recyclerView);
 //        }
+    }
+
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override

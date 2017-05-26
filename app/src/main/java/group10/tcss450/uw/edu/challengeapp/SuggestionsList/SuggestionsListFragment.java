@@ -45,7 +45,7 @@ public class SuggestionsListFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(new Activity());
         recyclerView.setLayoutManager(layoutManager);
-
+        RecyclerView.Adapter adapter = null;
 
         Bundle b = getArguments();
             if (b != null) {
@@ -60,18 +60,15 @@ public class SuggestionsListFragment extends Fragment {
                             TopBrew brew = TopBrew.create(data.getJSONObject(i));
                             brews.add(brew);
                         }
-
-
                     } else {
                         Toast.makeText(getActivity(), "No brew data to show", Toast
                                 .LENGTH_SHORT).show();
                     }
-                    RecyclerView.Adapter adapter = new SuggestionsListRecViewAdapter(brews);
-                    recyclerView.setAdapter(adapter);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            adapter = new SuggestionsListRecViewAdapter(brews);
+            recyclerView.setAdapter(adapter);
         }
     }
 }
