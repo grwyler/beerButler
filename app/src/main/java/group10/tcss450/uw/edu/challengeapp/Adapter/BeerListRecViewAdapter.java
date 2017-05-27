@@ -76,7 +76,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                     boolean isOrganic = states[2].equals("1") ? true : false;
                     mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
                             Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
-                            Integer.valueOf(states[9])));
+                            states[9]));
                 }
                 beers = beers.substring(beers.indexOf("$$$") + 3);
             }

@@ -126,13 +126,8 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
-            try {
-                URL urlObject = new URL(url + "rate.php");
-                urlConnection = (HttpURLConnection) urlObject.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setDoOutput(true);
 
-                OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            try {
                 String data = URLEncoder.encode("my_notes", "UTF-8")
                         + "=" + URLEncoder.encode(strings[3], "UTF-8")
                         + "&" + URLEncoder.encode("my_rating", "UTF-8")
@@ -141,6 +136,13 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                         + "=" + URLEncoder.encode(strings[1], "UTF-8")
                         + "&" + URLEncoder.encode("my_name", "UTF-8")
                         + "=" + URLEncoder.encode(strings[4], "UTF-8");
+                URL urlObject = new URL(url + "rate.php?" + data);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoOutput(true);
+
+                OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+
                 wr.write(data);
                 wr.flush();
                 InputStream content = urlConnection.getInputStream();
@@ -160,13 +162,16 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
             if (result.startsWith(START_ERROR)) {
+                Log.d("TEST!!!! Line 166", result);
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-            } else if(result.startsWith("Successfully")) {
+            } else if(result.startsWith("UPDATE")) {
                 Log.d("RateBeerFragment", "Success!!!!!!!!!!");
                 mListener.onRateBeerFragmentInteraction(result);
             } else {
+                Log.d("TEST!!!! Line 172", result);
                 Toast.makeText(getActivity(), result, Toast
                         .LENGTH_LONG).show();
+
             }
         }
     }

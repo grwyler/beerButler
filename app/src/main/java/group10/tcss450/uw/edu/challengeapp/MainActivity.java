@@ -415,11 +415,6 @@ public class MainActivity extends AppCompatActivity implements
         // is displayed as the activity is re-created.
 
         while (mCurrentLocation == null) {
-//            Log.d("TEST!!!", "google client onConnection!!");
-//            Log.d("TEST!!!", String.valueOf(ActivityCompat.checkSelfPermission(this,
-//                    Manifest.permission.ACCESS_FINE_LOCATION)));
-//            Log.d("TEST!!!", String.valueOf(ActivityCompat.checkSelfPermission(this,
-//                    Manifest.permission.ACCESS_COARSE_LOCATION)));
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED
@@ -431,8 +426,7 @@ public class MainActivity extends AppCompatActivity implements
                         if (mCurrentLocation != null) {
                             mMainPage.setmLatitude(String.valueOf(mCurrentLocation.getLatitude()));
                             mMainPage.setmLongitude(String.valueOf(mCurrentLocation.getLongitude()));
-                            Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
-                            Log.i("Main Location Test", mCurrentLocation.toString());
+//                            Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
                         }
                         startLocationUpdates();
             }

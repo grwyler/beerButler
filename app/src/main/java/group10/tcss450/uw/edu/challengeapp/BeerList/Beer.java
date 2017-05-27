@@ -14,10 +14,10 @@ public class Beer {
     private double mIbu;
     private String mDescription;
     private String mNotes;
-    private int mRating;
+    private String mRating;
 
     public Beer(String name, String style, boolean isOrganic, String labelLink, String brewery,
-                double abv, double ibu, String description, String notes, int rating) {
+                double abv, double ibu, String description, String notes, String rating) {
         mName = name;
         mStyle = style;
         mIsOrganic = isOrganic;
@@ -66,7 +66,7 @@ public class Beer {
         return mNotes;
     }
 
-    public int getRating() {
+    public String getRating() {
         return mRating;
     }
 }
