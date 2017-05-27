@@ -40,6 +40,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
      */
     private static String mUsername;
 
+    private Button mRegisterButton;
+
 
 
     /**
@@ -54,8 +56,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_login, container, false);
         Button b = (Button) v.findViewById(R.id.signInButton);
         b.setOnClickListener(this);
-        b = (Button) v.findViewById(R.id.registerFromLoginButton);
-        b.setOnClickListener(this);
+        mRegisterButton = (Button) v.findViewById(R.id.registerFromLoginButton);
+        mRegisterButton.setOnClickListener(this);
+        mRegisterButton.setVisibility(View.GONE);
 
         return v;
     }
@@ -81,7 +84,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if (view.getId() == R.id.signInButton) {
             AsyncTask<String, Void, String> task;
-            View parent = (View) view.getParent();
+            View parent = (View) view.getParent().getParent();
             EditText userName = (EditText) parent.findViewById(R.id.userNameText);
             EditText password = (EditText) parent.findViewById(R.id.passwordText);
             String usr, pwd;
@@ -185,6 +188,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             } else if(result.startsWith("Successfully")) {
                 mListener.onLoginFragmentInteraction(result);
             } else {
+                mRegisterButton.setVisibility(View.VISIBLE);
+                System.out.println("this happened");
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
             }
         }
