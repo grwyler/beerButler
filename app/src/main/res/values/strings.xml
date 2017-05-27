@@ -1,4 +1,5 @@
 <resources>
+    <string name="hello_blank_fragment"></string>
     <string name="app_name">"Beer Butler "</string>
     <string name="name_hint">Enter a User Name</string>
     <string name="password_hint">Password</string>

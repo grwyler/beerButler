@@ -34,6 +34,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
+    private static final String API_BEERS = "http://api.brewerydb.com/v2/beers/" +
+            "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
 
     /** The start of a string returned if there was an error connecting to the DB.*/
     private final String START_ERROR = "Unable to";
@@ -183,4 +185,43 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             mListener.onMainPageBrewTourFragmentInteraction(result);
         }
     }
+
+    /**
+     * A local AsyncTask class used to access the database and communicate back to the
+     * activity.
+     * */
+
+    public class GetBeerListTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            if (strings.length != 1) {
+                throw new IllegalArgumentException(EXCEPTION_MSG);
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            try {
+                URL urlObject = new URL(strings[0]);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                InputStream content = urlConnection.getInputStream();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s;
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+            } catch (Exception e) {
+                response = EXCEPTION_MSG_2 + e.getMessage();
+            } finally {
+                if (urlConnection != null) urlConnection.disconnect();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mListener.onMainPageBeerListFragmentInteraction();
+        }
+
+    }
+
 }

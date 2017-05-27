@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,6 +35,7 @@ import com.google.android.gms.location.LocationServices;
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
 import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.SuggestionsList.SuggestionsListFragment;
 
 
 /**
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements
         RegisterFragment.OnFragmentInteractionListener,
         MainPageFragment.OnFragmentInteractionListener,
         RateBeerFragment.OnFragmentInteractionListener,
+        BeerListFragment.OnFragmentInteractionListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -300,9 +303,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainPageBrewTourFragmentInteraction(String json) {
         BrewTourFrag bf = new BrewTourFrag();
+        UserProfileFragment us = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putSerializable(BrewTourFrag.KEY, json);
         bf.setArguments(args);
+        us.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bf)
@@ -336,6 +341,25 @@ public class MainActivity extends AppCompatActivity implements
     public void onRateBeerFragmentInteraction(String string) {
         onMainPageBeerListFragmentInteraction();
     }
+
+    /**
+     * Initiated by the user action of inputting a keyword or partial name to search
+     * Receives JSON from partial name search at BreweryDB and initiates Suggestions recyclerView
+     */
+    @Override
+    public void onBeerListFragmentInteraction(String json){
+        SuggestionsListFragment sl = new SuggestionsListFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(SuggestionsListFragment.KEY, json);
+        sl.setArguments(args);
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, sl)
+                .addToBackStack(null);
+        // Commit the transaction
+        transaction.commit();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

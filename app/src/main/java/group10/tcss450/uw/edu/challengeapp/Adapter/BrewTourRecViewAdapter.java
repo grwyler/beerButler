@@ -111,7 +111,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
 
     /**
      * Recycler view adapter constructor.
-     * @param myDataset the desired dataset for the recycler view.
+     * @param myDataset an array of complete Brewery objects
      */
     public BrewTourRecViewAdapter(ArrayList<TopBrewery> myDataset) {
         mDataset = myDataset;

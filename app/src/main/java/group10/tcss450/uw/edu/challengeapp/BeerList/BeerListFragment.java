@@ -22,6 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -30,6 +35,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
@@ -40,6 +46,9 @@ import group10.tcss450.uw.edu.challengeapp.R;
  * make everything consistent across the application.
  */
 public class BeerListFragment extends Fragment implements View.OnClickListener {
+    public static final String KEY = "I love beer!";
+    private ArrayList<TopBrew> brews = new ArrayList<>();
+    private ArrayList<String> beerNames = new ArrayList<>();
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
@@ -47,10 +56,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     private AutoCompleteTextView mAutoCompleteTextView;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
+    private static final String SUGGESTIONS_PARTIAL_URL = "http://api.brewerydb.com/v2/beers/" +
+            "?key=b5a1363a472d95fdab32ea49a2c3eb3f&name=";
     private String mUsername;
     private BeerListRecViewAdapter mAdapter;
     private AsyncTask<String, Void, String> mGetBeersTask;
-
+    private OnFragmentInteractionListener mListener;
     /** Required empty public constructor*/
     public BeerListFragment() {}
 
@@ -59,22 +70,60 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beer_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_beer_list, container, false);
+        Button b = (Button) v.findViewById(R.id.add_beer);
+        b.setOnClickListener(this);
+
+        return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+
+            try {
+                String st = getArguments().getString(KEY);
+                JSONObject jsonO = new JSONObject(st);
+                int num = 0;
+                num = jsonO.getInt("totalResults");
+                if (jsonO.getString("status").toString().equals("success") && num != 0) {
+                    JSONArray data = jsonO.getJSONArray("data");
+
+                    for (int i = 0; i < data.length(); i++) {
+                        //TopBrew brew = TopBrew.create(data.getJSONObject(i));
+                        //brews.add(brew);
+                        beerNames.add((String)(data.getJSONObject(i)).get("name"));
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "No beer data to show", Toast
+                            .LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
         mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
                 auto_complete_beers_text);
-        //TODO: populate this list with all beer names from the API
-        String[] beerNames = new String[10];
-        for (int i = 0; i < beerNames.length; i++) beerNames[i] = "beer" + (i + 1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout
+
+        //this won't be used
+        //String[] beerNames = new String[10];
+/*        for (int i = 0; i < beerNames.length; i++) {
+            beerNames[i] = "beer" + (i + 1);
+        }*/
+/*        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout
                 .simple_dropdown_item_1line, beerNames);
-        mAutoCompleteTextView.setAdapter(adapter);
+        mAutoCompleteTextView.setAdapter(adapter);*/
+
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs),
                 Context.MODE_PRIVATE);
@@ -119,6 +168,19 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //        }
     }
 
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
     @Override
     public void onClick(View v) {
         String beerName = mAutoCompleteTextView.getText().toString();
@@ -128,7 +190,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         } else {
             // Delete new lines entered by the stupid user.
             if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
-            if (true/*If beerName is in the API*/) {
+            //set below block aside for later
+
+/*            if (true*//*If beerName is in the API*//*) {
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
                 task.execute(BEERLIST_PARTIAL_URL, beerName, "S", "0", "labelLink", "brewery",
@@ -137,7 +201,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
             } else {
                 mAutoCompleteTextView.setError(beerName + " isn't a recognized beer.");
-            }
+            }*/
+
+            AsyncTask<String, Void, String> task;
+            task = new GetSuggestionsTask();
+            task.execute(SUGGESTIONS_PARTIAL_URL, "*" + beerName + "*");
+
         }
     }
 
@@ -258,5 +327,56 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 textView.setVisibility(View.VISIBLE);
             }
         }
+
+    }
+
+    /**
+     * Does a partial name search against the BreweryDB list of beers, using wild cards
+     * string[0] must be base URL and string [1] must be the keyword being used for search
+     *
+     */
+    private class GetSuggestionsTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            if (strings.length != 2) {
+                throw new IllegalArgumentException(EXCEPTION_MSG);
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            try {
+                URL urlObject = new URL(strings[0] + strings[1]);
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                InputStream content = urlConnection.getInputStream();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s;
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+            } catch (Exception e) {
+                response = EXCEPTION_MSG_2 + e.getMessage();
+            } finally {
+                if (urlConnection != null) urlConnection.disconnect();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mListener.onBeerListFragmentInteraction(result);
+        }
+    }
+
+
+    /**
+     * An interface for the activity to implement to facilitate inter-fragment communication.
+     * This is meant to lead into the SuggestedListFragment
+     * raw result of the API call is passed to the new fragment for processing
+     */
+    public interface OnFragmentInteractionListener {
+        /**
+         * Used to notify the activity that the sign-in was successful.
+         */
+
+        void onBeerListFragmentInteraction(String json);
     }
 }
