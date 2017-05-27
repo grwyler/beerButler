@@ -351,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements
         SuggestionsListFragment sl = new SuggestionsListFragment();
         Bundle args = new Bundle();
         args.putSerializable(SuggestionsListFragment.KEY, json);
+        sl.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, sl)

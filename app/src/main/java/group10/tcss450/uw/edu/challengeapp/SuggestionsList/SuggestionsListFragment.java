@@ -26,6 +26,7 @@ import group10.tcss450.uw.edu.challengeapp.R;
 public class SuggestionsListFragment extends Fragment {
     public static final String KEY = "I love beer!";
     private ArrayList<TopBrew> brews = new ArrayList<>();
+    private SuggestionsListRecViewAdapter mAdapter;
 
     public SuggestionsListFragment() {
         // Required empty public constructor
@@ -45,7 +46,6 @@ public class SuggestionsListFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_brew);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(new Activity());
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerView.Adapter adapter = null;
 
         Bundle b = getArguments();
             if (b != null) {
@@ -67,8 +67,15 @@ public class SuggestionsListFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new SuggestionsListRecViewAdapter(brews);
-            recyclerView.setAdapter(adapter);
+            if (mAdapter == null) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
+                mAdapter = new SuggestionsListRecViewAdapter(brews);
+                recyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            } else {
+                mAdapter = new SuggestionsListRecViewAdapter(brews);
+                recyclerView.setAdapter(mAdapter);
+            }
         }
     }
 }
