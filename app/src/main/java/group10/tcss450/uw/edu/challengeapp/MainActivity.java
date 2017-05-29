@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, secondFragment)
-                .addToBackStack(null);
+                .addToBackStack("goto_sign_in");
         // Commit the transaction
         transaction.commit();
     }
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, thirdFragment)
-                .addToBackStack(null);
+                .addToBackStack("goto_register");
         // Commit the transaction
         transaction.commit();
     }
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, mMainPage)
-                .addToBackStack(null);
+                .addToBackStack("login");
         // Commit the transaction
         transaction.commit();
     }
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, mMainPage)
-                .addToBackStack(null);
+                .addToBackStack("register");
         // Commit the transaction
         transaction.commit();
     }
@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements
      * @param json The json string to send to the activity.
      */
     @Override
-    public void onMainPageBrewTourFragmentInteraction(String json) {
+    public void onMainPageBrewTourButtonPressed(String json) {
         BrewTourFrag bf = new BrewTourFrag();
         UserProfileFragment us = new UserProfileFragment();
         Bundle args = new Bundle();
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bf)
-                .addToBackStack(null);
+                .addToBackStack("brew_tour");
         // Commit the transaction
         transaction.commit();
     }
@@ -319,12 +319,12 @@ public class MainActivity extends AppCompatActivity implements
      * opens the BeerListFragment
      */
     @Override
-    public void onMainPageBeerListFragmentInteraction() {
+    public void onMainPageBeerListButtonPressed() {
         BeerListFragment bl = new BeerListFragment();
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bl)
-                .addToBackStack(null);
+                .addToBackStack("beer_list");
         // Commit the transaction
         transaction.commit();
     }
@@ -339,7 +339,13 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onRateBeerFragmentInteraction(String string) {
-        onMainPageBeerListFragmentInteraction();
+        //onMainPageBeerListButtonPressed();
+        BeerListFragment bl = new BeerListFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 1; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        fm.beginTransaction().replace(R.id.fragmentContainer, bl).commit();
     }
 
     /**
@@ -347,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements
      * Receives JSON from partial name search at BreweryDB and initiates Suggestions recyclerView
      */
     @Override
-    public void onBeerListFragmentInteraction(String json){
+    public void onBeerListAddBeerButtonPressed(String json){
         SuggestionsListFragment sl = new SuggestionsListFragment();
         Bundle args = new Bundle();
         args.putSerializable(SuggestionsListFragment.KEY, json);
@@ -355,11 +361,10 @@ public class MainActivity extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, sl)
-                .addToBackStack(null);
+                .addToBackStack("add_beer");
         // Commit the transaction
         transaction.commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -435,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements
         //
         // Because we cache the value of the initial location in the Bundle, itmeans that if the
         // user launches the activity,
-        // moves to a new location, and then changes the device orientation, theoriginal location
+        // moves to a new location, and then changes the device orientation, the original location
         // is displayed as the activity is re-created.
 
         while (mCurrentLocation == null) {

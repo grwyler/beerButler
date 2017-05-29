@@ -18,7 +18,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -152,7 +151,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 //                }
 //                else {
 //                    /**
-//                     * ToDo need a code branch to handle zero result responses
 //                     */
 //                }
 //            } catch (JSONException e) {
@@ -181,6 +179,13 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
+
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener.onBackPressedAction();
+//    }
     @Override
     public void onClick(View v) {
         String beerName = mAutoCompleteTextView.getText().toString();
@@ -209,6 +214,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         }
     }
+
 
     /**
      * A local AsyncTask class used to access the database and communicate back to the
@@ -362,7 +368,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            mListener.onBeerListFragmentInteraction(result);
+            mListener.onBeerListAddBeerButtonPressed(result);
         }
     }
 
@@ -377,6 +383,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
          * Used to notify the activity that the sign-in was successful.
          */
 
-        void onBeerListFragmentInteraction(String json);
+        void onBeerListAddBeerButtonPressed(String json);
+        //void onBackPressedAction();
     }
 }

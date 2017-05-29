@@ -181,7 +181,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                     FragmentTransaction tran = MainActivity.mFragManager
                             .beginTransaction()
                             .replace(R.id.fragmentContainer, rf)
-                            .addToBackStack(null);
+                            .addToBackStack("rate");
                     tran.commit();
                 }
             });
