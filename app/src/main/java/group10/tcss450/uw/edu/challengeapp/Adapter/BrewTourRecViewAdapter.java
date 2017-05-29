@@ -83,6 +83,8 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         /** The TextView to display the distance from your location*/
         TextView mDist;
         /** The textView to display the address.*/
+        TextView mTVAddress;
+        /** the address of the brewery */
         String mAddress;
 
 
@@ -96,6 +98,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
             mBreweryName = (TextView) cardView.findViewById(R.id.brewery_name);
             mHours = (TextView) cardView.findViewById(R.id.hours);
             mDist = (TextView) cardView.findViewById(R.id.dist);
+            mTVAddress = (TextView) cardView.findViewById(R.id.address);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -131,6 +134,10 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         String name = "";
         String hours = topBrewery.getHoursOfOperation();
         String distance;
+        String address = topBrewery.getStreetAddress();
+        String city = topBrewery.getLocality();
+        String state = topBrewery.getRegion();
+        String zip = topBrewery.getPostalCode();
         brewery brewery = topBrewery.getBrewery();
         ImageView imageView = holder.mImageView;
         holder.mImageView.setImageResource(R.drawable.placeholder);
@@ -147,12 +154,16 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         if (topBrewery.getDistance() == null) distance = "unavailable";
         else distance = "" + mDataset.get(position).getDistance();
 
-        name = mResources.getString(R.string.text_view_brewery) + name;
-        distance = mResources.getString(R.string.text_view_distance) + distance;
-        hours = mResources.getString(R.string.text_view_hours) + hours;
+        name =  mResources.getString(R.string.text_view_brewery) + name;
+        distance =  mResources.getString(R.string.text_view_distance) + distance;
+        hours =  mResources.getString(R.string.text_view_hours) + hours;
+        address = address + " \n" +  city + ", " + state + " " + zip;
+
         holder.mBreweryName.setText(name);
         holder.mDist.setText(distance);
         holder.mHours.setText(hours);
+        holder.mTVAddress.setText(address);
+       // holder.mCity.setText(city);
         holder.mAddress = topBrewery.getStreetAddress();
     }
 

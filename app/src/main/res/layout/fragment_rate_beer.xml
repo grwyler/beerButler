@@ -63,7 +63,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:background="@drawable/button_background"
+        android:background="@drawable/buttonshape"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#0C0B1F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
         android:layout_margin="10dp"/>
 
 </LinearLayout>

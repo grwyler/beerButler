@@ -53,6 +53,17 @@
             android:layout_toRightOf="@+id/brew_pic"
             android:textSize="12sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/address"
+            android:layout_below="@+id/dist"
+            android:layout_toEndOf="@+id/brew_pic"
+            android:layout_toRightOf="@+id/brew_pic"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"/>
+
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

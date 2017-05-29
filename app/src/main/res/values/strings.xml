@@ -1,5 +1,4 @@
 <resources>
-    <string name="hello_blank_fragment"></string>
     <string name="app_name">"Beer Butler "</string>
     <string name="name_hint">Enter a User Name</string>
     <string name="password_hint">Password</string>
@@ -37,4 +36,5 @@
     <string name="Add_beer_hint">Enter a beer to add to your list</string>
     <string name="longitude">longitude</string>
     <string name="latitude">latitude</string>
+    <string name="brewery_street_address">Address: </string>
 </resources>

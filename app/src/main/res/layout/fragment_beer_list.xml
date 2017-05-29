@@ -19,6 +19,12 @@
         android:id="@+id/add_beer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#0C0B1F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
         android:text="@string/add_beer"
         style="button"/>
 
