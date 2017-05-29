@@ -426,6 +426,7 @@ public class MainActivity extends AppCompatActivity implements
         mCurrentLocation = location;
         mMainPage.setmLatitude(String.valueOf(location.getLatitude()));
         mMainPage.setmLongitude(String.valueOf(location.getLongitude()));
+
 //        Log.d("MainActivity ", "Location changed! " + location.toString());
     }
 

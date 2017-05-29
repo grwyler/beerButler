@@ -12,6 +12,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +28,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.MapFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
+import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 
 import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
@@ -35,6 +41,9 @@ import static group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery.brewery;
  */
 public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecViewAdapter.ViewHolder>
         implements ItemTouchHelperAdapter {
+    public static final String LNG_KEY = "Who are these people?";
+    public static final String LAT_KEY = "And why do they call it tooth paste?";
+    public static final String NAME_KEY = "Why not tooth glue?";
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<TopBrewery> mDataset;
     /** Resources to use string resources */
@@ -85,7 +94,9 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         /** The textView to display the address.*/
         TextView mTVAddress;
         /** the address of the brewery */
-        String mAddress;
+        double longitude;
+        double latitude;
+        String mName;
 
 
         /**
@@ -102,15 +113,27 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Activity a = new Activity();
-                    Uri mapUri = Uri.parse("geo:0,0?q=" + Uri.encode(mAddress));
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    a.startActivity(mapIntent);
+                    MapFragment mf = new MapFragment();
+                    Bundle args = new Bundle();
+                    args.putSerializable(LNG_KEY, longitude);
+                    args.putSerializable(LAT_KEY, latitude);
+                    args.putSerializable(NAME_KEY, mName);
+                    mf.setArguments(args);
+                    FragmentTransaction tran = MainActivity.mFragManager
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, mf)
+                            .addToBackStack("map");
+                    tran.commit();
+//                    Activity a = new Activity();
+//                    Uri mapUri = Uri.parse("geo:0,0?q=" + Uri.encode(mAddress));
+//                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+//                    mapIntent.setPackage("com.google.android.apps.maps");
+//                    a.startActivity(mapIntent);
                 }
             });
         }
     }
+
 
     /**
      * Recycler view adapter constructor.
@@ -138,6 +161,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         String city = topBrewery.getLocality();
         String state = topBrewery.getRegion();
         String zip = topBrewery.getPostalCode();
+
         brewery brewery = topBrewery.getBrewery();
         ImageView imageView = holder.mImageView;
         holder.mImageView.setImageResource(R.drawable.placeholder);
@@ -154,7 +178,7 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         if (topBrewery.getDistance() == null) distance = "unavailable";
         else distance = "" + mDataset.get(position).getDistance();
 
-        name =  mResources.getString(R.string.text_view_brewery) + name;
+        name =  name;
         distance =  mResources.getString(R.string.text_view_distance) + distance;
         hours =  mResources.getString(R.string.text_view_hours) + hours;
         address = address + " \n" +  city + ", " + state + " " + zip;
@@ -163,8 +187,9 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         holder.mDist.setText(distance);
         holder.mHours.setText(hours);
         holder.mTVAddress.setText(address);
-       // holder.mCity.setText(city);
-        holder.mAddress = topBrewery.getStreetAddress();
+        holder.longitude = topBrewery.getLongitude();
+        holder.latitude = topBrewery.getLatitude();
+        holder.mName = brewery.getName();
     }
 
     @Override

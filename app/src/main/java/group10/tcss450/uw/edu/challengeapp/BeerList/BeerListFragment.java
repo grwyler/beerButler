@@ -384,6 +384,5 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
          */
 
         void onBeerListAddBeerButtonPressed(String json);
-        //void onBackPressedAction();
     }
 }
