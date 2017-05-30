@@ -18,7 +18,7 @@
     <string name="text_view_brewery">Brewery: </string>
     <string name="text_view_hours">Hours: </string>
     <string name="text_view_distance">Distance: </string>
-    <string name="add_beer">Add Beer</string>
+    <string name="add_beer">Search</string>
     <string name="remember_me">Remember me</string>
     <string name="login_prefs">loginPrefs</string>
     <string name="save_login">saveLogin</string>
@@ -33,7 +33,7 @@
     <string name="rate">Enter a rating between 0 and 5</string>
     <string name="notes">Enter some notes.</string>
     <string name="submit">Submit</string>
-    <string name="Add_beer_hint">Enter a beer to add to your list</string>
+    <string name="Add_beer_hint">Search for a beer to add to your list</string>
     <string name="longitude">longitude</string>
     <string name="latitude">latitude</string>
     <string name="brewery_street_address">Address: </string>

@@ -189,6 +189,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         } else {
             // Delete new lines entered by the stupid user.
             if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
+            beerName = beerName.replace(" ", "%20");
             //set below block aside for later
 
 /*            if (true*//*If beerName is in the API*//*) {
