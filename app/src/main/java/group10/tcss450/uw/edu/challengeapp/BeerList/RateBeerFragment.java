@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,15 +74,11 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         if (view.getId() == R.id.submit_rating_button) {
             AsyncTask<String, Void, String> task;
             View parent = (View) view.getParent();
-            EditText rating = (EditText) parent.findViewById(R.id.rateBeerET);
+            RatingBar ratingBar = (RatingBar) parent.findViewById(R.id.ratingBar);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
 
-            String rate, note, beer, username;
-            rate = rating.getText().toString();
-            //make sure something is sent to the database.
-            if (rate == "") {
-                rate = "0";
-            }
+            String note, beer, username;
+            float rating = ratingBar.getRating();
             note = notes.getText().toString();
             //make sure something is sent to the database.
             if (note == "") {
@@ -92,7 +89,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                 beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
                 username = getArguments().getString(BeerListRecViewAdapter.USERNAME_KEY);
                 Log.d("RateBeerFrag", beer + ", " + username);
-                task.execute(PARTIAL_URL, beer, rate, note, username);
+                task.execute(PARTIAL_URL, beer, rating + "", note, username);
             } else {
                 Toast.makeText(getActivity(), "Arguments were null!", Toast.LENGTH_SHORT).show();
             }
@@ -114,7 +111,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         /** The error message if the user enters wrong data for logging in*/
         private final String TOAST_ERROR = "Something went wrong while adding a rating or notes.";
         /** Exception message for too few or too many args*/
-        private final String EXCEPTION_MSG = "Three String arguments required.";
+        private final String EXCEPTION_MSG = "Five String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
         private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
 

@@ -19,7 +19,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -322,9 +321,12 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView textView = (TextView) getActivity().findViewById(R.id.add_beer_suggestion);
-            if (!result.equals("false")) {
-                textView.setVisibility(View.GONE);
+            TextView textView = null;
+            if (getActivity() != null) {
+                textView = (TextView) getActivity().findViewById(R.id.add_beer_suggestion);
+            }
+            if (!result.equals("0")) {
+                if (textView != null) textView.setVisibility(View.GONE);
                 if (mAdapter == null) {
                     RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
                             .recycler_view_beer);
@@ -340,7 +342,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                     mAdapter.notifyDataSetChanged();
                 }
             } else {
-                textView.setVisibility(View.VISIBLE);
+                if (textView != null) textView.setVisibility(View.VISIBLE);
             }
             if (dialog.isShowing()) {
                 dialog.dismiss();
