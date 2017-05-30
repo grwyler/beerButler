@@ -99,14 +99,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             task = new PostWebServiceTask();
             task.execute(PARTIAL_URL, usr, pwd);
         }
-//        if(parent != null) {
-//            if(warnUser(userName, password, vPassword)) {
-//                usr = userName.getText().toString();
-//                pwd = password.getText().toString();
-//                task = new PostWebServiceTask();
-//                task.execute(PARTIAL_URL, usr, pwd);
-//            }
-//        }
     }
 
     /**
@@ -160,6 +152,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
      * An interface for the activity to implement to facilitate inter-fragment communication.
      */
     interface OnFragmentInteractionListener {
+        /**
+         * Inform the activity that the register button was pressed.
+         * @param message the username that was registered.
+         */
         void onRegisterFragmentInteraction(String message);
     }
 
@@ -218,6 +214,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("Successfully")) {
+                // send the username to the main page fragment so it can inform the uer that they logged in successfully.
                 mListener.onRegisterFragmentInteraction(result);
             } else {
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast

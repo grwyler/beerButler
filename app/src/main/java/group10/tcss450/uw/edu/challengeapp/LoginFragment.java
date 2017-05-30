@@ -38,11 +38,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
      * The username is  set so it can be used later to add beer information to the database
      * by user.
      */
-    private static String mUsername;
+    //private static String mUsername;
 
     private Button mRegisterButton;
-
-
 
     /**
      * Required empty public constructor
@@ -91,15 +89,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             usr = userName.getText().toString();
             pwd = password.getText().toString();
             task = new GetWebServiceTask();
-            mUsername = usr;
+           // mUsername = usr;
             task.execute(PARTIAL_URL, usr, pwd);
         } else if (view.getId() == R.id.registerFromLoginButton) {
             mListener.onLoginRegisterButtonInteraction();
         }
-    }
-
-    public static String getmUsername() {
-        return mUsername;
     }
 
     /**
@@ -113,31 +107,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         void onLoginFragmentInteraction(String json);
         void onLoginRegisterButtonInteraction();
     }
-
-//    /**
-//     * Helper method that warns the user if incorrect parameters have been entered to the
-//     * login fields.
-//     *
-//     * @param userName the User name edit text.
-//     * @param password the Password edit text.
-//     * @return true if the user entered something into the fields false otherwise.
-//     */
-//    private boolean warnUser(EditText userName, EditText password) {
-//        boolean cont = true;
-//        if(userName.getText().toString().length() <= 2) {
-//            userName.setHintTextColor(Color.RED);
-//            userName.setError("User name must be more than 2 characters");
-//            cont = false;
-//        }
-//
-//        if(password.getText().toString().length() < 5) {
-//            password.setHintTextColor(Color.RED);
-//            password.setError("Password must be more than 5 characters");
-//            cont = false;
-//        }
-//        return cont;
-//    }
-
 
     /**
      * A local AsyncTask class used to access the database and communicate back to the

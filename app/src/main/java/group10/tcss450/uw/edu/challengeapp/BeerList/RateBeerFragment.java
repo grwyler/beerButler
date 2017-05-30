@@ -100,7 +100,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface OnFragmentInteractionListener {
-        void onRateBeerFragmentInteraction(String string);
+        void onRateBeerFragmentInteraction();
     }
 
     /**
@@ -166,7 +166,7 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("UPDATE")) {
                 Log.d("RateBeerFragment", "Success!!!!!!!!!!");
-                mListener.onRateBeerFragmentInteraction(result);
+                mListener.onRateBeerFragmentInteraction();
             } else {
                 Log.d("TEST!!!! Line 172", result);
                 Toast.makeText(getActivity(), result, Toast
