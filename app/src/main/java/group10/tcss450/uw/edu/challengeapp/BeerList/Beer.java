@@ -7,27 +7,45 @@ package group10.tcss450.uw.edu.challengeapp.BeerList;
 public class Beer {
     private String mName;
     private String mStyle;
-    private boolean mIsOrganic;
+    private String mIsOrganic;
     private String mLabelLink;
     private String mBrewery;
-    private double mAbv;
-    private double mIbu;
+    private String mAbv;
+    private String mIbu;
     private String mDescription;
     private String mNotes;
     private String mRating;
+    private TopBrew.labels mLabels;
 
     public Beer(String name, String style, boolean isOrganic, String labelLink, String brewery,
                 double abv, double ibu, String description, String notes, String rating) {
         mName = name;
         mStyle = style;
-        mIsOrganic = isOrganic;
+//        mIsOrganic = isOrganic;
         mLabelLink = labelLink;
         mBrewery = brewery;
-        mAbv = abv;
-        mIbu = ibu;
+//        mAbv = abv;
+//        mIbu = ibu;
         mDescription = description;
         mNotes = notes;
         mRating = rating;
+    }
+
+    public Beer(TopBrew topBrew) {
+        if (topBrew != null) {
+            mName = topBrew.getName();
+            mStyle = topBrew.getStyle() == null ? "" : topBrew.getStyle().getName();
+            mIsOrganic = topBrew.getIsOrganic();
+//            mLabelLink = topBrew.getLabels().getMedium();
+            mLabels = topBrew.getLabels();
+            mBrewery = topBrew.getName();
+            mAbv = topBrew.getAbv();
+            mIbu = topBrew.getIbu();
+            mDescription = topBrew.getDescription();
+            mNotes = "";
+            mRating = "";
+        }
+
     }
 
     public String getmName() {
@@ -38,7 +56,7 @@ public class Beer {
         return mStyle;
     }
 
-    public boolean getIsOrganic() {
+    public String getIsOrganic() {
         return mIsOrganic;
     }
 
@@ -50,11 +68,11 @@ public class Beer {
         return mBrewery;
     }
 
-    public double getAbv() {
+    public String getAbv() {
         return mAbv;
     }
 
-    public double getIbu() {
+    public String getIbu() {
         return mIbu;
     }
 
@@ -68,5 +86,9 @@ public class Beer {
 
     public String getRating() {
         return mRating;
+    }
+
+    public TopBrew.labels getLabels() {
+        return mLabels;
     }
 }

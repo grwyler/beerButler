@@ -228,10 +228,10 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         holder.mNotes.setText(notes);
         String rating = "Rating: " + beer.getRating();
         holder.mRating.setText(rating);
-        String boo;
-        if (beer.getIsOrganic()) {
-            boo = "yes";
-        } else { boo = "no"; }
+        String boo = beer.getIsOrganic();
+//        if (beer.getIsOrganic()) {
+//            boo = "yes";
+//        } else { boo = "no"; }
         String org = "Organic: " + boo;
         holder.mIsOrganic.setText(org);
     }

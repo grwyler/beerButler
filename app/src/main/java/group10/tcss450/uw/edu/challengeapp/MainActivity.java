@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements
         MainPageFragment.OnFragmentInteractionListener,
         RateBeerFragment.OnFragmentInteractionListener,
         BeerListFragment.OnFragmentInteractionListener,
+        SuggestionsListFragment.OnFragmentInteractionListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -471,5 +472,16 @@ public class MainActivity extends AppCompatActivity implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i("Main Location Test", "Connection failed: ConnectionResult.getErrorCode() = " +
                 connectionResult.getErrorCode());
+    }
+
+    @Override
+    public void onBeerSuccessfullyAddedToDB() {
+        BeerListFragment bl = new BeerListFragment();
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, bl)
+                .addToBackStack("beer_list");
+        // Commit the transaction
+        transaction.commit();
     }
 }
