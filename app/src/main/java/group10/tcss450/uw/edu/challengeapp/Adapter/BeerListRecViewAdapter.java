@@ -189,7 +189,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             mName = (TextView) cardView.findViewById(R.id.name_view);
             mStyle = (TextView) cardView.findViewById(R.id.style_view);
             mIsOrganic = (TextView) cardView.findViewById(R.id.is_organic_view);
-            mLabelLink = (TextView) cardView.findViewById(R.id.label_link_view);
             mBrewery = (TextView) cardView.findViewById(R.id.brewery_view);
             mAbv = (TextView) cardView.findViewById(R.id.abv_view);
             mIbu = (TextView) cardView.findViewById(R.id.ibu_view);
@@ -214,8 +213,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         holder.mName.setText(beer.getmName());
         String style = "Style: " + beer.getStyle();
         holder.mStyle.setText(style);
-        String label = "Label: " + beer.getLabelLink();
-        holder.mLabelLink.setText(label);
         String brewery = "Brewery: " + beer.getBrewery();
         holder.mBrewery.setText(brewery);
         String ABV = "ABV: " + beer.getAbv();
