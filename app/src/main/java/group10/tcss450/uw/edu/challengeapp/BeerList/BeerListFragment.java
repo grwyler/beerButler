@@ -7,6 +7,7 @@ package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -179,13 +181,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener.onBackPressedAction();
-//    }
     @Override
     public void onClick(View v) {
         String beerName = mAutoCompleteTextView.getText().toString();
@@ -215,13 +210,19 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
     /**
      * A local AsyncTask class used to access the database and communicate back to the
      * activity.
      */
     private class AddBeerToDBTask extends AsyncTask<String, Void, String> {
 
+        private ProgressDialog dialog = new ProgressDialog(getContext());
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
 
         @Override
         protected String doInBackground(String... strings) {
@@ -276,7 +277,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
         }
     }
 
@@ -286,6 +289,13 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
      */
     private class GetBeerListTask extends AsyncTask<String, Void, String> {
 
+        private ProgressDialog dialog = new ProgressDialog(getContext());
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 1) {
@@ -332,6 +342,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             } else {
                 textView.setVisibility(View.VISIBLE);
             }
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
         }
 
     }
@@ -342,6 +355,15 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
      *
      */
     private class GetSuggestionsTask extends AsyncTask<String, Void, String> {
+
+        private ProgressDialog dialog = new ProgressDialog(getContext());
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 2) {
@@ -369,6 +391,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             mListener.onBeerListAddBeerButtonPressed(result);
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
         }
     }
 

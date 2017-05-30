@@ -6,10 +6,12 @@
 
 package group10.tcss450.uw.edu.challengeapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -143,6 +145,14 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
      * Asyncrinous task that contacts the breweryDB API to get breweries in the area.
      */
     private class BrewTourWebServiceTask extends AsyncTask<String, Void, String> {
+
+        private ProgressDialog dialog = new ProgressDialog(getContext());
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
         //private final String SERVICE = "_post.php";
         @Override
         protected String doInBackground(String... strings) {
@@ -180,6 +190,9 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                         .show();
                 return;
             }
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
             mListener.onMainPageBrewTourButtonPressed(result);
         }
     }
@@ -191,6 +204,13 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     public class GetBeerListTask extends AsyncTask<String, Void, String> {
 
+        private ProgressDialog dialog = new ProgressDialog(getContext());
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 1) {
@@ -217,6 +237,9 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
             mListener.onMainPageBeerListButtonPressed();
         }
 

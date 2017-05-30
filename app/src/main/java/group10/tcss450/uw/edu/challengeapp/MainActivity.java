@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,8 +32,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
-import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
 import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
+import group10.tcss450.uw.edu.challengeapp.BrewTour.BrewTourFrag;
 import group10.tcss450.uw.edu.challengeapp.SuggestionsList.SuggestionsListFragment;
 
 
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements
         mLoginPrefsEditor = mLoginPreferences.edit();
         mSaveLogin = mLoginPreferences.getBoolean(getString(R.string.save_login),
                 false);
-        if (mSaveLogin == true) {
+        if (mSaveLogin) {
             fragment = mMainPage;
             mMenuItemEnabled = true;
         } else {
