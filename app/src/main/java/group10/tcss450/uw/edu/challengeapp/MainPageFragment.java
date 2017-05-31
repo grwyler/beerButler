@@ -66,10 +66,14 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 case R.id.brew_tour_button:
                     String lat = mLatitude;
                     String lng = mLongitude;
-
                     if (lat == null || lng == null) {
                         lat = "47.2529";
                         lng = "-122.4443";
+                        Toast.makeText(getActivity(),
+                                "Cannot find your location! " +
+                                        "\n Please make sure your phones " +
+                                        "location settings are turned on.",
+                                Toast.LENGTH_LONG).show();
                     }
                     Log.d("MainPageFragemnt", lat + ", " + lng);
                     task = new BrewTourWebServiceTask();
@@ -77,8 +81,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                     break;
                 case R.id.beer_list_button:
                     mListener.onMainPageBeerListButtonPressed();
-//                    task = new GetBeerListTask();
-//                    task.execute(BEERLIST_PARTIAL_URL, mUsername);
                     break;
                 default:
                     Toast.makeText(getActivity(),
@@ -117,6 +119,9 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
          */
         void onMainPageBrewTourButtonPressed(String json);
 
+        /**
+         *  Used to notify the activity that the beer list button was pressed.
+         */
         void onMainPageBeerListButtonPressed();
     }
 

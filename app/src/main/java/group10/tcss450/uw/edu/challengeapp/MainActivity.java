@@ -337,8 +337,12 @@ public class MainActivity extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     * When the submit button in the RateBeerFragment is pressed, go back to the BeerListFragment
+     * pop items off the back stack so it will not go back to the RateBeerFragment onBackPressed.
+     */
     @Override
-    public void onRateBeerFragmentInteraction(String string) {
+    public void onRateBeerFragmentInteraction() {
         //onMainPageBeerListButtonPressed();
         BeerListFragment bl = new BeerListFragment();
         FragmentManager fm = getSupportFragmentManager();
@@ -416,18 +420,18 @@ public class MainActivity extends AppCompatActivity implements
                             .show();
                 }
             }
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
 
+    /**
+     * When location changes update the mLatitude and mLongitude in the mainPageFragment
+     * @param location the new current location.
+     */
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
         mMainPage.setmLatitude(String.valueOf(location.getLatitude()));
         mMainPage.setmLongitude(String.valueOf(location.getLongitude()));
-
-//        Log.d("MainActivity ", "Location changed! " + location.toString());
     }
 
     @Override

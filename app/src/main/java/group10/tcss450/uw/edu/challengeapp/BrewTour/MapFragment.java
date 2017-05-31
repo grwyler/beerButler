@@ -16,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BrewTourRecViewAdapter;
@@ -65,6 +66,7 @@ public class MapFragment extends Fragment {
                 // create marker
                 MarkerOptions marker = new MarkerOptions().position(
                         new LatLng(mLatitude, mLongitude)).title(mName);
+
 
                 // Changing marker icon
                 marker.icon(BitmapDescriptorFactory
