@@ -77,19 +77,24 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             RatingBar ratingBar = (RatingBar) parent.findViewById(R.id.ratingBar);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
 
-            String note, beer, username;
+            String note, beer, username, oldRating, newRating;
             float rating = ratingBar.getRating();
+            newRating = String.valueOf(rating);
             note = notes.getText().toString();
-            //make sure something is sent to the database.
-            if (note == "") {
-                note = "no notes";
-            }
+
             task = new RateBeerFragment.RateBeerTask();
             if (getArguments() != null) {
                 beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
                 username = getArguments().getString(BeerListRecViewAdapter.USERNAME_KEY);
-                Log.d("RateBeerFrag", beer + ", " + username);
-                task.execute(PARTIAL_URL, beer, rating + "", note, username);
+                oldRating = getArguments().getString(BeerListRecViewAdapter.RATING_KEY);
+                //make sure something is sent to the database.
+                if (note.equals("")) {
+                    note = getArguments().getString(BeerListRecViewAdapter.NOTES_KEY);
+                }
+                if (newRating == "0.0") {
+                    newRating = oldRating;
+                }
+                task.execute(PARTIAL_URL, beer, newRating + "", note, username);
             } else {
                 Toast.makeText(getActivity(), "Arguments were null!", Toast.LENGTH_SHORT).show();
             }

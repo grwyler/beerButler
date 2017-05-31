@@ -32,6 +32,8 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
+    public static final String NOTES_KEY = "You got a friend in me.";
+    public static final String RATING_KEY = "You must be this tall to ride the ride.";
     final public static String USERNAME_KEY = "Friends don't let friends drink light beer.";
     final public static String BEERNAME_KEY = "Don't drink and drive kids. You will spill your beer.";
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
@@ -147,22 +149,24 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mName;
         /** The TextView to display the style.*/
         TextView mStyle;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display if the beer is organic*/
         TextView mIsOrganic;
-        /** The TextView to display the distance from your location*/
-        TextView mLabelLink;
-        /** The TextView to display the distance from your location*/
+//        /** The TextView to display if the beer is organic*/
+//        TextView mLabelLink;
+        /** The TextView to display the brewery name*/
         TextView mBrewery;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the ABV*/
         TextView mAbv;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the IBUs*/
         TextView mIbu;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the description*/
         TextView mDescription;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the users notes*/
         TextView mNotes;
-        /** The TextView to display the distance from your location*/
+        /** The TextView to display the rating*/
         TextView mRating;
+        private String oldNote;
+        private String oldRating;
 
         /**
          * Constructor class. Initialize all fields.
@@ -177,6 +181,8 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                     Bundle args = new Bundle();
                     args.putSerializable(USERNAME_KEY, username);
                     args.putSerializable(BEERNAME_KEY, mName.getText().toString());
+                    args.putSerializable(NOTES_KEY, oldNote);
+                    args.putSerializable(RATING_KEY, oldRating);
                     rf.setArguments(args);
                     FragmentTransaction tran = MainActivity.mFragManager
                             .beginTransaction()
@@ -222,13 +228,15 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         String desc = "Description: " + beer.getDescription();
         holder.mDescription.setText(desc);
         String notes = "Notes: " + beer.getNotes();
+        holder.oldNote = beer.getNotes();
         holder.mNotes.setText(notes);
         String rating = "Rating: " + beer.getRating();
+        holder.oldRating = beer.getRating();
         holder.mRating.setText(rating);
         String boo = beer.getIsOrganic();
-//        if (beer.getIsOrganic()) {
-//            boo = "yes";
-//        } else { boo = "no"; }
+        if (boo == null) {
+            boo = "no";
+        }
         String org = "Organic: " + boo;
         holder.mIsOrganic.setText(org);
     }
