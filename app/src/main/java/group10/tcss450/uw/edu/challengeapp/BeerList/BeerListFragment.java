@@ -328,20 +328,15 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             }
             if (!result.equals("0")) {
                 if (textView != null) textView.setVisibility(View.GONE);
-                if (mAdapter == null) {
-                    RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
-                            .recycler_view_beer);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
-                    mAdapter = new BeerListRecViewAdapter(result, mUsername);
-                    recyclerView.setAdapter(mAdapter);
-                    ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
-                    ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-                    touchHelper.attachToRecyclerView(recyclerView);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    mAdapter.populateList(result);
-                    mAdapter.notifyDataSetChanged();
-                }
+                RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
+                        .recycler_view_beer);
+                recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
+                mAdapter = new BeerListRecViewAdapter(result, mUsername);
+                recyclerView.setAdapter(mAdapter);
+                ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
+                ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+                touchHelper.attachToRecyclerView(recyclerView);
+                mAdapter.notifyDataSetChanged();
             } else {
                 if (textView != null) textView.setVisibility(View.VISIBLE);
             }
