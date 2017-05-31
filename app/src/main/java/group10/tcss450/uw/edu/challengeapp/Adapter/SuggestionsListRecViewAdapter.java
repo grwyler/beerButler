@@ -53,7 +53,6 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
             "~grwyler/beerButler/beerList";
     private String mUsername;
     private MainPageFragment.GetBeerListTask mGetBeersTask;
-    private CardView mCardview;
 
     /**
      * Recycler view adapter constructor.
@@ -72,10 +71,10 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
     @Override
     public SuggestionsListRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                                        int viewType) {
-        mCardview = (CardView) LayoutInflater.from(parent.getContext()).inflate(
+        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.brew_tour_card_view, parent, false);
         mResources = parent.getContext().getResources();
-        return new ViewHolder(mCardview);
+        return new ViewHolder(cardView);
     }
 
 
@@ -84,8 +83,9 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
         final Beer topBrew = mDataset.get(position);
         String name = "";
         ImageView imageView = viewHolder.mImageView;
+        CardView cardView = viewHolder.mCardView;
         viewHolder.mImageView.setImageResource(R.drawable.placeholder);
-        mCardview.setOnClickListener(new View.OnClickListener() {
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AsyncTask<String, Void, String> task;
@@ -138,6 +138,8 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
         /** The TextView to display the name of the mBrewery.*/
         TextView mBrewName;
 
+        CardView mCardView;
+
 
         /**
          * Constructor class. Initialize all fields.
@@ -145,15 +147,16 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
          */
         ViewHolder(CardView cardView) {
             super(cardView);
+            mCardView = cardView;
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mBrewName = (TextView) cardView.findViewById(R.id.brewery_name);
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO: tie this into the beer rating function
-                    //Activity a = new Activity();
-                }
-            });
+//            mCardView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //TODO: tie this into the beer rating function
+//                    //Activity a = new Activity();
+//                }
+//            });
         }
     }
 
@@ -267,7 +270,6 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
 
         @Override
         protected void onPostExecute(String result) {
-            System.out.println(result);
             if (dialog.isShowing()) dialog.dismiss();
             mListener.onBeerSuccessfullyAddedToDB();
         }

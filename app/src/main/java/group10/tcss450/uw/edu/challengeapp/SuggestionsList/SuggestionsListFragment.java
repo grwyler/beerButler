@@ -69,36 +69,32 @@ public class SuggestionsListFragment extends Fragment {
         String username = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
 
         Bundle b = getArguments();
-            if (b != null) {
-                try {
+        if (b != null) {
+            try {
                 String st = getArguments().getString(KEY);
                 JSONObject jsonO = new JSONObject(st);
                 int num;
-                num  = jsonO.getInt("totalResults");
-                    if (jsonO.getString("status").equals("success") && num != 0) {
-                        JSONArray data = jsonO.getJSONArray("data");
-                        for(int i=0; i<data.length(); i++){
-                            TopBrew brew = TopBrew.create(data.getJSONObject(i));
-                            brews.add(new Beer(brew));
-                        }
-                    } else {
-                        Toast.makeText(getActivity(), "No brew data to show", Toast
-                                .LENGTH_SHORT).show();
+                num = jsonO.getInt("totalResults");
+                if (jsonO.getString("status").equals("success") && num != 0) {
+                    JSONArray data = jsonO.getJSONArray("data");
+                    for (int i = 0; i < data.length(); i++) {
+                        TopBrew brew = TopBrew.create(data.getJSONObject(i));
+                        brews.add(new Beer(brew));
                     }
+                } else {
+                    Toast.makeText(getActivity(), "No brew data to show", Toast
+                            .LENGTH_SHORT).show();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             if (mAdapter == null) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
-                mAdapter = new SuggestionsListRecViewAdapter(brews, username, getContext(),
-                        mListener);
-                recyclerView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
-            } else {
-                mAdapter = new SuggestionsListRecViewAdapter(brews, username, getContext(),
-                        mListener);
-                recyclerView.setAdapter(mAdapter);
             }
+            mAdapter = new SuggestionsListRecViewAdapter(brews, username, getContext(),
+                    mListener);
+            recyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
         }
     }
 

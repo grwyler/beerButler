@@ -8,10 +8,8 @@ package group10.tcss450.uw.edu.challengeapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,15 +31,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
-    private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
-            "~grwyler/beerButler/beerList";
-    private static final String API_BEERS = "http://api.brewerydb.com/v2/beers/" +
-            "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
-
     /** The start of a string returned if there was an error connecting to the DB.*/
     private final String START_ERROR = "Unable to";
-    /** The error message if the user enters wrong data for logging in*/
-    private final String TOAST_ERROR = "Not a recognized account";
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "One String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
@@ -50,8 +41,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
     private OnFragmentInteractionListener mListener;
     private String mLongitude;
     private String mLatitude;
-
-    private String mUsername;
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -65,11 +54,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
         b = (Button) v.findViewById(R.id.beer_list_button);
         b.setOnClickListener(this);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
-                .login_prefs), Context.MODE_PRIVATE);
-        mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
-//        MenuItem menuItem = (MenuItem) getActivity().findViewById(R.id.action_settings);
-//        menuItem.setEnabled(true);
         return v;
     }
 
@@ -91,11 +75,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                     task = new BrewTourWebServiceTask();
                     task.execute(PARTIAL_URL, "lat=" + lat + "&lng=" + lng);
                     break;
-//                case R.id.user_profile_button:
-//                    Toast.makeText(getActivity(),
-//                            "User profile is not implemented yet!",
-//                            Toast.LENGTH_LONG).show();
-//                    break;
                 case R.id.beer_list_button:
                     mListener.onMainPageBeerListButtonPressed();
 //                    task = new GetBeerListTask();

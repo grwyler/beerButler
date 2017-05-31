@@ -226,9 +226,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         String rating = "Rating: " + beer.getRating();
         holder.mRating.setText(rating);
         String boo = beer.getIsOrganic();
-//        if (beer.getIsOrganic()) {
-//            boo = "yes";
-//        } else { boo = "no"; }
         String org = "Organic: " + boo;
         holder.mIsOrganic.setText(org);
     }
@@ -296,18 +293,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             return result + follow;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            // Something wrong with the network or the URL.
-//            if (result.startsWith(START_ERROR)) {
-//                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-//            } else if(result.startsWith("Successfully")) {
-//                mListener.onRegisterFragmentInteraction(result);
-//            } else {
-//                Toast.makeText(getActivity(), TOAST_ERROR, Toast
-//                        .LENGTH_SHORT).show();
-//            }
-        }
     }
 
 }
