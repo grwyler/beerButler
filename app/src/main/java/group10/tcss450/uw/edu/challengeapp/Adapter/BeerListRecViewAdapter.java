@@ -1,11 +1,14 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +29,6 @@ import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
 import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
-
 /**
  * Created by Garrett on 5/19/2017.
  */
@@ -75,10 +77,8 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                     }
                 }
                 if (!alreadyAdded) {
-                    boolean isOrganic = states[2].equals("1") ? true : false;
-                    mBeerList.add(new Beer(states[0], states[1], isOrganic, states[3], states[4],
-                            Double.valueOf(states[5]), Double.valueOf(states[6]), states[7], states[8],
-                            states[9]));
+                    mBeerList.add(new Beer(states[0], states[1], states[2], states[3], states[4],
+                            states[5], states[6], states[7], states[8], states[9]));
                 }
                 beers = beers.substring(beers.indexOf("$$$") + 3);
             }
@@ -214,31 +214,42 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
 
     @Override
     public void onBindViewHolder (BeerListRecViewAdapter.ViewHolder holder, int position) {
+
         Beer beer = mBeerList.get(position);
-        holder.mImageView.setImageResource(R.drawable.stout);
-        holder.mName.setText(beer.getmName());
-        String style = "Style: " + beer.getStyle();
-        holder.mStyle.setText(style);
-        String brewery = "Brewery: " + beer.getBrewery();
-        holder.mBrewery.setText(brewery);
-        String ABV = "ABV: " + beer.getAbv();
-        holder.mAbv.setText(ABV);
-        String IBU = "IBUs: " + beer.getIbu();
-        holder.mIbu.setText(IBU);
-        String desc = "Description: " + beer.getDescription();
-        holder.mDescription.setText(desc);
-        String notes = "Notes: " + beer.getNotes();
-        holder.oldNote = beer.getNotes();
-        holder.mNotes.setText(notes);
-        String rating = "Rating: " + beer.getRating();
-        holder.oldRating = beer.getRating();
-        holder.mRating.setText(rating);
-        String boo = beer.getIsOrganic();
-        if (boo == null) {
-            boo = "no";
-        }
-        String org = "Organic: " + boo;
-        holder.mIsOrganic.setText(org);
+        ImageView imageView = holder.mImageView;
+
+        holder.mImageView.setImageResource(R.drawable.placeholder);
+        if (beer != null) {
+            System.out.println(beer.getLabelLink());
+            if(!beer.getLabelLink().equals("no link")) {
+                new DownloadImageTask(imageView).execute(beer.getLabelLink());
+            } else imageView.setImageResource(R.drawable.stout);
+            holder.mName.setText(beer.getmName());
+            holder.mStyle.setText(beer.getStyle());
+            String brewery = "Brewery: " + beer.getBrewery();
+            holder.mBrewery.setText(brewery);
+            String ABV = "ABV: " + beer.getAbv();
+            holder.mAbv.setText(ABV);
+            String IBU = "IBUs: " + beer.getIbu();
+            holder.mIbu.setText(IBU);
+            String desc = "Description: " + beer.getDescription();
+            holder.mDescription.setText(desc);
+            String notes = "Notes: " + beer.getNotes();
+            holder.oldNote = beer.getNotes();
+            holder.mNotes.setText(notes);
+            String rating = "Rating: " + beer.getRating();
+            holder.oldRating = beer.getRating();
+            holder.mRating.setText(rating);
+            String boo = beer.getIsOrganic();
+            if (boo == null) {
+                boo = "no";
+            }
+            String org = "Organic: " + boo;
+            holder.mIsOrganic.setText(org);
+        } else imageView.setImageResource(R.drawable.stout);
+
+//        holder.mImageView.setImageResource(R.drawable.stout);
+
     }
 
     @Override
@@ -304,6 +315,43 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             return result + follow;
         }
 
+    }
+    /**
+     * Helper class used to download and return an image.
+     */
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        private ImageView bmImage;
+
+        /**
+         * Constructor
+         * @param bmImage The ImageView to be updated.
+         */
+        DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        /**
+         * Makes a connection to the URL, downloads the image, and saves it as bitmap
+         * @param urls the URLs to check for an image.
+         * @return a Bitmap image from the url.
+         */
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
 }

@@ -20,7 +20,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.SuggestionsListRecViewAdapter;
-import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
 import group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment;
 import group10.tcss450.uw.edu.challengeapp.BeerList.TopBrew;
 import group10.tcss450.uw.edu.challengeapp.R;
@@ -30,7 +29,7 @@ import group10.tcss450.uw.edu.challengeapp.R;
  */
 public class SuggestionsListFragment extends Fragment {
     public static final String KEY = "I love beer!";
-    private ArrayList<Beer> brews = new ArrayList<>();
+    private ArrayList<TopBrew> brews = new ArrayList<>();
     private SuggestionsListRecViewAdapter mAdapter;
     private OnFragmentInteractionListener mListener;
 
@@ -79,7 +78,7 @@ public class SuggestionsListFragment extends Fragment {
                     JSONArray data = jsonO.getJSONArray("data");
                     for (int i = 0; i < data.length(); i++) {
                         TopBrew brew = TopBrew.create(data.getJSONObject(i));
-                        brews.add(new Beer(brew));
+                        brews.add(brew);
                     }
                 } else {
                     Toast.makeText(getActivity(), "No brew data to show", Toast

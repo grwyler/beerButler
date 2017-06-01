@@ -17,15 +17,15 @@ public class Beer {
     private String mRating;
     private TopBrew.labels mLabels;
 
-    public Beer(String name, String style, boolean isOrganic, String labelLink, String brewery,
-                double abv, double ibu, String description, String notes, String rating) {
+    public Beer(String name, String style, String isOrganic, String labelLink, String brewery,
+                String abv, String ibu, String description, String notes, String rating) {
         mName = name;
         mStyle = style;
-//        mIsOrganic = isOrganic;
+        mIsOrganic = isOrganic;
         mLabelLink = labelLink;
         mBrewery = brewery;
-//        mAbv = abv;
-//        mIbu = ibu;
+        mAbv = abv;
+        mIbu = ibu;
         mDescription = description;
         mNotes = notes;
         mRating = rating;
@@ -44,6 +44,7 @@ public class Beer {
             mDescription = topBrew.getDescription();
             mNotes = "";
             mRating = "";
+
         }
 
     }

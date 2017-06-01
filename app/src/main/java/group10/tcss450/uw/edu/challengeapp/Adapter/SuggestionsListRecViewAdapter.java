@@ -24,7 +24,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import group10.tcss450.uw.edu.challengeapp.BeerList.Beer;
 import group10.tcss450.uw.edu.challengeapp.BeerList.TopBrew;
 import group10.tcss450.uw.edu.challengeapp.MainPageFragment;
 import group10.tcss450.uw.edu.challengeapp.R;
@@ -40,7 +39,7 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
     private final Context mContext;
     private final SuggestionsListFragment.OnFragmentInteractionListener mListener;
     /** The list of TopBrew objects that need to be added to the recycler view.*/
-    private ArrayList<Beer> mDataset;
+    private ArrayList<TopBrew> mDataset;
     /** Resources to use string resources */
     private Resources mResources;
     /** Exception message for too few or too many args*/
@@ -58,7 +57,7 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
      * Recycler view adapter constructor.
      * @param myDataset an array of complete Brew objects
      */
-    public SuggestionsListRecViewAdapter(ArrayList<Beer> myDataset, String username,
+    public SuggestionsListRecViewAdapter(ArrayList<TopBrew> myDataset, String username,
                                          Context context,
                                          SuggestionsListFragment
                                                  .OnFragmentInteractionListener listener) {
@@ -80,7 +79,7 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
 
     @Override
     public void onBindViewHolder(SuggestionsListRecViewAdapter.ViewHolder viewHolder, int position) {
-        final Beer topBrew = mDataset.get(position);
+        final TopBrew topBrew = mDataset.get(position);
         String name = "";
         ImageView imageView = viewHolder.mImageView;
         CardView cardView = viewHolder.mCardView;
@@ -90,15 +89,17 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
             public void onClick(View v) {
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
-                task.execute(BEERLIST_PARTIAL_URL, topBrew.getmName(), topBrew.getStyle(),
-                        topBrew.getIsOrganic(), topBrew.getLabelLink(), topBrew.getBrewery(),
-                        topBrew.getAbv(), topBrew.getIbu(), topBrew.getDescription(),
-                        topBrew.getNotes(), topBrew.getRating());
+                task.execute(BEERLIST_PARTIAL_URL, topBrew.getName(),
+                        topBrew.getStyle() == null ? "" : topBrew.getStyle().getName(),
+                        topBrew.getIsOrganic(),
+                        topBrew.getLabels() == null ? "no link" : topBrew.getLabels().getLarge(),
+                        topBrew.getNameDisplay(), topBrew.getAbv(), topBrew.getIbu(),
+                        topBrew.getDescription(), "", "");
             }
         });
         if (topBrew != null) {
             TopBrew.labels labels = topBrew.getLabels();
-            name = topBrew.getmName();
+            name = topBrew.getName();
 
             if(labels != null) {
                 new DownloadImageTask(imageView).execute(labels.getLarge());
