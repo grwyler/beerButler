@@ -14,4 +14,9 @@
         <item name="android:background">#222222</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/cardview_shadow_start_color</item>
+        <item name="colorControlActivated">@color/colorAle</item>
+    </style>
+
 </resources>

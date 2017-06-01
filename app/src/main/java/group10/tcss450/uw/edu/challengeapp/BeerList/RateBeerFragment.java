@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,10 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             "~grwyler/beerButler/";
     public OnFragmentInteractionListener mListener;
 
+    private String mNotes;
+
+    private RatingBar mRatingBar;
+
     public RateBeerFragment() {
         // Required empty public constructor
     }
@@ -47,8 +50,22 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_rate_beer, container, false);
         TextView tv = (TextView) v.findViewById(R.id.beer_name_TV);
-        tv.setText(getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY));
         Button b = (Button) v.findViewById(R.id.submit_rating_button);
+        String mBeerName = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
+        String mDescription = getArguments().getString("Description");
+        String argRating = getArguments().getString(BeerListRecViewAdapter.RATING_KEY);
+        EditText noteET = (EditText) v.findViewById(R.id.notesET);
+        mNotes = noteET.getText().toString();
+        if (mNotes.equals("")) mNotes = getArguments().getString(BeerListRecViewAdapter.NOTES_KEY);
+        if (mDescription.equals("0")) mDescription = "";
+        mRatingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+        noteET.setText(mNotes);
+        float mRating = mRatingBar.getRating();
+        if (mRating == 0 && argRating.length() > 0) mRating = Float.valueOf(argRating);
+        mRatingBar.setRating(mRating);
+        tv.setText(mBeerName);
+        tv = (TextView) v.findViewById(R.id.description);
+        tv.setText(mDescription);
         b.setOnClickListener(this);
         return v;
     }
@@ -77,26 +94,19 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
             RatingBar ratingBar = (RatingBar) parent.findViewById(R.id.ratingBar);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
 
-            String note, beer, username, oldRating, newRating;
-            float rating = ratingBar.getRating();
-            newRating = String.valueOf(rating);
-            note = notes.getText().toString();
+            String note, beer, username, oldRating, newRating, description;
+//            float rating = ratingBar.getRating();
+//            newRating = String.valueOf(rating);
+            mNotes = notes.getText().toString();
 
             task = new RateBeerFragment.RateBeerTask();
             if (getArguments() != null) {
                 beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);
                 username = getArguments().getString(BeerListRecViewAdapter.USERNAME_KEY);
-                oldRating = getArguments().getString(BeerListRecViewAdapter.RATING_KEY);
-                //make sure something is sent to the database.
-                if (note.equals("")) {
-                    note = getArguments().getString(BeerListRecViewAdapter.NOTES_KEY);
-                }
-                if (newRating == "0.0") {
-                    newRating = oldRating;
-                }
-                task.execute(PARTIAL_URL, beer, newRating + "", note, username);
+                task.execute(PARTIAL_URL, beer, mRatingBar.getRating() + "", mNotes, username);
             } else {
-                Toast.makeText(getActivity(), "Arguments were null!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You messed it up you drunk bastard",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -113,8 +123,6 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
 
         /** The start of a string returned if there was an error connecting to the DB.*/
         private final String START_ERROR = "Unable to";
-        /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "Something went wrong while adding a rating or notes.";
         /** Exception message for too few or too many args*/
         private final String EXCEPTION_MSG = "Five String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
@@ -164,13 +172,13 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
             if (result.startsWith(START_ERROR)) {
-                Log.d("TEST!!!! Line 166", result);
+//                Log.d("TEST!!!! Line 166", result);
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             } else if(result.startsWith("UPDATE")) {
-                Log.d("RateBeerFragment", "Success!!!!!!!!!!");
+//                Log.d("RateBeerFragment", "Success!!!!!!!!!!");
                 mListener.onRateBeerFragmentInteraction();
             } else {
-                Log.d("TEST!!!! Line 172", result);
+//                Log.d("TEST!!!! Line 172", result);
                 Toast.makeText(getActivity(), result, Toast
                         .LENGTH_LONG).show();
 

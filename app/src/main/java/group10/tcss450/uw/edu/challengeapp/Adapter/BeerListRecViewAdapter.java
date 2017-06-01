@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -52,7 +53,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         populateList(beerList);
     }
 
-    public void populateList(String beerList) {
+    private void populateList(String beerList) {
         int size = Integer.valueOf(beerList.substring(0, beerList.indexOf("name=")));
         String beers = beerList;
         String[] identifiers = makeIdentifiers();
@@ -83,10 +84,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
                 beers = beers.substring(beers.indexOf("$$$") + 3);
             }
         }
-    }
-
-    public String getmUsername() {
-        return mUsername;
     }
 
     private String[] makeIdentifiers() {
@@ -149,8 +146,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mName;
         /** The TextView to display the style.*/
         TextView mStyle;
-        /** The TextView to display if the beer is organic*/
-        TextView mIsOrganic;
 //        /** The TextView to display if the beer is organic*/
 //        TextView mLabelLink;
         /** The TextView to display the brewery name*/
@@ -159,48 +154,34 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mAbv;
         /** The TextView to display the IBUs*/
         TextView mIbu;
-        /** The TextView to display the description*/
-        TextView mDescription;
         /** The TextView to display the users notes*/
         TextView mNotes;
-        /** The TextView to display the rating*/
-        TextView mRating;
+
+        ImageView mOrganicPic;
+
+        RatingBar mRating;
+
+        CardView mCardView;
         private String oldNote;
         private String oldRating;
+        private String oldDescription;
 
         /**
          * Constructor class. Initialize all fields.
          * @param cardView the Cardview being passed.
          */
-        ViewHolder(CardView cardView, final String username) {
+        ViewHolder(CardView cardView) {
             super(cardView);
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    RateBeerFragment rf = new RateBeerFragment();
-                    Bundle args = new Bundle();
-                    args.putSerializable(USERNAME_KEY, username);
-                    args.putSerializable(BEERNAME_KEY, mName.getText().toString());
-                    args.putSerializable(NOTES_KEY, oldNote);
-                    args.putSerializable(RATING_KEY, oldRating);
-                    rf.setArguments(args);
-                    FragmentTransaction tran = MainActivity.mFragManager
-                            .beginTransaction()
-                            .replace(R.id.fragmentContainer, rf)
-                            .addToBackStack("rate");
-                    tran.commit();
-                }
-            });
+            mCardView = cardView;
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mName = (TextView) cardView.findViewById(R.id.name_view);
             mStyle = (TextView) cardView.findViewById(R.id.style_view);
-            mIsOrganic = (TextView) cardView.findViewById(R.id.is_organic_view);
+            mOrganicPic = (ImageView) cardView.findViewById(R.id.organic);
             mBrewery = (TextView) cardView.findViewById(R.id.brewery_view);
             mAbv = (TextView) cardView.findViewById(R.id.abv_view);
             mIbu = (TextView) cardView.findViewById(R.id.ibu_view);
-            mDescription = (TextView) cardView.findViewById(R.id.description_view);
             mNotes = (TextView) cardView.findViewById(R.id.notes_view);
-            mRating = (TextView) cardView.findViewById(R.id.rating_view);
+            mRating = (RatingBar) cardView.findViewById(R.id.ratingBar2);
         }
     }
 
@@ -209,18 +190,35 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.beer_list_card_view, parent, false);
         mResources = parent.getContext().getResources();
-        return new BeerListRecViewAdapter.ViewHolder(cv, mUsername);
+        return new BeerListRecViewAdapter.ViewHolder(cv);
     }
 
     @Override
-    public void onBindViewHolder (BeerListRecViewAdapter.ViewHolder holder, int position) {
-
-        Beer beer = mBeerList.get(position);
+    public void onBindViewHolder (final BeerListRecViewAdapter.ViewHolder holder, int position) {
+        final Beer beer = mBeerList.get(position);
         ImageView imageView = holder.mImageView;
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RateBeerFragment rf = new RateBeerFragment();
+                Bundle args = new Bundle();
+                args.putSerializable(USERNAME_KEY, mUsername);
+                args.putSerializable(BEERNAME_KEY, holder.mName.getText().toString());
+                args.putSerializable(NOTES_KEY, holder.oldNote);
+                args.putSerializable(RATING_KEY, holder.oldRating);
+                args.putString("Description", beer.getDescription());
+                rf.setArguments(args);
+                FragmentTransaction tran = MainActivity.mFragManager
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, rf)
+                        .addToBackStack("rate");
+                tran.commit();
+            }
+        });
 
         holder.mImageView.setImageResource(R.drawable.placeholder);
         if (beer != null) {
-            System.out.println(beer.getLabelLink());
             if(!beer.getLabelLink().equals("no link")) {
                 new DownloadImageTask(imageView).execute(beer.getLabelLink());
             } else imageView.setImageResource(R.drawable.stout);
@@ -228,24 +226,16 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             holder.mStyle.setText(beer.getStyle());
             String brewery = "Brewery: " + beer.getBrewery();
             holder.mBrewery.setText(brewery);
-            String ABV = "ABV: " + beer.getAbv();
-            holder.mAbv.setText(ABV);
-            String IBU = "IBUs: " + beer.getIbu();
-            holder.mIbu.setText(IBU);
-            String desc = "Description: " + beer.getDescription();
-            holder.mDescription.setText(desc);
-            String notes = "Notes: " + beer.getNotes();
+            holder.mAbv.setText(beer.getAbv().equals("0") ? "" : "ABV: " + beer.getAbv());
+            holder.mIbu.setText(beer.getIbu().equals("0") ? "" : "IBUs: " + beer.getIbu());
+            String notes = beer.getNotes();
             holder.oldNote = beer.getNotes();
             holder.mNotes.setText(notes);
-            String rating = "Rating: " + beer.getRating();
+            String rating = beer.getRating().equals("") ? "0" : beer.getRating();
             holder.oldRating = beer.getRating();
-            holder.mRating.setText(rating);
+            holder.mRating.setRating(Float.valueOf(rating));
             String boo = beer.getIsOrganic();
-            if (boo == null) {
-                boo = "no";
-            }
-            String org = "Organic: " + boo;
-            holder.mIsOrganic.setText(org);
+            if (boo.equals("Y")) holder.mOrganicPic.setVisibility(View.VISIBLE);
         } else imageView.setImageResource(R.drawable.stout);
 
 //        holder.mImageView.setImageResource(R.drawable.stout);
@@ -267,11 +257,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         private final String EXCEPTION_MSG = "Three String arguments required.";
         /** Start of the message to notify the user of connection failure.*/
         private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
-        /** The start of a string returned if there was an error connecting to the DB.*/
-        private final String START_ERROR = "Unable to";
-        /** The error message if the user enters wrong data for logging in*/
-        private final String TOAST_ERROR = "That user name is already being used";
-
 
         @Override
         protected String doInBackground(String... strings) {

@@ -38,7 +38,7 @@ public class Beer {
             mIsOrganic = topBrew.getIsOrganic();
 //            mLabelLink = topBrew.getLabels().getMedium();
             mLabels = topBrew.getLabels();
-            mBrewery = topBrew.getName();
+            mBrewery = topBrew.getNameDisplay();
             mAbv = topBrew.getAbv();
             mIbu = topBrew.getIbu();
             mDescription = topBrew.getDescription();
