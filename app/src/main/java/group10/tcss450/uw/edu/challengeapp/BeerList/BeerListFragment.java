@@ -184,7 +184,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
             if (getActivity() != null) {
                 textView = (TextView) getActivity().findViewById(R.id.add_beer_suggestion);
             }
-            if (!result.equals("0")) {
+            if (!result.equals("0") && getActivity() != null) {
                 if (textView != null) textView.setVisibility(View.GONE);
                 RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
                         .recycler_view_beer);

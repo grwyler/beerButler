@@ -91,7 +91,7 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
                 AsyncTask<String, Void, String> task;
                 task = new AddBeerToDBTask();
                 task.execute(BEERLIST_PARTIAL_URL, topBrew.getmName(), topBrew.getStyle(),
-                        topBrew.getIsOrganic(), "link", topBrew.getBrewery(),
+                        topBrew.getIsOrganic(), topBrew.getLabelLink(), topBrew.getBrewery(),
                         topBrew.getAbv(), topBrew.getIbu(), topBrew.getDescription(),
                         topBrew.getNotes(), topBrew.getRating());
             }
