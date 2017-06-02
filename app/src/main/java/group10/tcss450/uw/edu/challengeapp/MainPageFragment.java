@@ -31,12 +31,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private static final String PARTIAL_URL = "http://api.brewerydb.com/v2/search/geo/point" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&";
-    /** The start of a string returned if there was an error connecting to the DB.*/
-    private final String START_ERROR = "Unable to";
-    /** Exception message for too few or too many args*/
-    private final String EXCEPTION_MSG = "One String arguments required.";
-    /** Start of the message to notify the user of connection failure.*/
-    private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
 
     private OnFragmentInteractionListener mListener;
     private String mLongitude;
@@ -158,7 +152,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 }
 
             } catch (Exception e) {
-                response = EXCEPTION_MSG_2 + e.getMessage();
+                response = "Unable to connect, Reason: " + e.getMessage();
             } finally {
                 if (urlConnection != null)
                     urlConnection.disconnect();
@@ -169,6 +163,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
+            /* The start of a string returned if there was an error connecting to the DB.*/
+            String START_ERROR = "Unable to";
             if (result.startsWith(START_ERROR)) {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG)
                         .show();
@@ -179,54 +175,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             }
             mListener.onMainPageBrewTourButtonPressed(result);
         }
-    }
-
-    /**
-     * A local AsyncTask class used to access the database and communicate back to the
-     * activity.
-     * */
-
-    public class GetBeerListTask extends AsyncTask<String, Void, String> {
-
-        private ProgressDialog dialog = new ProgressDialog(getContext());
-
-        @Override
-        protected void onPreExecute() {
-            this.dialog.setMessage("Please wait");
-            this.dialog.show();
-        }
-        @Override
-        protected String doInBackground(String... strings) {
-            if (strings.length != 1) {
-                throw new IllegalArgumentException(EXCEPTION_MSG);
-            }
-            String response = "";
-            HttpURLConnection urlConnection = null;
-            try {
-                URL urlObject = new URL(strings[0]);
-                urlConnection = (HttpURLConnection) urlObject.openConnection();
-                InputStream content = urlConnection.getInputStream();
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s;
-                while ((s = buffer.readLine()) != null) {
-                    response += s;
-                }
-            } catch (Exception e) {
-                response = EXCEPTION_MSG_2 + e.getMessage();
-            } finally {
-                if (urlConnection != null) urlConnection.disconnect();
-            }
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
-            mListener.onMainPageBeerListButtonPressed();
-        }
-
     }
 
 }

@@ -22,18 +22,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.Adapter.BeerListRecViewAdapter;
 import group10.tcss450.uw.edu.challengeapp.Adapter.ItemTouchHelperSimpleCallback;
@@ -44,8 +38,6 @@ import group10.tcss450.uw.edu.challengeapp.R;
  * make everything consistent across the application.
  */
 public class BeerListFragment extends Fragment implements View.OnClickListener {
-    public static final String KEY = "I love beer!";
-    private ArrayList<String> beerNames = new ArrayList<>();
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
@@ -56,8 +48,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     private static final String SUGGESTIONS_PARTIAL_URL = "http://api.brewerydb.com/v2/beers/" +
             "?key=b5a1363a472d95fdab32ea49a2c3eb3f&name=";
     private String mUsername;
-    private BeerListRecViewAdapter mAdapter;
-    private AsyncTask<String, Void, String> mGetBeersTask;
     private OnFragmentInteractionListener mListener;
     /** Required empty public constructor*/
     public BeerListFragment() {}
@@ -77,29 +67,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-
-            try {
-                String st = getArguments().getString(KEY);
-                JSONObject jsonO = new JSONObject(st);
-                int num = 0;
-                num = jsonO.getInt("totalResults");
-                if (jsonO.getString("status").toString().equals("success") && num != 0) {
-                    JSONArray data = jsonO.getJSONArray("data");
-
-                    for (int i = 0; i < data.length(); i++) {
-                        beerNames.add((String)(data.getJSONObject(i)).get("name"));
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "No beer data to show", Toast
-                            .LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
         mEditText = (EditText) getActivity().findViewById(R.id.auto_complete_beers_text);
@@ -107,7 +74,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 .login_prefs),
                 Context.MODE_PRIVATE);
         mUsername = sharedPreferences.getString(getString(R.string.usernamePrefs), "");
-        mGetBeersTask = new GetBeerListTask();
+        AsyncTask<String, Void, String> mGetBeersTask = new GetBeerListTask();
         mGetBeersTask.execute(BEERLIST_PARTIAL_URL);
     }
 
@@ -129,7 +96,6 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
         String beerName = mEditText.getText().toString();
         if (beerName.length() == 0) {
             mEditText.setError("Search field cannot be empty!");
-            // TODO: Call the api and search for beerName
         } else {
             // Delete new lines entered by the stupid user.
             if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
@@ -188,7 +154,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                 RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id
                         .recycler_view_beer);
                 recyclerView.setLayoutManager(new LinearLayoutManager(new Activity()));
-                mAdapter = new BeerListRecViewAdapter(result, mUsername);
+                BeerListRecViewAdapter mAdapter = new BeerListRecViewAdapter(result, mUsername);
                 recyclerView.setAdapter(mAdapter);
                 ItemTouchHelper.Callback callback = new ItemTouchHelperSimpleCallback(mAdapter);
                 ItemTouchHelper touchHelper = new ItemTouchHelper(callback);

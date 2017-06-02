@@ -1,6 +1,5 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -31,7 +30,7 @@ import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.MainActivity;
 import group10.tcss450.uw.edu.challengeapp.R;
 /**
- * Created by Garrett on 5/19/2017.
+ * A Beer recycler view adapter for the Beer list. Handles displaying all user beers.
  */
 public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecViewAdapter
         .ViewHolder>  implements ItemTouchHelperAdapter {
@@ -41,9 +40,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     final public static String BEERNAME_KEY = "Don't drink and drive kids. You will spill your beer.";
     /** The list of TopBrewery objects that need to be added to the recycler view.*/
     private ArrayList<Beer> mBeerList;
-    public String mUsername;
-    /** Resources to use string resources */
-    private Resources mResources;
+    private String mUsername;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
 
@@ -146,8 +143,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         TextView mName;
         /** The TextView to display the style.*/
         TextView mStyle;
-//        /** The TextView to display if the beer is organic*/
-//        TextView mLabelLink;
         /** The TextView to display the brewery name*/
         TextView mBrewery;
         /** The TextView to display the ABV*/
@@ -164,7 +159,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
         CardView mCardView;
         private String oldNote;
         private String oldRating;
-        private String oldDescription;
 
         /**
          * Constructor class. Initialize all fields.
@@ -189,7 +183,6 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
     public BeerListRecViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.beer_list_card_view, parent, false);
-        mResources = parent.getContext().getResources();
         return new BeerListRecViewAdapter.ViewHolder(cv);
     }
 

@@ -1,7 +1,9 @@
 package group10.tcss450.uw.edu.challengeapp.BeerList;
 
 /**
- * Created by Garrett on 5/19/2017.
+ * A beer class to represent beers that will be displayed in the beer list. This is necessary
+ * in addition to the TopBrew class, because we need to be able to instantiate Beer objects from
+ * the Recycler View adapter class and TopBrew only allows you to use .create.
  */
 
 public class Beer {
@@ -9,13 +11,11 @@ public class Beer {
     private String mStyle;
     private String mIsOrganic;
     private String mLabelLink;
-    private String mBrewery;
     private String mAbv;
     private String mIbu;
     private String mDescription;
     private String mNotes;
     private String mRating;
-    private TopBrew.labels mLabels;
 
     public Beer(String name, String style, String isOrganic, String labelLink, String brewery,
                 String abv, String ibu, String description, String notes, String rating) {
@@ -23,10 +23,9 @@ public class Beer {
         mStyle = style;
         mIsOrganic = isOrganic;
         mLabelLink = labelLink;
-        mBrewery = brewery;
         mAbv = abv;
         mIbu = ibu;
-        mDescription = description;
+        mDescription = description.equals("0") ? "" : description;
         mNotes = notes;
         mRating = rating;
     }
@@ -36,9 +35,6 @@ public class Beer {
             mName = topBrew.getName();
             mStyle = topBrew.getStyle() == null ? "" : topBrew.getStyle().getName();
             mIsOrganic = topBrew.getIsOrganic();
-//            mLabelLink = topBrew.getLabels().getMedium();
-            mLabels = topBrew.getLabels();
-            mBrewery = topBrew.getNameDisplay();
             mAbv = topBrew.getAbv();
             mIbu = topBrew.getIbu();
             mDescription = topBrew.getDescription();
@@ -65,10 +61,6 @@ public class Beer {
         return mLabelLink;
     }
 
-    public String getBrewery() {
-        return mBrewery;
-    }
-
     public String getAbv() {
         return mAbv;
     }
@@ -87,9 +79,5 @@ public class Beer {
 
     public String getRating() {
         return mRating;
-    }
-
-    public TopBrew.labels getLabels() {
-        return mLabels;
     }
 }

@@ -57,11 +57,13 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         EditText noteET = (EditText) v.findViewById(R.id.notesET);
         mNotes = noteET.getText().toString();
         if (mNotes.equals("")) mNotes = getArguments().getString(BeerListRecViewAdapter.NOTES_KEY);
-        if (mDescription.equals("0")) mDescription = "";
+        if (mDescription != null) if (mDescription.equals("0")) mDescription = "";
         mRatingBar = (RatingBar) v.findViewById(R.id.ratingBar);
         noteET.setText(mNotes);
         float mRating = mRatingBar.getRating();
-        if (mRating == 0 && argRating.length() > 0) mRating = Float.valueOf(argRating);
+        if (argRating != null) {
+            if (mRating == 0 && argRating.length() > 0) mRating = Float.valueOf(argRating);
+        }
         mRatingBar.setRating(mRating);
         tv.setText(mBeerName);
         tv = (TextView) v.findViewById(R.id.description);
@@ -91,14 +93,9 @@ public class RateBeerFragment extends Fragment implements View.OnClickListener{
         if (view.getId() == R.id.submit_rating_button) {
             AsyncTask<String, Void, String> task;
             View parent = (View) view.getParent();
-            RatingBar ratingBar = (RatingBar) parent.findViewById(R.id.ratingBar);
             EditText notes = (EditText) parent.findViewById(R.id.notesET);
-
-            String note, beer, username, oldRating, newRating, description;
-//            float rating = ratingBar.getRating();
-//            newRating = String.valueOf(rating);
+            String beer, username, oldRating;
             mNotes = notes.getText().toString();
-
             task = new RateBeerFragment.RateBeerTask();
             if (getArguments() != null) {
                 beer = getArguments().getString(BeerListRecViewAdapter.BEERNAME_KEY);

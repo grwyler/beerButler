@@ -2,7 +2,6 @@ package group10.tcss450.uw.edu.challengeapp.Adapter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -25,7 +24,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import group10.tcss450.uw.edu.challengeapp.BeerList.TopBrew;
-import group10.tcss450.uw.edu.challengeapp.MainPageFragment;
 import group10.tcss450.uw.edu.challengeapp.R;
 import group10.tcss450.uw.edu.challengeapp.SuggestionsList.SuggestionsListFragment;
 
@@ -40,18 +38,9 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
     private final SuggestionsListFragment.OnFragmentInteractionListener mListener;
     /** The list of TopBrew objects that need to be added to the recycler view.*/
     private ArrayList<TopBrew> mDataset;
-    /** Resources to use string resources */
-    private Resources mResources;
-    /** Exception message for too few or too many args*/
-    private final String EXCEPTION_MSG = "Three String arguments required.";
-    /**
-     * Start of the message to notify the user of connection failure.
-     */
-    private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
     private String mUsername;
-    private MainPageFragment.GetBeerListTask mGetBeersTask;
 
     /**
      * Recycler view adapter constructor.
@@ -72,7 +61,6 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
                                                                        int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.brew_tour_card_view, parent, false);
-        mResources = parent.getContext().getResources();
         return new ViewHolder(cardView);
     }
 
@@ -151,13 +139,6 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
             mCardView = cardView;
             mImageView = (ImageView) cardView.findViewById(R.id.brew_pic);
             mBrewName = (TextView) cardView.findViewById(R.id.brewery_name);
-//            mCardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //TODO: tie this into the beer rating function
-//                    //Activity a = new Activity();
-//                }
-//            });
         }
     }
 
@@ -216,6 +197,8 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 11) {
+                /* Exception message for too few or too many args*/
+                String EXCEPTION_MSG = "Three String arguments required.";
                 throw new IllegalArgumentException(EXCEPTION_MSG);
             }
             String response = "";
@@ -252,6 +235,10 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
                     response += s;
                 }
             } catch (Exception e) {
+                /*
+      Start of the message to notify the user of connection failure.
+     */
+                String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
                 response = EXCEPTION_MSG_2 + e.getMessage();
             } finally {
                 if (urlConnection != null) urlConnection.disconnect();
