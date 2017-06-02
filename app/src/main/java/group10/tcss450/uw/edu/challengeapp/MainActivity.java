@@ -331,6 +331,7 @@ public class MainActivity extends AppCompatActivity implements
         MenuItem menuItem = menu.findItem(R.id.action_settings);
 //        MenuItem menuItem = (MenuItem) findViewById(R.id.action_settings);
         menuItem.setEnabled(mMenuItemEnabled);
+        if (mUsername != null) menuItem.setTitle("Logout " + mUsername);
         return true;
     }
 

@@ -33,7 +33,7 @@
             android:layout_toEndOf="@+id/brew_pic"
             android:layout_toRightOf="@+id/brew_pic"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/hours"

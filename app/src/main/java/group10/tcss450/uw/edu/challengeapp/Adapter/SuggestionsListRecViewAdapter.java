@@ -1,7 +1,9 @@
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -75,14 +77,38 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyncTask<String, Void, String> task;
-                task = new AddBeerToDBTask();
-                task.execute(BEERLIST_PARTIAL_URL, topBrew.getName(),
-                        topBrew.getStyle() == null ? "" : topBrew.getStyle().getName(),
-                        topBrew.getIsOrganic(),
-                        topBrew.getLabels() == null ? "no link" : topBrew.getLabels().getLarge(),
-                        topBrew.getNameDisplay(), topBrew.getAbv(), topBrew.getIbu(),
-                        topBrew.getDescription(), "", "");
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                String name = topBrew.getName();
+                if (name.toLowerCase().contains(" light")) {
+                    builder.setMessage("Warning! You may have accidentally selected a light beer!" +
+                            " Are you sure you want to add this?");
+                } else builder.setMessage("Do you want to add this beer to your list?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                AsyncTask<String, Void, String> task;
+                                task = new AddBeerToDBTask();
+                                task.execute(BEERLIST_PARTIAL_URL, topBrew.getName(),
+                                        topBrew.getStyle() == null ? "" : topBrew.getStyle()
+                                                .getName(),
+                                        topBrew.getIsOrganic(),
+                                        topBrew.getLabels() == null ? "no link" : topBrew
+                                                .getLabels().getLarge(),
+                                        topBrew.getNameDisplay(), topBrew.getAbv(), topBrew.getIbu(),
+                                        topBrew.getDescription(), "", "");
+                                dialog.cancel();
+                            }
+                        });
+                builder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
             }
         });
         if (topBrew != null) {
@@ -93,10 +119,7 @@ public class SuggestionsListRecViewAdapter  extends RecyclerView.Adapter<Suggest
                 new DownloadImageTask(imageView).execute(labels.getLarge());
             } else viewHolder.mImageView.setImageResource(R.drawable.stout);
         } else viewHolder.mImageView.setImageResource(R.drawable.stout);
-        if (name == null || name.equals("")) {
-            name = "Brew";
-        }
-//        name = mResources.getString(R.string.text_view_brewery) + name;
+        if (name == null || name.equals("")) name = "Brew";
         viewHolder.mBrewName.setText(name);
     }
 

@@ -12,16 +12,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -37,12 +38,14 @@ import group10.tcss450.uw.edu.challengeapp.R;
  * A fragment that shows data about beer unique to each user. The data is displayed in CardViews to
  * make everything consistent across the application.
  */
-public class BeerListFragment extends Fragment implements View.OnClickListener {
+public class BeerListFragment extends Fragment implements SearchView.OnQueryTextListener,
+        SearchView.OnCloseListener, SearchView.OnFocusChangeListener {
     /** Exception message for too few or too many args*/
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
     private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
-    private EditText mEditText;
+    private SearchView mSearchView;
+    private FloatingActionButton mFab;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
     private static final String SUGGESTIONS_PARTIAL_URL = "http://api.brewerydb.com/v2/beers/" +
@@ -58,8 +61,21 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_beer_list, container, false);
-        Button b = (Button) v.findViewById(R.id.add_beer);
-        b.setOnClickListener(this);
+        mSearchView = (SearchView) v.findViewById(R.id.search_view);
+        mSearchView.setOnFocusChangeListener(this);
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setOnCloseListener(this);
+        mFab = (FloatingActionButton) v.findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mSearchView.setVisibility(View.VISIBLE);
+                mFab.setVisibility(View.INVISIBLE);
+                mSearchView.requestFocus();
+                mSearchView.setIconified(false);
+            }
+        });
 
         return v;
     }
@@ -67,9 +83,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        Button b = (Button) getActivity().findViewById(R.id.add_beer);
-        b.setOnClickListener(this);
-        mEditText = (EditText) getActivity().findViewById(R.id.auto_complete_beers_text);
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs),
                 Context.MODE_PRIVATE);
@@ -92,19 +106,35 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        String beerName = mEditText.getText().toString();
-        if (beerName.length() == 0) {
-            mEditText.setError("Search field cannot be empty!");
+    public boolean onQueryTextSubmit(String query) {
+        if (query.length() == 0) {
+            Toast.makeText(getActivity(), "Search field cannot be empty!",
+                    Toast.LENGTH_SHORT).show();
         } else {
             // Delete new lines entered by the stupid user.
-            if (beerName.contains("\n")) beerName = beerName.substring(0, beerName.indexOf("\n"));
-            beerName = beerName.replace(" ", "%20");
+            if (query.contains("\n")) query = query.substring(0, query.indexOf("\n"));
+            query = query.replace(" ", "%20");
             AsyncTask<String, Void, String> task;
             task = new GetSuggestionsTask();
-            task.execute(SUGGESTIONS_PARTIAL_URL, "*" + beerName + "*");
+            task.execute(SUGGESTIONS_PARTIAL_URL, "*" + query + "*");
         }
+        return true;
     }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    @Override
+    public boolean onClose() {
+        mSearchView.setVisibility(View.GONE);
+        mFab.setVisibility(View.VISIBLE);
+        return false;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {}
 
     /**
      * A local AsyncTask class used to access the database and communicate back to the

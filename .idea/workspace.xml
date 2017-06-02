@@ -22,46 +22,23 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="Fixed the &quot;adding a beer other than the one selected bug&quot;">
+    <list default="true" id="feac820e-ce04-4c1d-aba8-aab335a76892" name="Default" comment="Changed the layout of the">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gridlayout_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gridlayout_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/palette_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_10_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_10_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_10_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_10_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_10_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_10_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_10_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_maps_10_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_10_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_10_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v13_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
     </list>
     <ignored path="ChallengeApp .iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,113 +70,133 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainPageFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BeerListFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1717">
-              <caret line="105" column="42" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="43" />
+            <state relative-caret-position="481">
+              <caret line="136" column="57" selection-start-line="136" selection-start-column="57" selection-end-line="136" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1496190863198" expanded="false" signature="4312:4345" ph="&quot;username&quot;" />
+                <element signature="e#2893#3212#0" expanded="true" />
+                <element signature="e#3211#3212#0" expanded="true" />
+                <element signature="e#4798#4799#0" expanded="true" />
+                <element signature="e#4826#4827#0" expanded="true" />
+                <marker date="1496441262803" expanded="false" signature="3527:3560" ph="&quot;username&quot;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="fragment_beer_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="136">
+              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+              <folding>
+                <element signature="e#688#711#0" expanded="true" />
+                <marker date="1496439494882" expanded="false" signature="2112:2130" ph="&quot;Search&quot;" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="115" column="21" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="21" />
-              <folding />
-            </state>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ItemTouchHelperSimpleCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperSimpleCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SuggestionsListFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SuggestionsList/SuggestionsListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
-              <caret line="91" column="87" selection-start-line="91" selection-start-column="87" selection-end-line="91" selection-end-column="87" />
+            <state relative-caret-position="73">
+              <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="56" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1525#1800#0" expanded="true" />
+                <element signature="e#1799#1800#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuggestionsListRecViewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1751">
-              <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="local.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
+          <provider editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeerListRecViewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BeerListRecViewAdapter.java">
+      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4709">
-              <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuggestionsListRecViewAdapter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="85" column="44" selection-start-line="85" selection-start-column="44" selection-end-line="85" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2962#5035#0" expanded="true" />
+                <element signature="e#3622#4623#0" expanded="true" />
+                <element signature="e#4622#4623#0" expanded="true" />
+                <element signature="e#4698#4924#0" expanded="true" />
+                <element signature="e#4923#4924#0" expanded="true" />
+                <element signature="e#5034#5035#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="brew_tour_card_view.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1606">
+              <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="beer_list_card_view.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="117" column="19" selection-start-line="117" selection-start-column="19" selection-end-line="117" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transparentstout.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/transparentstout.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -212,6 +209,7 @@
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -2162,9 +2160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MyCardViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/FourthFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SecondFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/ThirdFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml" />
@@ -2173,54 +2168,57 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_third.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_fourth.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_first.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginSelectionFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/RegisterFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/UserProfile.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/UserProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour_filters.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/RecViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BeerListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewListRecViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/AbstractRecViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/GetBeerListTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/ItemTouchHelperSimpleCallback.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/ItemTouchHelperAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperSimpleCallback.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFrag.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/TopBrewery.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/button_background.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_page.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_map.xml" />
+        <option value="$PROJECT_DIR$/local.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SuggestionsList/SuggestionsListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_rate_beer.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_suggestions_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BeerListRecViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/Beer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/RateBeerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_map.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BeerListRecViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginSelectionFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SuggestionsList/SuggestionsListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/UserProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperSimpleCallback.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/simple_search_view_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java" />
-        <option value="$PROJECT_DIR$/local.properties" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
-    <option name="y" value="-266" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -2361,20 +2359,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beerButler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beerButler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2416,6 +2400,152 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2446,6 +2576,108 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="challengeapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="challengeapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SuggestionsList" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="challengeapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BrewTour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beerButler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="challengeapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeerList" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2490,8 +2722,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="Pixel_API_25" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UILab" />
+    <property name="device.picker.selection" value="1015fa691e9a3a05" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="SearchEverywhereHistoryKey" value="settings&#9;PSI&#9;JAVA://android.provider.Settings" />
@@ -2499,19 +2731,25 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="group10.tcss450.uw.edu.challengeapp.Adapter" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ben\Desktop\BeerButtler\beerButler\app\src\main\java\group10\tcss450\uw\edu\challengeapp" />
     </key>
+    <key name="android.template.packageName">
+      <recent name="layout" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="group10.tcss450.uw.edu.challengeapp" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="group10.tcss450.uw.edu.challengeapp.Adapter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Garrett\AndroidStudioProjects\beerButler\app\src\main\res" />
       <recent name="C:\Users\ben\Desktop\BeerButler\beerButler\app\src\main\res\drawable" />
       <recent name="C:\Users\ben\Desktop\BeerButtler\beerButler\app\src\main\res\drawable" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -3040,7 +3278,63 @@
       <option name="project" value="LOCAL" />
       <updated>1496192453480</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Fixed the &quot;adding a beer other than the one selected bug&quot;">
+      <created>1496193121659</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1496193121659</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Fixed the multiple ratings bug where it would crash if you tried to rate a beer more than once">
+      <created>1496331263026</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1496331263026</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added the label images to the BeerList&#10;Added IBU and ABV to BeerList">
+      <created>1496336185486</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1496336185486</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Changed the layout of the Beer List and Beer rating XML files.">
+      <created>1496347938824</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1496347938824</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added organic image">
+      <created>1496348444885</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1496348444885</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Changed the layout Color Scheme">
+      <created>1496372938523</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1496372938523</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Fixed several simple warnings. Deleted user profile.">
+      <created>1496374995059</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1496374995059</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Changed the layout of the">
+      <created>1496376108657</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1496376108657</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -3053,23 +3347,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-266" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257143" sideWeight="0.61668426" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12351544" sideWeight="0.56563705" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12116041" sideWeight="0.56563705" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15874036" sideWeight="0.5341615" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2776204" sideWeight="0.5260618" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1128266" sideWeight="0.47393823" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20819113" sideWeight="0.47393823" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33905146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09026128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.4924357" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257143" sideWeight="0.4969743" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24871466" sideWeight="0.48976108" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257143" sideWeight="0.38331574" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23705502" sideWeight="0.46583852" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23146747" sideWeight="0.46583852" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779098" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24886535" sideWeight="0.48700175" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3083,8 +3379,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32935154" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33905146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3148,13 +3442,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some comments for posterity" />
-    <MESSAGE value="Commit from branch" />
-    <MESSAGE value="Commit from branch. updated warnUser in SecondFragment" />
-    <MESSAGE value="Commit from branch. updated warnUser in ThirdFragment" />
-    <MESSAGE value="Commit from master. Created a BrewTourFrag Fragment, BeerListFragment and coresponding xmls. They have a card views with some default data. The views can be overwritten in the fragment classes that are associated wth them." />
-    <MESSAGE value="Commit from master. Created a BrewTourFrag Fragment, BeerListFragment and coresponding xmls. They have a card views with some default data. The views can be overwritten in the fragment classes that are associated wth them. And javadoced" />
-    <MESSAGE value="Commit from master. &#10;Set up FourthFragnmet to be the mainpaig fragement with 2 buttons for accessing the brew tour fragment and the beer list fragment. Only the Brew Tour button works and when it is clicked you are taken to the BewTourFragment. FourthFragment now has an AsyncTask that calls the breweryDB API to get a list of breweries by Geolocation.&#10;&#10;I added a JSON parser to the BrewTour Fragment but it still needs to be tweeked to be able to work with the JSON returned from breweryDB. I added a decision statement to &#10;MainActicvity.onFragmentInteraction that loads the different fragments depending on what fragment they came from.&#10;&#10;" />
     <MESSAGE value="Added recycler view stuff. &#10;" />
     <MESSAGE value="Branch commit" />
     <MESSAGE value="Made the recycler view work in theory&#10;&#10;" />
@@ -3173,84 +3460,25 @@
     <MESSAGE value="Commit to benDev&#10;Fixed location problem by using a while statement in MainActivity to request permission untill it registers that it has permission." />
     <MESSAGE value="Beers can now be added to the database from clicking the suggested list's cardview. &#10;&#10;Changed color of sign in buttons." />
     <MESSAGE value="Fixed the &quot;adding a beer other than the one selected bug&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the &quot;adding a beer other than the one selected bug&quot;" />
+    <MESSAGE value="Fixed the multiple ratings bug where it would crash if you tried to rate a beer more than once" />
+    <MESSAGE value="Added the label images to the BeerList&#10;Added IBU and ABV to BeerList" />
+    <MESSAGE value="Changed the layout of the Beer List and Beer rating XML files." />
+    <MESSAGE value="added organic image" />
+    <MESSAGE value="Changed the layout Color Scheme" />
+    <MESSAGE value="Fixed several simple warnings. Deleted user profile." />
+    <MESSAGE value="Changed the layout of the" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the layout of the" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java</url>
-          <line>251</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/stout.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/stout.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/beer_image.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/beer_image2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BreweryData.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/BrewTourFiltersFragment.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour_filters.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/AbstractRecViewAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/TopBrew.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/placeholder.jpg">
@@ -3259,32 +3487,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/GetBeerListTask.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/TopBrewery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-compat/25.3.1/support-compat-25.3.1-sources.jar!/android/support/v4/content/ContextCompat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/UserProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="58" column="7" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3298,36 +3504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_background.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -3336,75 +3512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginSelectionFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="145" column="44" selection-start-line="145" selection-start-column="44" selection-end-line="145" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/RegisterFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-807">
-          <caret line="95" column="35" selection-start-line="95" selection-start-column="35" selection-end-line="95" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_selection.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="49" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main_page.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="34" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -3423,34 +3534,13 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_rate_beer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="51" column="56" selection-start-line="51" selection-start-column="56" selection-end-line="51" selection-end-column="56" />
-          <folding>
-            <marker date="1496163220956" expanded="false" signature="1736:1750" ph="&quot;Enter a rating between 0 and 5&quot;" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/MapFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
           <folding>
-            <element signature="e#1799#3129#0" expanded="true" />
-            <element signature="e#3128#3129#0" expanded="true" />
+            <element signature="e#1799#3129#0" expanded="false" />
+            <element signature="e#3128#3129#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3466,73 +3556,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/RateBeerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/organic.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/Beer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SuggestionsList/SuggestionsListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="91" column="87" selection-start-line="91" selection-start-column="87" selection-end-line="91" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BeerListRecViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4709">
-          <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="105" column="42" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1496190863198" expanded="false" signature="4312:4345" ph="&quot;username&quot;" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
@@ -3546,29 +3572,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperSimpleCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3580,11 +3588,333 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BrewTour/TopBrewery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-728">
+          <caret line="590" column="30" selection-start-line="590" selection-start-column="24" selection-end-line="590" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="2405" column="69" selection-start-line="2405" selection-start-column="69" selection-end-line="2405" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_brew_tour.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="16" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main_page.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="56" selection-end-column="57" />
+          <folding>
+            <element signature="e#848#875#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_rate_beer.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="82" column="32" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_suggestions_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BeerListRecViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="184" column="61" selection-start-line="184" selection-start-column="61" selection-end-line="184" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/BrewTourRecViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/RateBeerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-333">
+          <caret line="97" column="48" selection-start-line="97" selection-start-column="48" selection-end-line="97" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/TopBrew.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1304">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/SuggestionsList/SuggestionsListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginSelectionFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/UserProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/RegisterFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-680">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/Beer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-397">
+          <caret line="19" column="86" selection-start-line="19" selection-start-column="86" selection-end-line="19" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainPageFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="169" column="32" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/simple_search_view_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding>
+            <element signature="e#273#290#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="115" column="21" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="21" />
+        <state relative-caret-position="-347">
+          <caret line="377" column="13" selection-start-line="377" selection-start-column="13" selection-end-line="377" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#10324#10351#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_beer_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding>
+            <element signature="e#688#711#0" expanded="true" />
+            <marker date="1496439494882" expanded="false" signature="2112:2130" ph="&quot;Search&quot;" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/brew_tour_card_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/transparentstout.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/beer_list_card_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="117" column="19" selection-start-line="117" selection-start-column="19" selection-end-line="117" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/LoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1606">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/BeerList/BeerListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="136" column="57" selection-start-line="136" selection-start-column="57" selection-end-line="136" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2893#3212#0" expanded="true" />
+            <element signature="e#3211#3212#0" expanded="true" />
+            <element signature="e#4798#4799#0" expanded="true" />
+            <element signature="e#4826#4827#0" expanded="true" />
+            <marker date="1496441262803" expanded="false" signature="3527:3560" ph="&quot;username&quot;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/ItemTouchHelperSimpleCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="56" selection-end-column="21" />
+          <folding>
+            <element signature="e#1525#1800#0" expanded="true" />
+            <element signature="e#1799#1800#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/group10/tcss450/uw/edu/challengeapp/Adapter/SuggestionsListRecViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="85" column="44" selection-start-line="85" selection-start-column="44" selection-end-line="85" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2962#5035#0" expanded="true" />
+            <element signature="e#3622#4623#0" expanded="true" />
+            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#4698#4924#0" expanded="true" />
+            <element signature="e#4923#4924#0" expanded="true" />
+            <element signature="e#5034#5035#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
