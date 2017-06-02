@@ -19,8 +19,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +50,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
     private final String EXCEPTION_MSG = "Three String arguments required.";
     /** Start of the message to notify the user of connection failure.*/
     private final String EXCEPTION_MSG_2 = "Unable to connect, Reason: ";
-    private AutoCompleteTextView mAutoCompleteTextView;
+    private EditText mEditText;
     private static final String BEERLIST_PARTIAL_URL = "http://cssgate.insttech.washington.edu/" +
             "~grwyler/beerButler/beerList";
     private static final String SUGGESTIONS_PARTIAL_URL = "http://api.brewerydb.com/v2/beers/" +
@@ -102,8 +102,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
         Button b = (Button) getActivity().findViewById(R.id.add_beer);
         b.setOnClickListener(this);
-        mAutoCompleteTextView = (AutoCompleteTextView) getActivity().findViewById(R.id.
-                auto_complete_beers_text);
+        mEditText = (EditText) getActivity().findViewById(R.id.auto_complete_beers_text);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string
                 .login_prefs),
                 Context.MODE_PRIVATE);
@@ -127,9 +126,9 @@ public class BeerListFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        String beerName = mAutoCompleteTextView.getText().toString();
+        String beerName = mEditText.getText().toString();
         if (beerName.length() == 0) {
-            mAutoCompleteTextView.setError("Search field cannot be empty!");
+            mEditText.setError("Search field cannot be empty!");
             // TODO: Call the api and search for beerName
         } else {
             // Delete new lines entered by the stupid user.

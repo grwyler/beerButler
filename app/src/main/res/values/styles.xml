@@ -19,4 +19,9 @@
         <item name="colorControlActivated">@color/colorAle</item>
     </style>
 
+    <style name="TextFields" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/mettalicGold</item>
+        <item name="colorControlHighlight">@color/mettalicGold</item>
+    </style>
+
 </resources>

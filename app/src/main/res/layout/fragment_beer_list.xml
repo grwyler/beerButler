@@ -6,20 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorAle"
+    android:background="@color/lightGray"
     tools:context="group10.tcss450.uw.edu.challengeapp.BeerList.BeerListFragment">
-
-    <AutoCompleteTextView
-        android:id="@+id/auto_complete_beers_text"
-        android:hint="@string/Add_beer_hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/add_beer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonshape"
+        android:background="@color/colorStout"
         android:textColor="#FFFFFF"
         android:shadowColor="#0C0B1F"
         android:shadowDx="5"
@@ -27,6 +20,13 @@
         android:shadowRadius="10"
         android:text="@string/add_beer"
         style="button"/>
+
+    <EditText
+        android:id="@+id/auto_complete_beers_text"
+        android:hint="@string/Add_beer_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/TextFields"/>
 
     <TextView
         android:id="@+id/add_beer_suggestion"

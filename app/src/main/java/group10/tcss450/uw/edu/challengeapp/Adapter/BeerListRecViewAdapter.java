@@ -177,7 +177,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             mName = (TextView) cardView.findViewById(R.id.name_view);
             mStyle = (TextView) cardView.findViewById(R.id.style_view);
             mOrganicPic = (ImageView) cardView.findViewById(R.id.organic);
-            mBrewery = (TextView) cardView.findViewById(R.id.brewery_view);
+            mBrewery = (TextView) cardView.findViewById(R.id.description_view);
             mAbv = (TextView) cardView.findViewById(R.id.abv_view);
             mIbu = (TextView) cardView.findViewById(R.id.ibu_view);
             mNotes = (TextView) cardView.findViewById(R.id.notes_view);
@@ -224,8 +224,7 @@ public class BeerListRecViewAdapter extends RecyclerView.Adapter<BeerListRecView
             } else imageView.setImageResource(R.drawable.stout);
             holder.mName.setText(beer.getmName());
             holder.mStyle.setText(beer.getStyle());
-            String brewery = "Brewery: " + beer.getBrewery();
-            holder.mBrewery.setText(brewery);
+            holder.mBrewery.setText(beer.getDescription());
             holder.mAbv.setText(beer.getAbv().equals("0") ? "" : "ABV: " + beer.getAbv());
             holder.mIbu.setText(beer.getIbu().equals("0") ? "" : "IBUs: " + beer.getIbu());
             String notes = beer.getNotes();
