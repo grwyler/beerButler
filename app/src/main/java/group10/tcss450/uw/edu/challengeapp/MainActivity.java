@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -72,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements
     public static FragmentManager mFragManager;
     private MainPageFragment mMainPage;
     private GoogleApiClient mGoogleApiClient;
-
+    private boolean gps_enabled;
+    private LocationManager mLocManager;
     private static final int MY_PERMISSIONS_LOCATIONS = 814;
 
     @Override
@@ -136,6 +139,15 @@ public class MainActivity extends AppCompatActivity implements
                     new String[]{Manifest.permission.ACCESS_COARSE_LOCATION
                             , Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_LOCATIONS);
+        }
+
+        mLocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        gps_enabled = mLocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!gps_enabled) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage(this.getResources().getString(R.string.gps_network_not_enabled));
+            dialog.show();
         }
     }
     /**
@@ -462,6 +474,13 @@ public class MainActivity extends AppCompatActivity implements
 //                            Log.d("MainActivity ", "Location changed! " + String.valueOf(mCurrentLocation.getLatitude()));
                         }
                         startLocationUpdates();
+                        try {
+                            //set time in mili
+                            Thread.sleep(5000);
+
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
             }
         }
     }
