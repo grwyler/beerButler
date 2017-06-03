@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity implements
             UPDATE_INTERVAL_IN_MILLISECONDS / 2;
     private LocationRequest mLocationRequest;
     private Location mCurrentLocation;
-    private SharedPreferences mLoginPreferences;
     private SharedPreferences.Editor mLoginPrefsEditor;
-    private boolean mSaveLogin;
     private boolean mMenuItemEnabled;
     private String mUsername;
     public static FragmentManager mFragManager;
@@ -109,10 +107,11 @@ public class MainActivity extends AppCompatActivity implements
         mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        mLoginPreferences = getSharedPreferences(getString(R.string.login_prefs),
+        SharedPreferences mLoginPreferences = getSharedPreferences(getString(R.string.login_prefs),
                 Context.MODE_PRIVATE);
         mLoginPrefsEditor = mLoginPreferences.edit();
-        mSaveLogin = mLoginPreferences.getBoolean(getString(R.string.save_login),
+        mLoginPrefsEditor.apply();
+        boolean mSaveLogin = mLoginPreferences.getBoolean(getString(R.string.save_login),
                 false);
         if (mSaveLogin) {
             fragment = mMainPage;
@@ -303,11 +302,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onMainPageBrewTourButtonPressed(String json) {
         BrewTourFrag bf = new BrewTourFrag();
-        UserProfileFragment us = new UserProfileFragment();
         Bundle args = new Bundle();
         args.putSerializable(BrewTourFrag.KEY, json);
         bf.setArguments(args);
-        us.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, bf)
@@ -334,6 +331,7 @@ public class MainActivity extends AppCompatActivity implements
         MenuItem menuItem = menu.findItem(R.id.action_settings);
 //        MenuItem menuItem = (MenuItem) findViewById(R.id.action_settings);
         menuItem.setEnabled(mMenuItemEnabled);
+        if (mUsername != null) menuItem.setTitle("Logout " + mUsername);
         return true;
     }
 
@@ -403,7 +401,8 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_LOCATIONS: {
                 // If request is cancelled, the result arrays are empty.

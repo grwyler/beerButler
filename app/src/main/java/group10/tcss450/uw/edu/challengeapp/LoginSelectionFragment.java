@@ -36,7 +36,7 @@ public class LoginSelectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().getSharedPreferences(getString(R.string.login_prefs), Context.MODE_PRIVATE)
-                .edit().clear().commit();
+                .edit().clear().apply();
         View v = inflater.inflate(R.layout.fragment_login_selection, container, false);
         mCurrentImage = (ImageView) v.findViewById(R.id.imageView);
         mMottoImage = (ImageView) v.findViewById(R.id.imageView2);

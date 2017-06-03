@@ -158,7 +158,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
                 mListener.onLoginFragmentInteraction(result);
             } else {
                 mRegisterButton.setVisibility(View.VISIBLE);
-                System.out.println("this happened");
                 Toast.makeText(getActivity(), TOAST_ERROR, Toast.LENGTH_SHORT).show();
             }
         }

@@ -5,16 +5,12 @@
  */
 package group10.tcss450.uw.edu.challengeapp.Adapter;
 
-import android.app.Activity;
-import android.content.Intent;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -24,11 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import group10.tcss450.uw.edu.challengeapp.BeerList.RateBeerFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.MapFragment;
 import group10.tcss450.uw.edu.challengeapp.BrewTour.TopBrewery;
 import group10.tcss450.uw.edu.challengeapp.MainActivity;
@@ -177,8 +173,6 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         if (hours == null) hours = "not available";
         if (topBrewery.getDistance() == null) distance = "unavailable";
         else distance = "" + mDataset.get(position).getDistance();
-
-        name =  name;
         distance =  mResources.getString(R.string.text_view_distance) + distance;
         hours =  mResources.getString(R.string.text_view_hours) + hours;
         address = address + " \n" +  city + ", " + state + " " + zip;
@@ -189,7 +183,8 @@ public class BrewTourRecViewAdapter extends RecyclerView.Adapter<BrewTourRecView
         holder.mTVAddress.setText(address);
         holder.longitude = topBrewery.getLongitude();
         holder.latitude = topBrewery.getLatitude();
-        holder.mName = brewery.getName();
+        if (brewery != null) holder.mName = brewery.getName();
+
     }
 
     @Override

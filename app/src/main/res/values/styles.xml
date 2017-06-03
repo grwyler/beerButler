@@ -14,4 +14,14 @@
         <item name="android:background">#222222</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/cardview_shadow_start_color</item>
+        <item name="colorControlActivated">@color/colorAle</item>
+    </style>
+
+    <style name="TextFields" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/mettalicGold</item>
+        <item name="colorControlHighlight">@color/mettalicGold</item>
+    </style>
+
 </resources>
