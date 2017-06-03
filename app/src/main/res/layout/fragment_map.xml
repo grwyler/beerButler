@@ -5,6 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="group10.tcss450.uw.edu.challengeapp.BrewTour.MapFragment">
-
-
 </com.google.android.gms.maps.MapView>
